@@ -9,7 +9,7 @@
 *.user
 *.userosscache
 *.sln.docstates
-SoftwareEngineeringProject/MySQLSetting.xml
+/SoftwareEngineeringProject/MySQLSettings.xml
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
