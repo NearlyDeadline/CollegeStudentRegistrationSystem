@@ -1,24 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Xml;
 using MySql.Data.MySqlClient;
 
 namespace SoftwareEngineeringProject
 {
-    public partial class Form : System.Windows.Forms.Form
+    class Server
     {
-        public Form()
+        Server()
         {
-            InitializeComponent();
             mysqlConnectionString = InitializeMySQLConnection("MySQLSettings.xml");
-            //在此添加更多的其他初始化函数
         }
 
         private readonly string mysqlConnectionString;//保存MySQL连接信息的字符串

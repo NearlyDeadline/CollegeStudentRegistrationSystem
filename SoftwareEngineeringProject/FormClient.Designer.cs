@@ -1,6 +1,6 @@
 ﻿namespace SoftwareEngineeringProject
 {
-    partial class Form
+    partial class FormClient
     {
         /// <summary>
         /// 必需的设计器变量。

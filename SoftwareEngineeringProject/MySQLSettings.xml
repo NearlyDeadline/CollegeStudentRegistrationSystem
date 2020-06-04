@@ -4,5 +4,5 @@
   <port>3306</port>
   <user>root</user>
   <password>nfs9mw</password>
-  <database>mud</database>
+  <database>local</database>
 </mysql>
