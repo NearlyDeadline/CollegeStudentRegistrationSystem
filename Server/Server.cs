@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Xml;
 using MySql.Data.MySqlClient;
 
-namespace SoftwareEngineeringProject
+namespace Server
 {
     class Server
     {

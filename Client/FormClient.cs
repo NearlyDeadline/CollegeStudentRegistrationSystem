@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
-namespace SoftwareEngineeringProject
+namespace Client
 {
     public partial class FormClient : System.Windows.Forms.Form
     {

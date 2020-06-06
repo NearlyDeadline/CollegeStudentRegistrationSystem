@@ -1,4 +1,4 @@
-﻿namespace SoftwareEngineeringProject
+﻿namespace Client
 {
     partial class FormClient
     {
