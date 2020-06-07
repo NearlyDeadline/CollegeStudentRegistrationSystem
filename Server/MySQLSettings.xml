@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<mysql>
-  <server>127.0.0.1</server>
-  <port>3306</port>
-  <user>root</user>
-  <password>nfs9mw</password>
-  <database>local</database>
-</mysql>
