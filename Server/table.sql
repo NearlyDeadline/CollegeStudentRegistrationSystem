@@ -98,7 +98,7 @@ CREATE TABLE student (
  	status 		varchar(10),
  	graduate_date 	year,
 	dept_name 	varchar(20),
-	tot_cred 	decimal(5,2) UNSIGNED,
+	tot_cred 	decimal(5,2) UNSIGNED DEFAULT 0,
 	password 	varchar(25) DEFAULT '000000',
 	PRIMARY KEY (id),
 	FOREIGN KEY (dept_name) REFERENCES department(dept_name) ON DELETE SET NULL
