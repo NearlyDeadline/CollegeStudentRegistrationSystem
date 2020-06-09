@@ -96,18 +96,18 @@ namespace Server
                 {
                     string password = (string)dt.Rows[0][0];
                     if (password.Equals(userPassword))
-                        result = "True";
+                        result = "True@"+ MySQLConnectionString;
                     else
-                        result = "密码错误";
+                        result = "False"+"@密码错误";
                 }
                 else//无该用户
                 {
-                    result = "找不到用户";
+                    result = "False" + "@找不到用户";
                 }
             }
             catch (MySqlException e)
             {
-                result = "服务器连接数据库异常";
+                result = "False" + "@服务器连接数据库异常";
             }
             
             return result;
