@@ -45,6 +45,10 @@
             this.NotificationTabPage = new System.Windows.Forms.TabPage();
             this.RegisterCoursesTabPage = new System.Windows.Forms.TabPage();
             this.AddRegistCoursesTabPage = new System.Windows.Forms.TabPage();
+            this.textBoxLoginName = new System.Windows.Forms.TextBox();
+            this.textBoxLoginPassword = new System.Windows.Forms.TextBox();
+            this.labelLoginName = new System.Windows.Forms.Label();
+            this.labelLoginPassword = new System.Windows.Forms.Label();
             this.LoginTabpage.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.SuspendLayout();
@@ -141,6 +145,10 @@
             // 
             // LoginTabpage
             // 
+            this.LoginTabpage.Controls.Add(this.labelLoginPassword);
+            this.LoginTabpage.Controls.Add(this.labelLoginName);
+            this.LoginTabpage.Controls.Add(this.textBoxLoginPassword);
+            this.LoginTabpage.Controls.Add(this.textBoxLoginName);
             this.LoginTabpage.Controls.Add(this.UserTypeComboBox);
             this.LoginTabpage.Controls.Add(this.LoginButton);
             this.LoginTabpage.Location = new System.Drawing.Point(4, 25);
@@ -153,16 +161,17 @@
             // 
             // UserTypeComboBox
             // 
+            this.UserTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UserTypeComboBox.FormattingEnabled = true;
             this.UserTypeComboBox.Items.AddRange(new object[] {
             "学生",
             "教授",
             "管理员"});
-            this.UserTypeComboBox.Location = new System.Drawing.Point(133, 225);
+            this.UserTypeComboBox.Location = new System.Drawing.Point(578, 216);
             this.UserTypeComboBox.Name = "UserTypeComboBox";
             this.UserTypeComboBox.Size = new System.Drawing.Size(121, 23);
             this.UserTypeComboBox.TabIndex = 1;
-            this.UserTypeComboBox.SelectedIndex = 0;
+            this.UserTypeComboBox.SelectedIndexChanged += new System.EventHandler(this.UserTypeComboBox_SelectedIndexChanged);
             // 
             // LoginButton
             // 
@@ -238,6 +247,39 @@
             this.AddRegistCoursesTabPage.Text = "添加课程";
             this.AddRegistCoursesTabPage.UseVisualStyleBackColor = true;
             // 
+            // textBoxLoginName
+            // 
+            this.textBoxLoginName.Location = new System.Drawing.Point(384, 214);
+            this.textBoxLoginName.Name = "textBoxLoginName";
+            this.textBoxLoginName.Size = new System.Drawing.Size(178, 25);
+            this.textBoxLoginName.TabIndex = 2;
+            // 
+            // textBoxLoginPassword
+            // 
+            this.textBoxLoginPassword.Location = new System.Drawing.Point(384, 293);
+            this.textBoxLoginPassword.Name = "textBoxLoginPassword";
+            this.textBoxLoginPassword.PasswordChar = '*';
+            this.textBoxLoginPassword.Size = new System.Drawing.Size(178, 25);
+            this.textBoxLoginPassword.TabIndex = 3;
+            // 
+            // labelLoginName
+            // 
+            this.labelLoginName.AutoSize = true;
+            this.labelLoginName.Location = new System.Drawing.Point(254, 219);
+            this.labelLoginName.Name = "labelLoginName";
+            this.labelLoginName.Size = new System.Drawing.Size(97, 15);
+            this.labelLoginName.TabIndex = 4;
+            this.labelLoginName.Text = "用户名和身份";
+            // 
+            // labelLoginPassword
+            // 
+            this.labelLoginPassword.AutoSize = true;
+            this.labelLoginPassword.Location = new System.Drawing.Point(254, 296);
+            this.labelLoginPassword.Name = "labelLoginPassword";
+            this.labelLoginPassword.Size = new System.Drawing.Size(37, 15);
+            this.labelLoginPassword.TabIndex = 5;
+            this.labelLoginPassword.Text = "密码";
+            // 
             // FormClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -250,6 +292,7 @@
             this.Text = "大学学生注册系统";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormClient_FormClosed);
             this.LoginTabpage.ResumeLayout(false);
+            this.LoginTabpage.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -275,6 +318,10 @@
         private System.Windows.Forms.TabPage AddRegistCoursesTabPage;
         private System.Windows.Forms.Button LoginButton;
         private System.Windows.Forms.ComboBox UserTypeComboBox;
+        private System.Windows.Forms.Label labelLoginPassword;
+        private System.Windows.Forms.Label labelLoginName;
+        private System.Windows.Forms.TextBox textBoxLoginPassword;
+        private System.Windows.Forms.TextBox textBoxLoginName;
     }
 }
 
