@@ -6,14 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="MySQLSettings.xml" />
     <None Remove="testInsertFile.sql" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="MySQLSettings.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="testInsertFile.sql" />
   </ItemGroup>
 
@@ -25,6 +21,12 @@
     <Reference Include="System.Web.Extensions">
       <HintPath>C:\Program Files\Reference Assemblies\Microsoft\Framework\v3.5\System.Web.Extensions.dll</HintPath>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="MySQLSettings.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

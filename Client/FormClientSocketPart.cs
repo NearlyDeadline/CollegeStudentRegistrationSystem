@@ -11,7 +11,7 @@ namespace Client
 {
     public partial class FormClient
     {
-        
+
         private static String ResultBuffer = String.Empty; //保存服务器回复的信息
 
         private void InitializeConnection()
@@ -29,6 +29,9 @@ namespace Client
         {
             Socket clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             IPEndPoint remoteEP = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 13000);
+            receiveDone.Reset();
+            sendDone.Reset();
+            connectDone.Reset();
             try
             {
                 clientSocket.BeginConnect(remoteEP, new AsyncCallback(ConnectCallback), clientSocket);
@@ -36,18 +39,20 @@ namespace Client
                 //发送信息
                 Send(clientSocket, data + ".");
                 sendDone.WaitOne();
+                if (clientSocket.Connected)
+                {
+                    //接收信息 
+                    Receive(clientSocket);
+                    receiveDone.WaitOne();
 
-                //接收信息 
-                Receive(clientSocket);
-                receiveDone.WaitOne();
-
-                //释放连接 
-                clientSocket.Shutdown(SocketShutdown.Both);
-                clientSocket.Close();
+                    //释放连接 
+                    clientSocket.Shutdown(SocketShutdown.Both);
+                    clientSocket.Close();
+                }
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.ToString());
+                MessageBox.Show("连接服务器失败，请检查网络通信情况", "严重故障", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private static void Send(Socket client, String data)
@@ -73,7 +78,7 @@ namespace Client
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.ToString());
+                MessageBox.Show(e.ToString());
             }
         }
 
@@ -86,18 +91,20 @@ namespace Client
 
                 //完成连接
                 ClientSocket.EndConnect(ar);
-
-                //发送信号，连接完毕
-                connectDone.Set();
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.ToString());
+                //MessageBox.Show("连接服务器失败，请检查网络通信情况","严重故障",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
+            finally
+            {
+                //发送信号，连接完毕
+                connectDone.Set();
             }
         }
         private static ManualResetEvent connectDone = new ManualResetEvent(false);
         private static ManualResetEvent sendDone = new ManualResetEvent(false);
-        private static ManualResetEvent receiveDone = new ManualResetEvent(false);        
+        private static ManualResetEvent receiveDone = new ManualResetEvent(false);
 
         private static void ReceiveCallback(IAsyncResult ar)
         {
@@ -132,7 +139,7 @@ namespace Client
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.ToString());
+                MessageBox.Show(e.ToString());
             }
         }
 
@@ -151,7 +158,7 @@ namespace Client
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.ToString());
+                MessageBox.Show(e.ToString());
             }
         }
     }

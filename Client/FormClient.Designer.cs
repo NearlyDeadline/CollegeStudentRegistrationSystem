@@ -28,67 +28,257 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.WatingForGradeTabPage = new System.Windows.Forms.TabPage();
+            this.AddTeachCourseTabPage = new System.Windows.Forms.TabPage();
+            this.TeachCourseManageTabPage = new System.Windows.Forms.TabPage();
+            this.SystemManageTabPage = new System.Windows.Forms.TabPage();
+            this.StudentInformationTabPage = new System.Windows.Forms.TabPage();
+            this.ProfessorInformationTabPage = new System.Windows.Forms.TabPage();
+            this.PersonalInformationTabPage = new System.Windows.Forms.TabPage();
+            this.ShowTabPage2 = new System.Windows.Forms.TabPage();
+            this.ShowTabPage1 = new System.Windows.Forms.TabPage();
+            this.LoginTabpage = new System.Windows.Forms.TabPage();
+            this.UserTypeComboBox = new System.Windows.Forms.ComboBox();
+            this.LoginButton = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.SummitGradesTabPage = new System.Windows.Forms.TabPage();
+            this.NotificationTabPage = new System.Windows.Forms.TabPage();
+            this.RegisterCoursesTabPage = new System.Windows.Forms.TabPage();
+            this.AddRegistCoursesTabPage = new System.Windows.Forms.TabPage();
+            this.textBoxLoginName = new System.Windows.Forms.TextBox();
+            this.textBoxLoginPassword = new System.Windows.Forms.TextBox();
+            this.labelLoginName = new System.Windows.Forms.Label();
+            this.labelLoginPassword = new System.Windows.Forms.Label();
+            this.LoginTabpage.SuspendLayout();
             this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
+            // 
+            // WatingForGradeTabPage
+            // 
+            this.WatingForGradeTabPage.Location = new System.Drawing.Point(4, 25);
+            this.WatingForGradeTabPage.Name = "WatingForGradeTabPage";
+            this.WatingForGradeTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.WatingForGradeTabPage.Size = new System.Drawing.Size(952, 511);
+            this.WatingForGradeTabPage.TabIndex = 9;
+            this.WatingForGradeTabPage.Text = "待录入课程";
+            this.WatingForGradeTabPage.UseVisualStyleBackColor = true;
+            // 
+            // AddTeachCourseTabPage
+            // 
+            this.AddTeachCourseTabPage.Location = new System.Drawing.Point(4, 25);
+            this.AddTeachCourseTabPage.Name = "AddTeachCourseTabPage";
+            this.AddTeachCourseTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.AddTeachCourseTabPage.Size = new System.Drawing.Size(952, 511);
+            this.AddTeachCourseTabPage.TabIndex = 8;
+            this.AddTeachCourseTabPage.Text = "添加新课程";
+            this.AddTeachCourseTabPage.UseVisualStyleBackColor = true;
+            // 
+            // TeachCourseManageTabPage
+            // 
+            this.TeachCourseManageTabPage.Location = new System.Drawing.Point(4, 25);
+            this.TeachCourseManageTabPage.Name = "TeachCourseManageTabPage";
+            this.TeachCourseManageTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.TeachCourseManageTabPage.Size = new System.Drawing.Size(952, 511);
+            this.TeachCourseManageTabPage.TabIndex = 7;
+            this.TeachCourseManageTabPage.Text = "管理教授课程";
+            this.TeachCourseManageTabPage.UseVisualStyleBackColor = true;
+            // 
+            // SystemManageTabPage
+            // 
+            this.SystemManageTabPage.Location = new System.Drawing.Point(4, 25);
+            this.SystemManageTabPage.Name = "SystemManageTabPage";
+            this.SystemManageTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.SystemManageTabPage.Size = new System.Drawing.Size(952, 511);
+            this.SystemManageTabPage.TabIndex = 6;
+            this.SystemManageTabPage.Text = "系统管理";
+            this.SystemManageTabPage.UseVisualStyleBackColor = true;
+            // 
+            // StudentInformationTabPage
+            // 
+            this.StudentInformationTabPage.Location = new System.Drawing.Point(4, 25);
+            this.StudentInformationTabPage.Name = "StudentInformationTabPage";
+            this.StudentInformationTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.StudentInformationTabPage.Size = new System.Drawing.Size(952, 511);
+            this.StudentInformationTabPage.TabIndex = 5;
+            this.StudentInformationTabPage.Text = "学生管理";
+            this.StudentInformationTabPage.UseVisualStyleBackColor = true;
+            // 
+            // ProfessorInformationTabPage
+            // 
+            this.ProfessorInformationTabPage.Location = new System.Drawing.Point(4, 25);
+            this.ProfessorInformationTabPage.Name = "ProfessorInformationTabPage";
+            this.ProfessorInformationTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.ProfessorInformationTabPage.Size = new System.Drawing.Size(952, 511);
+            this.ProfessorInformationTabPage.TabIndex = 4;
+            this.ProfessorInformationTabPage.Text = "教授管理";
+            this.ProfessorInformationTabPage.UseVisualStyleBackColor = true;
+            // 
+            // PersonalInformationTabPage
+            // 
+            this.PersonalInformationTabPage.Location = new System.Drawing.Point(4, 25);
+            this.PersonalInformationTabPage.Name = "PersonalInformationTabPage";
+            this.PersonalInformationTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.PersonalInformationTabPage.Size = new System.Drawing.Size(952, 511);
+            this.PersonalInformationTabPage.TabIndex = 3;
+            this.PersonalInformationTabPage.Text = "个人信息";
+            this.PersonalInformationTabPage.UseVisualStyleBackColor = true;
+            // 
+            // ShowTabPage2
+            // 
+            this.ShowTabPage2.Location = new System.Drawing.Point(4, 25);
+            this.ShowTabPage2.Name = "ShowTabPage2";
+            this.ShowTabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.ShowTabPage2.Size = new System.Drawing.Size(952, 511);
+            this.ShowTabPage2.TabIndex = 2;
+            this.ShowTabPage2.Text = "展示页2";
+            this.ShowTabPage2.UseVisualStyleBackColor = true;
+            // 
+            // ShowTabPage1
+            // 
+            this.ShowTabPage1.Location = new System.Drawing.Point(4, 25);
+            this.ShowTabPage1.Name = "ShowTabPage1";
+            this.ShowTabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.ShowTabPage1.Size = new System.Drawing.Size(952, 511);
+            this.ShowTabPage1.TabIndex = 1;
+            this.ShowTabPage1.Text = "展示页1";
+            this.ShowTabPage1.UseVisualStyleBackColor = true;
+            // 
+            // LoginTabpage
+            // 
+            this.LoginTabpage.Controls.Add(this.labelLoginPassword);
+            this.LoginTabpage.Controls.Add(this.labelLoginName);
+            this.LoginTabpage.Controls.Add(this.textBoxLoginPassword);
+            this.LoginTabpage.Controls.Add(this.textBoxLoginName);
+            this.LoginTabpage.Controls.Add(this.UserTypeComboBox);
+            this.LoginTabpage.Controls.Add(this.LoginButton);
+            this.LoginTabpage.Location = new System.Drawing.Point(4, 25);
+            this.LoginTabpage.Name = "LoginTabpage";
+            this.LoginTabpage.Padding = new System.Windows.Forms.Padding(3);
+            this.LoginTabpage.Size = new System.Drawing.Size(952, 511);
+            this.LoginTabpage.TabIndex = 0;
+            this.LoginTabpage.Text = "登陆页面";
+            this.LoginTabpage.UseVisualStyleBackColor = true;
+            // 
+            // UserTypeComboBox
+            // 
+            this.UserTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UserTypeComboBox.FormattingEnabled = true;
+            this.UserTypeComboBox.Items.AddRange(new object[] {
+            "学生",
+            "教授",
+            "管理员"});
+            this.UserTypeComboBox.Location = new System.Drawing.Point(578, 216);
+            this.UserTypeComboBox.Name = "UserTypeComboBox";
+            this.UserTypeComboBox.Size = new System.Drawing.Size(121, 23);
+            this.UserTypeComboBox.TabIndex = 1;
+            this.UserTypeComboBox.SelectedIndexChanged += new System.EventHandler(this.UserTypeComboBox_SelectedIndexChanged);
+            // 
+            // LoginButton
+            // 
+            this.LoginButton.Location = new System.Drawing.Point(384, 382);
+            this.LoginButton.Name = "LoginButton";
+            this.LoginButton.Size = new System.Drawing.Size(178, 45);
+            this.LoginButton.TabIndex = 0;
+            this.LoginButton.Text = "登    入";
+            this.LoginButton.UseVisualStyleBackColor = true;
+            this.LoginButton.Click += new System.EventHandler(this.LoginButton_Click);
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.LoginTabpage);
+            this.tabControl1.Controls.Add(this.ShowTabPage1);
+            this.tabControl1.Controls.Add(this.ShowTabPage2);
+            this.tabControl1.Controls.Add(this.PersonalInformationTabPage);
+            this.tabControl1.Controls.Add(this.ProfessorInformationTabPage);
+            this.tabControl1.Controls.Add(this.StudentInformationTabPage);
+            this.tabControl1.Controls.Add(this.SystemManageTabPage);
+            this.tabControl1.Controls.Add(this.TeachCourseManageTabPage);
+            this.tabControl1.Controls.Add(this.AddTeachCourseTabPage);
+            this.tabControl1.Controls.Add(this.WatingForGradeTabPage);
+            this.tabControl1.Controls.Add(this.SummitGradesTabPage);
+            this.tabControl1.Controls.Add(this.NotificationTabPage);
+            this.tabControl1.Controls.Add(this.RegisterCoursesTabPage);
+            this.tabControl1.Controls.Add(this.AddRegistCoursesTabPage);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(960, 540);
             this.tabControl1.TabIndex = 0;
+            this.tabControl1.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.tabControl1_Selecting);
             // 
-            // tabPage1
+            // SummitGradesTabPage
             // 
-            this.tabPage1.Controls.Add(this.button1);
-            this.tabPage1.Controls.Add(this.dataGridView1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 25);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(952, 511);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.SummitGradesTabPage.AccessibleRole = System.Windows.Forms.AccessibleRole.Diagram;
+            this.SummitGradesTabPage.Location = new System.Drawing.Point(4, 25);
+            this.SummitGradesTabPage.Name = "SummitGradesTabPage";
+            this.SummitGradesTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.SummitGradesTabPage.Size = new System.Drawing.Size(952, 511);
+            this.SummitGradesTabPage.TabIndex = 10;
+            this.SummitGradesTabPage.Text = "录入成绩";
+            this.SummitGradesTabPage.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // NotificationTabPage
             // 
-            this.button1.Location = new System.Drawing.Point(812, 28);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(117, 65);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "读取并显示";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.NotificationTabPage.Location = new System.Drawing.Point(4, 25);
+            this.NotificationTabPage.Name = "NotificationTabPage";
+            this.NotificationTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.NotificationTabPage.Size = new System.Drawing.Size(952, 511);
+            this.NotificationTabPage.TabIndex = 11;
+            this.NotificationTabPage.Text = "系统通知";
+            this.NotificationTabPage.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // RegisterCoursesTabPage
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(6, 28);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 27;
-            this.dataGridView1.Size = new System.Drawing.Size(800, 450);
-            this.dataGridView1.TabIndex = 0;
+            this.RegisterCoursesTabPage.Location = new System.Drawing.Point(4, 25);
+            this.RegisterCoursesTabPage.Name = "RegisterCoursesTabPage";
+            this.RegisterCoursesTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.RegisterCoursesTabPage.Size = new System.Drawing.Size(952, 511);
+            this.RegisterCoursesTabPage.TabIndex = 12;
+            this.RegisterCoursesTabPage.Text = "选课";
+            this.RegisterCoursesTabPage.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
+            // AddRegistCoursesTabPage
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(952, 511);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.AddRegistCoursesTabPage.Location = new System.Drawing.Point(4, 25);
+            this.AddRegistCoursesTabPage.Name = "AddRegistCoursesTabPage";
+            this.AddRegistCoursesTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.AddRegistCoursesTabPage.Size = new System.Drawing.Size(952, 511);
+            this.AddRegistCoursesTabPage.TabIndex = 13;
+            this.AddRegistCoursesTabPage.Text = "添加课程";
+            this.AddRegistCoursesTabPage.UseVisualStyleBackColor = true;
+            // 
+            // textBoxLoginName
+            // 
+            this.textBoxLoginName.Location = new System.Drawing.Point(384, 214);
+            this.textBoxLoginName.Name = "textBoxLoginName";
+            this.textBoxLoginName.Size = new System.Drawing.Size(178, 25);
+            this.textBoxLoginName.TabIndex = 2;
+            // 
+            // textBoxLoginPassword
+            // 
+            this.textBoxLoginPassword.Location = new System.Drawing.Point(384, 293);
+            this.textBoxLoginPassword.Name = "textBoxLoginPassword";
+            this.textBoxLoginPassword.PasswordChar = '*';
+            this.textBoxLoginPassword.Size = new System.Drawing.Size(178, 25);
+            this.textBoxLoginPassword.TabIndex = 3;
+            // 
+            // labelLoginName
+            // 
+            this.labelLoginName.AutoSize = true;
+            this.labelLoginName.Location = new System.Drawing.Point(254, 219);
+            this.labelLoginName.Name = "labelLoginName";
+            this.labelLoginName.Size = new System.Drawing.Size(97, 15);
+            this.labelLoginName.TabIndex = 4;
+            this.labelLoginName.Text = "用户名和身份";
+            // 
+            // labelLoginPassword
+            // 
+            this.labelLoginPassword.AutoSize = true;
+            this.labelLoginPassword.Location = new System.Drawing.Point(254, 296);
+            this.labelLoginPassword.Name = "labelLoginPassword";
+            this.labelLoginPassword.Size = new System.Drawing.Size(37, 15);
+            this.labelLoginPassword.TabIndex = 5;
+            this.labelLoginPassword.Text = "密码";
             // 
             // FormClient
             // 
@@ -101,9 +291,9 @@
             this.Name = "FormClient";
             this.Text = "大学学生注册系统";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormClient_FormClosed);
+            this.LoginTabpage.ResumeLayout(false);
+            this.LoginTabpage.PerformLayout();
             this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -111,10 +301,27 @@
         #endregion
 
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.Button button1;
+
+        private System.Windows.Forms.TabPage WatingForGradeTabPage;
+        private System.Windows.Forms.TabPage AddTeachCourseTabPage;
+        private System.Windows.Forms.TabPage TeachCourseManageTabPage;
+        private System.Windows.Forms.TabPage SystemManageTabPage;
+        private System.Windows.Forms.TabPage StudentInformationTabPage;
+        private System.Windows.Forms.TabPage ProfessorInformationTabPage;
+        private System.Windows.Forms.TabPage PersonalInformationTabPage;
+        private System.Windows.Forms.TabPage ShowTabPage2;
+        private System.Windows.Forms.TabPage ShowTabPage1;
+        private System.Windows.Forms.TabPage LoginTabpage;
+        private System.Windows.Forms.TabPage SummitGradesTabPage;
+        private System.Windows.Forms.TabPage NotificationTabPage;
+        private System.Windows.Forms.TabPage RegisterCoursesTabPage;
+        private System.Windows.Forms.TabPage AddRegistCoursesTabPage;
+        private System.Windows.Forms.Button LoginButton;
+        private System.Windows.Forms.ComboBox UserTypeComboBox;
+        private System.Windows.Forms.Label labelLoginPassword;
+        private System.Windows.Forms.Label labelLoginName;
+        private System.Windows.Forms.TextBox textBoxLoginPassword;
+        private System.Windows.Forms.TextBox textBoxLoginName;
     }
 }
 
