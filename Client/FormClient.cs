@@ -1,4 +1,5 @@
-﻿using MySqlX.XDevAPI.Common;
+﻿using MySql.Data.MySqlClient;
+using MySqlX.XDevAPI.Common;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,6 +13,8 @@ namespace Client
 {
     public partial class FormClient : System.Windows.Forms.Form
     {
+        private  string mysqlConnectionString;//保存MySQL连接信息的字符串
+
         public int UserType = 0;        //用户类型 0学生 1教授 2管理员
 
         private String UserTypeName = String.Empty;
@@ -84,10 +87,31 @@ namespace Client
             ResultBuffer = String.Empty;
             string message = String.Format("login@{0},{1},{2}", UserTypeName, textBoxLoginName.Text, textBoxLoginPassword.Text);
             GetResultToBuffer(message);
-            if (ResultBuffer.Equals("True"))
+            string receivedMessage = ResultBuffer;
+            string[] receivedMessages = receivedMessage.Split('@');
+            if (receivedMessages[0].Equals("True"))
+            {
+                this.mysqlConnectionString = receivedMessages[1];
+                MySqlConnection conn = new MySqlConnection(this.mysqlConnectionString);
+                try
+                {
+                    conn.Open();
+                    MessageBox.Show("服务器数据连接建立成功", "数据连接测试", MessageBoxButtons.OK);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("服务器数据连接建立失败" + ex.ToString(), "数据连接测试", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return false;
+                }
+                conn.Close();
+
                 return true;
+            }
             else
+            {
+                ResultBuffer = receivedMessages[1];
                 return false;
+            }
         }
 
         private void UserTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
