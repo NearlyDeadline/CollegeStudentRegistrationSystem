@@ -6,14 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="MySQLSettings.xml" />
     <None Remove="testInsertFile.sql" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="MySQLSettings.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="testInsertFile.sql" />
   </ItemGroup>
 

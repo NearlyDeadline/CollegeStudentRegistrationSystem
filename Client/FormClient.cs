@@ -10,22 +10,59 @@ namespace Client
 {
     public partial class FormClient : System.Windows.Forms.Form
     {
+        public int UserType = 0;        //用户类型 0学生 1教授 2管理员
+
+        public Boolean Selecting = true;
         public FormClient()
         {
             InitializeComponent();
             InitializeConnection();
             //在此添加更多的其他初始化函数
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            GetResultToBuffer("select * from course;");
-            dataGridView1.DataSource = ResultBuffer.ToDataTable();
+            this.tabControl1.TabPages.Clear();
+            this.tabControl1.TabPages.Add(this.LoginTabpage);
         }
 
         private void FormClient_FormClosed(object sender, System.Windows.Forms.FormClosedEventArgs e)
         {
             
+        }
+
+        private void tabControl1_Selecting(object sender, TabControlCancelEventArgs e)
+        {
+            if(Selecting == false)
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void LoginButton_Click(object sender, EventArgs e)
+        {
+            this.UserType = this.UserTypeComboBox.SelectedIndex;
+            this.tabControl1.TabPages.Clear();
+            switch (this.UserType)
+            {
+                case 0:
+                    this.tabControl1.TabPages.Add(this.PersonalInformationTabPage);
+                    this.ShowTabPage1.Text = "查看已选课程";
+                    this.tabControl1.TabPages.Add(this.ShowTabPage1);
+                    this.ShowTabPage2.Text = "查看课程信息";
+                    this.tabControl1.TabPages.Add(this.ShowTabPage2);
+                    this.tabControl1.TabPages.Add(this.NotificationTabPage);
+                    this.tabControl1.TabPages.Add(this.RegisterCoursesTabPage);
+                    break;
+                case 1:
+                    this.tabControl1.TabPages.Add(this.PersonalInformationTabPage);
+                    this.tabControl1.TabPages.Add(this.TeachCourseManageTabPage);
+                    this.ShowTabPage1.Text = "以往教授课程";
+                    this.tabControl1.TabPages.Add(this.ShowTabPage1);
+                    this.tabControl1.TabPages.Add(this.WatingForGradeTabPage);
+                    break;
+                case 2:
+                    this.tabControl1.TabPages.Add(this.ProfessorInformationTabPage);
+                    this.tabControl1.TabPages.Add(this.StudentInformationTabPage);
+                    this.tabControl1.TabPages.Add(this.SystemManageTabPage);
+                    break;
+            }
         }
     }
 }
