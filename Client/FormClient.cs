@@ -7,6 +7,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace Client
@@ -20,6 +21,19 @@ namespace Client
         private String UserTypeName = String.Empty;
 
         public Boolean Selecting = true;
+
+        private static int WeekCountOfEachTerm = 26;//每学期26周
+        private static int DayCountOfEachWeek = 7;//一周七天，显然
+        private static int PeriodCountOfEachDay = 11;//一天11节课
+
+        private static Tuple<bool,String>[, ,] SchoolTimeTable = new Tuple<bool, String>[WeekCountOfEachTerm, DayCountOfEachWeek, PeriodCountOfEachDay];
+        //课程表，26周，7天，每天11节课
+
+        enum day
+        {
+            Monday, Tuesday, Wednesday, Thrusday, Friday, Saturday, Sunday
+        }
+
         public FormClient()
         {
             InitializeComponent();
@@ -28,6 +42,14 @@ namespace Client
             this.tabControl1.TabPages.Clear();
             this.tabControl1.TabPages.Add(this.LoginTabpage);
             this.UserTypeComboBox.SelectedIndex = 0;
+        }
+        private static void InitializeSchoolTimeTable()
+        {
+            Tuple<bool, String> valuePair = new Tuple<bool, string>(false, String.Empty);
+            for (int i = 0; i < WeekCountOfEachTerm; i++)
+                for (int j = 0; j < DayCountOfEachWeek; j++)
+                    for (int k = 0; k < DayCountOfEachWeek; k++)
+                        SchoolTimeTable[i,j,k] = valuePair;
         }
 
         private void FormClient_FormClosed(object sender, System.Windows.Forms.FormClosedEventArgs e)
@@ -132,11 +154,8 @@ namespace Client
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (MustFocusOnTeachCourseManageTabPage)
-            {
-                tabControl1.SelectedTab = tabControl1.TabPages["TeachCourseManageTabPage"];
-                MustFocusOnTeachCourseManageTabPage = false;
-            }
         }
+
+
     }
 }
