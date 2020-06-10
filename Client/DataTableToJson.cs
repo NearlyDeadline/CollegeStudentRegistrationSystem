@@ -9,6 +9,12 @@ namespace Client
 {
     public static class DataTableToJson
     {
+        public static bool IsJson(this string json)
+        {
+            if (json.Length > 1 && json[0].Equals('['))
+                return true;
+            return false;
+        }
         public static DataTable ToDataTable(this string json)
         {
             DataTable dataTable = new DataTable();  //实例化

@@ -11,8 +11,7 @@ namespace Client
 {
     public partial class FormClient
     {
-
-        private static String ResultBuffer = String.Empty; //保存服务器回复的信息
+        private static String ReceiveMessage;//保存服务器回复的信息
 
         private void InitializeConnection()
         {
@@ -25,7 +24,7 @@ namespace Client
          * 返回值：无
          * 额外影响：服务器发回的消息保存在ResultBuffer字符串中，请及时取走
          */
-        public void GetResultToBuffer(String data)
+        public void GetServerMessage(String data)
         {
             Socket clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             IPEndPoint remoteEP = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 13000);
@@ -130,7 +129,7 @@ namespace Client
                     //未读到数据，证明读取完毕
                     if (state.stringBuilder.Length > 1)
                     {
-                        ResultBuffer = state.stringBuilder.ToString();
+                        ReceiveMessage = state.stringBuilder.ToString();
 
                     }
                     //发送信号，接收完毕

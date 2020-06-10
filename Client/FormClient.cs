@@ -76,18 +76,18 @@ namespace Client
             }
             else
             {
-                if (ResultBuffer.Length == 0)
-                    ResultBuffer = "登录失败";
-                MessageBox.Show(ResultBuffer, "无效登录", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (ReceiveMessage.Length == 0)
+                    ReceiveMessage = "登录失败";
+                MessageBox.Show(ReceiveMessage, "无效登录", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        
+
         private bool log()
         {
-            ResultBuffer = String.Empty;
+            //ReceiveMessage = String.Empty;
             string message = String.Format("login@{0},{1},{2}", UserTypeName, textBoxLoginName.Text, textBoxLoginPassword.Text);
-            GetResultToBuffer(message);
-            string receivedMessage = ResultBuffer;
+            GetServerMessage(message);
+            string receivedMessage = ReceiveMessage;
             string[] receivedMessages = receivedMessage.Split('@');
             if (receivedMessages[0].Equals("True"))
             {
@@ -109,7 +109,7 @@ namespace Client
             }
             else
             {
-                ResultBuffer = receivedMessages[1];
+                ReceiveMessage = receivedMessages[1];
                 return false;
             }
         }
@@ -127,6 +127,15 @@ namespace Client
                 case 2:
                     this.UserTypeName = "registrar";
                     break;
+            }
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (MustFocusOnTeachCourseManageTabPage)
+            {
+                tabControl1.SelectedTab = tabControl1.TabPages["TeachCourseManageTabPage"];
+                MustFocusOnTeachCourseManageTabPage = false;
             }
         }
     }
