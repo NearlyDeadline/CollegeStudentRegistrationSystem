@@ -11,8 +11,8 @@ namespace Server
 {
     public partial class Server
     {
-        private static int CurrentYear = 2020;//当前年份，用于组合sql语句使用
-        private static String CurrentSemester = "Fall";//当前学期，用于组合sql语句使用
+        private static readonly int CurrentYear = 2020;//当前年份，用于组合sql语句使用
+        private static readonly String CurrentSemester = "Fall";//当前学期，用于组合sql语句使用
 
         private static bool IsCourseRegistrationOpen = true;
 
@@ -69,15 +69,15 @@ namespace Server
                     switch (vars[0])
                     {
                         case "can":
-                            sqlcmd = String.Format("SELECT C.* FROM can_teach as CT,section as S, course as C where CT.id = {0} and C.course_id = CT.course_id and C.course_id = S.course_id;",
+                            sqlcmd = String.Format("select S.* from section as S where (S.course_id in (select CT.course_id from can_teach as CT where CT.id = {0}) and isnull(S.id));",
                                 vars[1]);
                             break;
                         case "previous":
-                            sqlcmd = String.Format("SELECT C.course_id, C.title, C.dept_name, T.year, T.semester FROM teaches as T natural join course as C where T.id = {0};",
-                                vars[1]);
+                            sqlcmd = String.Format("SELECT * FROM section natural join course where id = {0} and year < {1};",
+                                vars[1], CurrentYear);
                             break;
                         case "choose":
-                            sqlcmd = String.Format("SELECT T.*, C.title, C.dept_name, C.credits, C.fee from course as C natural join teaches as T where T.id = {0};",
+                            sqlcmd = String.Format("SELECT * FROM section where id = {0};",
                                 vars[1]);
                             break;
                     }
@@ -96,12 +96,20 @@ namespace Server
         {
             String result = String.Empty;
             String[] sqls = cmd.Split(' ');
-            if (sqls[0].Equals("SELECT") || sqls[0].Equals("select"))//选择语句，发回JSON
-                result = ExecuteSelectCommand(cmd).ToJson();
-            else
+            try
             {
-                result = ExecuteNonQuery(cmd).ToString();//更新更改删除语句，发回受影响的行数
+                if (sqls[0].Equals("SELECT") || sqls[0].Equals("select"))//选择语句，发回JSON
+                    result = ExecuteSelectCommand(cmd).ToJson();
+                else
+                {
+                    result = ExecuteNonQuery(cmd).ToString();//更新更改删除语句，发回受影响的行数
+                }
             }
+            catch (Exception e)
+            {
+                result = e.ToString();
+            }
+
             return result;
         }
 

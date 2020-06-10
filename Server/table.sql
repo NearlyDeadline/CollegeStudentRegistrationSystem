@@ -26,8 +26,8 @@ CREATE TABLE time_slot (
 	day 		varchar(9) ,
 	start_wk 		decimal(2),
 	end_wk 		decimal(2),
-	start_tm 		time,
- 	end_tm 		time,
+	start_tm 		decimal(2),
+ 	end_tm 		decimal(2),
  	CONSTRAINT `time_slot_check_day_in_enum` CHECK (day IN ('Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday')),
  	CONSTRAINT `time_slot_check_startweek_unsigned` CHECK (start_wk > 0),
  	CONSTRAINT `time_slot_check_endweek_limited` CHECK (end_wk <= 52),
@@ -70,23 +70,13 @@ CREATE TABLE section (
 	building 	 	varchar(15),
 	room_number  	varchar(7),
 	time_slot_id 	varchar(4),
+	id              int,
 	CONSTRAINT `section_check_semester_in_enum` CHECK (semester IN ('Fall', 'Spring')),
 	PRIMARY KEY (course_id, sec_id, semester, year),
 	FOREIGN KEY (course_id) REFERENCES course(course_id) ON DELETE CASCADE,
 	FOREIGN KEY (building,room_number) REFERENCES classroom(building,room_number) ON DELETE SET NULL,
+	FOREIGN KEY (id) REFERENCES professor(id) ON DELETE SET NULL,
 	FOREIGN KEY (time_slot_id) REFERENCES time_slot(time_slot_id)
-	);
-	
-#老师讲授课程：教授id，课程段主码
-CREATE TABLE teaches (
-	id 			int,
-	course_id 	varchar(8),
-	sec_id 		varchar(8),
-	semester 		varchar(6),
-	year 		year,
-	PRIMARY KEY (id,course_id,sec_id,semester,year),
-	FOREIGN KEY (course_id,sec_id,semester,year) REFERENCES section (course_id,sec_id,semester,year) ON DELETE CASCADE,
-	FOREIGN KEY (id) REFERENCES professor(id) ON DELETE CASCADE
 	);
 	
 #学生：id，姓名，出生日期，SSN，状态，毕业年份，所属学院名称，获得的总学分，登录密码

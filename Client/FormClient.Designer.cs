@@ -182,6 +182,7 @@
             this.dataGridView本学期已教课程.RowTemplate.Height = 27;
             this.dataGridView本学期已教课程.Size = new System.Drawing.Size(650, 470);
             this.dataGridView本学期已教课程.TabIndex = 2;
+            this.dataGridView本学期已教课程.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView本学期已教课程_CellContentDoubleClick);
             // 
             // label本学期可教课程
             // 
