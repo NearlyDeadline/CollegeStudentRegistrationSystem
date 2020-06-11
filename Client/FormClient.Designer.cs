@@ -182,7 +182,7 @@
             this.dataGridView本学期已教课程.RowTemplate.Height = 27;
             this.dataGridView本学期已教课程.Size = new System.Drawing.Size(650, 470);
             this.dataGridView本学期已教课程.TabIndex = 2;
-            this.dataGridView本学期已教课程.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView本学期已教课程_CellContentDoubleClick);
+            this.dataGridView本学期已教课程.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView本学期已教课程_CellClick);
             // 
             // label本学期可教课程
             // 
@@ -206,6 +206,7 @@
             this.dataGridView本学期可教课程.RowTemplate.Height = 27;
             this.dataGridView本学期可教课程.Size = new System.Drawing.Size(650, 744);
             this.dataGridView本学期可教课程.TabIndex = 0;
+            this.dataGridView本学期可教课程.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView本学期可教课程_CellClick);
             // 
             // SystemManageTabPage
             // 

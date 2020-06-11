@@ -22,18 +22,6 @@ namespace Client
 
         public Boolean Selecting = true;
 
-        private static int WeekCountOfEachTerm = 26;//每学期26周
-        private static int DayCountOfEachWeek = 7;//一周七天，显然
-        private static int PeriodCountOfEachDay = 11;//一天11节课
-
-        private static Tuple<bool,String>[, ,] SchoolTimeTable = new Tuple<bool, String>[WeekCountOfEachTerm, DayCountOfEachWeek, PeriodCountOfEachDay];
-        //课程表，26周，7天，每天11节课
-
-        enum day
-        {
-            Monday, Tuesday, Wednesday, Thrusday, Friday, Saturday, Sunday
-        }
-
         public FormClient()
         {
             InitializeComponent();
@@ -43,14 +31,7 @@ namespace Client
             this.tabControl1.TabPages.Add(this.LoginTabpage);
             this.UserTypeComboBox.SelectedIndex = 0;
         }
-        private static void InitializeSchoolTimeTable()
-        {
-            Tuple<bool, String> valuePair = new Tuple<bool, string>(false, String.Empty);
-            for (int i = 0; i < WeekCountOfEachTerm; i++)
-                for (int j = 0; j < DayCountOfEachWeek; j++)
-                    for (int k = 0; k < DayCountOfEachWeek; k++)
-                        SchoolTimeTable[i,j,k] = valuePair;
-        }
+
 
         private void FormClient_FormClosed(object sender, System.Windows.Forms.FormClosedEventArgs e)
         {
@@ -81,6 +62,7 @@ namespace Client
                         this.tabControl1.TabPages.Add(this.ShowTabPage2);
                         this.tabControl1.TabPages.Add(this.NotificationTabPage);
                         this.tabControl1.TabPages.Add(this.RegisterCoursesTabPage);
+                        InitializeDataTable课程表();
                         break;
                     case 1:
                         this.tabControl1.TabPages.Add(this.PersonalInformationTabPage);
@@ -88,6 +70,7 @@ namespace Client
                         this.ShowTabPage1.Text = "以往教授课程";
                         this.tabControl1.TabPages.Add(this.ShowTabPage1);
                         this.tabControl1.TabPages.Add(this.WatingForGradeTabPage);
+                        InitializeDataTable课程表();
                         break;
                     case 2:
                         this.tabControl1.TabPages.Add(this.ProfessorInformationTabPage);
@@ -106,32 +89,33 @@ namespace Client
 
         private bool log()
         {
-            //ReceiveMessage = String.Empty;
             string message = String.Format("login@{0},{1},{2}", UserTypeName, textBoxLoginName.Text, textBoxLoginPassword.Text);
             GetServerMessage(message);
             string receivedMessage = ReceiveMessage;
-            string[] receivedMessages = receivedMessage.Split('@');
-            if (receivedMessages[0].Equals("True"))
+            if (receivedMessage.Length > 0)
             {
-                this.mysqlConnectionString = receivedMessages[1];
-                MySqlConnection conn = new MySqlConnection(this.mysqlConnectionString);
-                try
+                string[] receivedMessages = receivedMessage.Split('@');
+                if (receivedMessages[0].Equals("True"))
                 {
-                    conn.Open();
-                    MessageBox.Show("服务器数据连接建立成功", "数据连接测试", MessageBoxButtons.OK);
+                    this.mysqlConnectionString = receivedMessages[1];
+                    MySqlConnection conn = new MySqlConnection(this.mysqlConnectionString);
+                    try
+                    {
+                        conn.Open();
+                        MessageBox.Show("服务器数据连接建立成功", "数据连接测试", MessageBoxButtons.OK);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("服务器数据连接建立失败" + ex.ToString(), "数据连接测试", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        return false;
+                    }
+                    conn.Close();
+                    return true;
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("服务器数据连接建立失败" + ex.ToString(), "数据连接测试", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return false;
-                }
-                conn.Close();
-
-                return true;
+                return false;
             }
             else
             {
-                ReceiveMessage = receivedMessages[1];
                 return false;
             }
         }
@@ -155,7 +139,5 @@ namespace Client
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
         }
-
-
     }
 }

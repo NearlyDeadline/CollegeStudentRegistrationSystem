@@ -12,7 +12,7 @@ namespace Server
     public partial class Server
     {
         private static readonly int CurrentYear = 2020;//当前年份，用于组合sql语句使用
-        private static readonly String CurrentSemester = "Fall";//当前学期，用于组合sql语句使用
+        private static readonly String CurrentSemester = "秋季";//当前学期，用于组合sql语句使用
 
         private static bool IsCourseRegistrationOpen = true;
 
