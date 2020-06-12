@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 
@@ -27,9 +29,9 @@ namespace Server
             /*为login时：登录。由孙博文于2020年6月9日19点29分完成
              * 为sql时：让服务器直接调用。由孙博文于2020年6月9日19点39分完成
              * 为teach时：教授选择课程。由孙博文于2020年6月10日13点06分开始挖坑
-             * 
-             * 
-             * 
+             * 为close时，关闭注册。
+             * 为end时：选课结束。
+             * 为start时：选课开始。
              * 
              * 
              * 
@@ -45,7 +47,21 @@ namespace Server
                 case "teach":
                     result = CaseTeach(ClientMessages[1]);
                     break;
+                case "close":
+                    result = CaseClose();
+                    break;
+                case "end":
+                    result = CaseEnd();
+                    break;
+                case "start":
+                    result = CaseStart();
+                    break;
                 //在这里添加想要处理的命令，将结果赋值给result即可
+
+
+                default:
+                    result = "Fail@无效命令";
+                    break;
             }
             
             //编码为字节  
@@ -53,6 +69,43 @@ namespace Server
             //发回客户端
             ClientSocket.BeginSend(byteData, 0, byteData.Length, 0,
                 new AsyncCallback(SendCallback), ClientSocket);
+        }
+
+        private static string CaseStart()
+        {
+            if (!IsCourseRegistrationOpen)
+            {
+                IsCourseRegistrationOpen = true;
+                return "Success@选课开始";
+            }
+            else
+            {
+                return "Fail@选课已开始";
+            }
+        }
+
+        private static string CaseEnd()
+        {
+            if (IsCourseRegistrationOpen)
+            {
+                IsCourseRegistrationOpen = false;
+                return "Success@选课结束";
+            }
+            else
+            {
+                return "Fail@选课已结束";
+            }
+        }
+
+        private static string CaseClose()
+        {
+            if (IsCourseRegistrationOpen)
+                return "Fail@选课正在进行，无法进行操作";
+            else
+            {
+                new Thread(CloseRegistration).Start();
+                return "Success@开始安排课程";
+            }
         }
 
         private static string CaseTeach(string cmd)
@@ -96,43 +149,60 @@ namespace Server
         {
             String result = String.Empty;
             String[] sqls = cmd.Split(' ');
-            try
+            if (sqls[0].Equals("SELECT") || sqls[0].Equals("select"))//选择语句，发回JSON
+                result = ExecuteSelectCommand(cmd).ToJson();
+            else
             {
-                if (sqls[0].Equals("SELECT") || sqls[0].Equals("select"))//选择语句，发回JSON
-                    result = ExecuteSelectCommand(cmd).ToJson();
-                else
-                {
-                    result = ExecuteNonQuery(cmd).ToString();//更新更改删除语句，发回受影响的行数
-                }
+                result = ExecuteNonQuery(cmd).ToString();//更新更改删除语句，发回受影响的行数
             }
-            catch (Exception e)
-            {
-                result = e.ToString();
-            }
-
             return result;
         }
 
         private static DataTable ExecuteSelectCommand(string cmd)//选择语句，发回选择结果，以DataTable形式保存
         {
             DataTable result = new DataTable();
-            MySqlConnection conn = new MySqlConnection(MySQLConnectionString);
-            conn.Open();
-            MySqlDataAdapter sda = new MySqlDataAdapter(cmd, conn);
-            sda.Fill(result);
-            sda.Dispose();
-            conn.Close();
+            using (MySqlConnection conn = new MySqlConnection(MySQLConnectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    MySqlDataAdapter sda = new MySqlDataAdapter(cmd, conn);
+                    sda.Fill(result);
+                    sda.Dispose();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.ToString());
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
             return result;
         }
 
         private static int ExecuteNonQuery(string cmd)//增删改语句，发回语句影响的行数
         {
-            MySqlConnection conn = new MySqlConnection(MySQLConnectionString);
-            conn.Open();
-            MySqlCommand command = new MySqlCommand(cmd);
-            int result = command.ExecuteNonQuery();
-            command.Dispose();
-            conn.Close();
+            int result = -1;
+            using (MySqlConnection conn = new MySqlConnection(MySQLConnectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    MySqlCommand command = new MySqlCommand(cmd);
+                    result = command.ExecuteNonQuery();
+                    command.Dispose();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.ToString());
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
             return result;
         }
         private static String CaseLogin(String LoginInfo)
