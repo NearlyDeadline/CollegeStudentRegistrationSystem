@@ -7,6 +7,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace Client
@@ -20,6 +21,7 @@ namespace Client
         private String UserTypeName = String.Empty;
 
         public Boolean Selecting = true;
+
         public FormClient()
         {
             InitializeComponent();
@@ -29,6 +31,7 @@ namespace Client
             this.tabControl1.TabPages.Add(this.LoginTabpage);
             this.UserTypeComboBox.SelectedIndex = 0;
         }
+
 
         private void FormClient_FormClosed(object sender, System.Windows.Forms.FormClosedEventArgs e)
         {
@@ -59,6 +62,7 @@ namespace Client
                         this.tabControl1.TabPages.Add(this.ShowTabPage2);
                         this.tabControl1.TabPages.Add(this.NotificationTabPage);
                         this.tabControl1.TabPages.Add(this.RegisterCoursesTabPage);
+                        InitializeDataTable课程表();
                         break;
                     case 1:
                         this.tabControl1.TabPages.Add(this.PersonalInformationTabPage);
@@ -66,6 +70,7 @@ namespace Client
                         this.ShowTabPage1.Text = "以往教授课程";
                         this.tabControl1.TabPages.Add(this.ShowTabPage1);
                         this.tabControl1.TabPages.Add(this.WatingForGradeTabPage);
+                        InitializeDataTable课程表();
                         break;
                     case 2:
                         this.tabControl1.TabPages.Add(this.ProfessorInformationTabPage);
@@ -76,40 +81,41 @@ namespace Client
             }
             else
             {
-                if (ResultBuffer.Length == 0)
-                    ResultBuffer = "登录失败";
-                MessageBox.Show(ResultBuffer, "无效登录", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (ReceiveMessage.Length == 0)
+                    ReceiveMessage = "登录失败";
+                MessageBox.Show(ReceiveMessage, "无效登录", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        
+
         private bool log()
         {
-            ResultBuffer = String.Empty;
             string message = String.Format("login@{0},{1},{2}", UserTypeName, textBoxLoginName.Text, textBoxLoginPassword.Text);
-            GetResultToBuffer(message);
-            string receivedMessage = ResultBuffer;
-            string[] receivedMessages = receivedMessage.Split('@');
-            if (receivedMessages[0].Equals("True"))
+            GetServerMessage(message);
+            string receivedMessage = ReceiveMessage;
+            if (receivedMessage.Length > 0)
             {
-                this.mysqlConnectionString = receivedMessages[1];
-                MySqlConnection conn = new MySqlConnection(this.mysqlConnectionString);
-                try
+                string[] receivedMessages = receivedMessage.Split('@');
+                if (receivedMessages[0].Equals("True"))
                 {
-                    conn.Open();
-                    MessageBox.Show("服务器数据连接建立成功", "数据连接测试", MessageBoxButtons.OK);
+                    this.mysqlConnectionString = receivedMessages[1];
+                    MySqlConnection conn = new MySqlConnection(this.mysqlConnectionString);
+                    try
+                    {
+                        conn.Open();
+                        MessageBox.Show("服务器数据连接建立成功", "数据连接测试", MessageBoxButtons.OK);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("服务器数据连接建立失败" + ex.ToString(), "数据连接测试", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        return false;
+                    }
+                    conn.Close();
+                    return true;
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("服务器数据连接建立失败" + ex.ToString(), "数据连接测试", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return false;
-                }
-                conn.Close();
-
-                return true;
+                return false;
             }
             else
             {
-                ResultBuffer = receivedMessages[1];
                 return false;
             }
         }
@@ -129,5 +135,10 @@ namespace Client
                     break;
             }
         }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        }
+
     }
 }
