@@ -58,10 +58,14 @@
             this.NotificationTabPage = new System.Windows.Forms.TabPage();
             this.RegisterCoursesTabPage = new System.Windows.Forms.TabPage();
             this.AddRegistCoursesTabPage = new System.Windows.Forms.TabPage();
+            this.buttonCloseRegistration = new System.Windows.Forms.Button();
+            this.buttonStart = new System.Windows.Forms.Button();
+            this.buttonEnd = new System.Windows.Forms.Button();
             this.TeachCourseManageTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView以前教授课程)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView本学期已教课程)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView本学期可教课程)).BeginInit();
+            this.SystemManageTabPage.SuspendLayout();
             this.LoginTabpage.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.SuspendLayout();
@@ -182,7 +186,7 @@
             this.dataGridView本学期已教课程.RowTemplate.Height = 27;
             this.dataGridView本学期已教课程.Size = new System.Drawing.Size(650, 470);
             this.dataGridView本学期已教课程.TabIndex = 2;
-            this.dataGridView本学期已教课程.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView本学期已教课程_CellContentDoubleClick);
+            this.dataGridView本学期已教课程.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView本学期已教课程_CellClick);
             // 
             // label本学期可教课程
             // 
@@ -206,9 +210,13 @@
             this.dataGridView本学期可教课程.RowTemplate.Height = 27;
             this.dataGridView本学期可教课程.Size = new System.Drawing.Size(650, 744);
             this.dataGridView本学期可教课程.TabIndex = 0;
+            this.dataGridView本学期可教课程.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView本学期可教课程_CellClick);
             // 
             // SystemManageTabPage
             // 
+            this.SystemManageTabPage.Controls.Add(this.buttonEnd);
+            this.SystemManageTabPage.Controls.Add(this.buttonStart);
+            this.SystemManageTabPage.Controls.Add(this.buttonCloseRegistration);
             this.SystemManageTabPage.Location = new System.Drawing.Point(4, 25);
             this.SystemManageTabPage.Name = "SystemManageTabPage";
             this.SystemManageTabPage.Padding = new System.Windows.Forms.Padding(3);
@@ -408,6 +416,36 @@
             this.AddRegistCoursesTabPage.Text = "添加课程";
             this.AddRegistCoursesTabPage.UseVisualStyleBackColor = true;
             // 
+            // buttonCloseRegistration
+            // 
+            this.buttonCloseRegistration.Location = new System.Drawing.Point(526, 135);
+            this.buttonCloseRegistration.Name = "buttonCloseRegistration";
+            this.buttonCloseRegistration.Size = new System.Drawing.Size(251, 74);
+            this.buttonCloseRegistration.TabIndex = 0;
+            this.buttonCloseRegistration.Text = "关闭注册";
+            this.buttonCloseRegistration.UseVisualStyleBackColor = true;
+            this.buttonCloseRegistration.Click += new System.EventHandler(this.buttonCloseRegistration_Click);
+            // 
+            // buttonStart
+            // 
+            this.buttonStart.Location = new System.Drawing.Point(320, 215);
+            this.buttonStart.Name = "buttonStart";
+            this.buttonStart.Size = new System.Drawing.Size(200, 96);
+            this.buttonStart.TabIndex = 1;
+            this.buttonStart.Text = "开始选课";
+            this.buttonStart.UseVisualStyleBackColor = true;
+            this.buttonStart.Click += new System.EventHandler(this.buttonStart_Click);
+            // 
+            // buttonEnd
+            // 
+            this.buttonEnd.Location = new System.Drawing.Point(775, 215);
+            this.buttonEnd.Name = "buttonEnd";
+            this.buttonEnd.Size = new System.Drawing.Size(200, 96);
+            this.buttonEnd.TabIndex = 2;
+            this.buttonEnd.Text = "结束选课";
+            this.buttonEnd.UseVisualStyleBackColor = true;
+            this.buttonEnd.Click += new System.EventHandler(this.buttonEnd_Click);
+            // 
             // FormClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -422,6 +460,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView以前教授课程)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView本学期已教课程)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView本学期可教课程)).EndInit();
+            this.SystemManageTabPage.ResumeLayout(false);
             this.LoginTabpage.ResumeLayout(false);
             this.LoginTabpage.PerformLayout();
             this.tabControl1.ResumeLayout(false);
@@ -462,6 +501,9 @@
         private System.Windows.Forms.Label label以前教授课程;
         private System.Windows.Forms.DataGridView dataGridView以前教授课程;
         private System.Windows.Forms.Button button提交选择讲授课程;
+        private System.Windows.Forms.Button buttonEnd;
+        private System.Windows.Forms.Button buttonStart;
+        private System.Windows.Forms.Button buttonCloseRegistration;
     }
 }
 

@@ -11,7 +11,7 @@ namespace Client
 {
     public partial class FormClient
     {
-        private static String ReceiveMessage;//保存服务器回复的信息
+        private static String ReceiveMessage = String.Empty;//保存服务器回复的信息
 
         private void InitializeConnection()
         {
