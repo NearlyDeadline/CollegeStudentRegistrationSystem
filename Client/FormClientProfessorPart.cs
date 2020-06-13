@@ -61,7 +61,6 @@ namespace Client
                                 textBoxLoginName.Text, CurrentYear, CurrentSemester), conn);
                     sda.Fill(dataTable本学期已教课程);
                     dataGridView本学期已教课程.DataSource = dataTable本学期已教课程;
-                    dataGridView本学期已教课程.DataSource = dataTable本学期已教课程;
                     dataGridView本学期已教课程.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
                     foreach(DataGridViewColumn col in dataGridView本学期已教课程.Columns)
                     {
@@ -90,6 +89,7 @@ namespace Client
                                     TimeTable[i, day, j].sec_id = sectionRow[1].ToString();
                                     TimeTable[i, day, j].semester = sectionRow[2].ToString();
                                     TimeTable[i, day, j].year = sectionRow[3].ToString();
+                                    TimeTable[i, day, j].id = sectionRow[7].ToString();
                                 }
                             }
                         }
@@ -275,6 +275,7 @@ namespace Client
             tableCell.sec_id = dataGridView本学期可教课程.CurrentRow.Cells[1].Value.ToString();
             tableCell.semester = dataGridView本学期可教课程.CurrentRow.Cells[2].Value.ToString();
             tableCell.year = dataGridView本学期可教课程.CurrentRow.Cells[3].Value.ToString();
+            tableCell.id = dataGridView本学期可教课程.CurrentRow.Cells[7].Value.ToString();
             SetTimeTableOccupied(time_slot_id, tableCell);
             #endregion 填充课程表为有课
             #region 把可教课程中选中的行删除掉
