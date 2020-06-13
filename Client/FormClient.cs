@@ -61,8 +61,10 @@ namespace Client
                         this.ShowTabPage2.Text = "查看课程信息";
                         this.tabControl1.TabPages.Add(this.ShowTabPage2);
                         this.tabControl1.TabPages.Add(this.NotificationTabPage);
-                        this.tabControl1.TabPages.Add(this.RegisterCoursesTabPage);
+                        //this.tabControl1.TabPages.Add(this.RegisterCoursesTabPage);
+                        this.tabControl1.TabPages.Add(this.ScheduleTabPage);
                         InitializeDataTable课程表();
+                        InitializeStudentPart();
                         break;
                     case 1:
                         this.tabControl1.TabPages.Add(this.PersonalInformationTabPage);

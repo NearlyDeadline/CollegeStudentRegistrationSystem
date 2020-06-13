@@ -16,7 +16,7 @@ namespace Client
         private static TimeTableCell[,,] TimeTable = new TimeTableCell[WeekCountOfEachTerm, DayCountOfEachWeek, PeriodCountOfEachDay];
         //课程表，26周，7天，每天11节课
 
-        private DataTable dataTableTimeSlot = new DataTable();//本地存储time_slot数据库表，计算冲突
+        private DataTable dataTableTimeSlot = new DataTable();          //本地存储time_slot数据库表，计算冲突
 
         public struct TimeTableCell//课程表上一个格子
         {
@@ -32,6 +32,7 @@ namespace Client
             public string year;
             #endregion Section主码
 
+            public string id;
             //true代表有课，false代表无课
             //课程信息啥的也往这塞
             public void SetCourseOccupied(TimeTableCell cell)
@@ -153,7 +154,9 @@ namespace Client
                         TimeTable[i, j, k].sec_id = String.Empty;
                         TimeTable[i, j, k].semester = String.Empty;
                         TimeTable[i, j, k].year = String.Empty;
+                        TimeTable[i, j, k].id = String.Empty;
                     }
         }
+        //private void Initialize
     }
 }

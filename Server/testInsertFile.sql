@@ -2,7 +2,6 @@ DELETE FROM can_teach;
 DELETE FROM prereq;
 DELETE FROM takes;
 DELETE FROM student;
-DELETE FROM teaches;
 DELETE FROM section;
 DELETE FROM professor;
 DELETE FROM course;
