@@ -101,6 +101,9 @@
     <Compile Include="FormClient.Designer.cs">
       <DependentUpon>FormClient.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormClientAdminProManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormClientClosePart.cs">
       <SubType>Form</SubType>
     </Compile>
