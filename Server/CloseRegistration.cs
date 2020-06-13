@@ -1,6 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using MySql.Data.MySqlClient;
+using System;
+using System.Data;
+using System.IO;
 
 namespace Server
 {
@@ -8,10 +9,82 @@ namespace Server
     {
         private static void CloseRegistration()
         {
+            #region 文件夹
+            string BillsFolderName = Directory.GetCurrentDirectory() + "\\Bills";
+            if (!Directory.Exists(BillsFolderName))//检查是否存在Bills根目录
+            {
+                Directory.CreateDirectory(BillsFolderName);
+            }
+            try//清空本学期账单目录下所有内容
+            {
+                Directory.Delete(BillsFolderName + "\\" + CurrentYear + CurrentSemester, true);
+            }
+            catch (DirectoryNotFoundException e)//如果找不到目录，则创建
+            {
+                Console.WriteLine("创建本学期账单目录");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("删除出现其他错误");
+            }
+            finally
+            {
+                Directory.CreateDirectory(BillsFolderName + "\\" + CurrentYear + CurrentSemester);
+            }
+            #endregion 文件夹
+            String WorkDir = BillsFolderName + "\\" + CurrentYear + CurrentSemester + "\\";
+            #region 数据库
+            using (MySqlConnection conn = new MySqlConnection(mysqlConnectionString))
+            {
+                try
+                {
+                    DataTable SectionWithoutTeacher = new DataTable();
+                    DataTable CourseInformation = new DataTable();
+                    conn.Open();
+                    MySqlDataAdapter sda = new MySqlDataAdapter("select id, course_id, sec_id, semester, year from takes where (course_id, sec_id, semester, year) in (select course_id, sec_id, semester, year from section where isnull(id));"
+                        , conn);
+                    sda.Fill(SectionWithoutTeacher);
+                    foreach (DataRow row in SectionWithoutTeacher.Rows)
+                    {
+                        sda.SelectCommand.CommandText = String.Format("select title from course where course_id = '{0}';",
+                            row["corse_id"].ToString());
+                        if (sda.Fill(CourseInformation) != 1)
+                        {
+                            throw new Exception("数据库无效数据");
+                        }
+
+                        using (StreamWriter writer = new StreamWriter(
+                            String.Format(WorkDir + "{0}_{1}{2}.txt", row["id"], CurrentYear, CurrentSemester), true))
+                        {
+                            writer.WriteLine("因没有老师而中止：" + CourseInformation.Rows[0]["title"]);
+                        }
+                    }
+                    sda.Dispose();
+
+                    MySqlCommand cmd = new MySqlCommand("delete from section where isnull(id));");
+                    cmd.ExecuteNonQuery();
+                    cmd.Dispose();
+
+                    ChooseAlternativeSection(conn);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.ToString());
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+            #endregion 数据库
             /*
             没有老师教的section:
+            select id, course_id, sec_id, semester, year from takes where (course_id, sec_id, semester, year) in (select course_id, sec_id, semester, year from section where isnull(id));
+            //选择学生选了没有老师教的课程
+            fileout("无教课老师：course_id, sec_id"  ,id-year-semester.txt);
+            //向学生账单输出信息
             delete from section where isnull(id));
-            删除它们
+            //删除它们
 
             选择候补课程()
             //选择上课
@@ -41,8 +114,64 @@ namespace Server
                 课表:略
             }
 
-            选择候补课程的子过程：
+            
+            */
+        }
 
+        private static void ChooseAlternativeSection(MySqlConnection conn)
+        {
+            DataTable TakesTable = new DataTable();
+            try
+            {
+                MySqlDataAdapter sda = new MySqlDataAdapter(String.Format(
+                    "select id, count(*) as count from takes where status = '已选' and semester = '{0}' and year = {1} group by id;",
+                    CurrentSemester, CurrentYear), conn);
+                sda.Fill(TakesTable);
+                DataTable AlternativeTakes = new DataTable();
+                foreach (DataRow row in TakesTable.Rows)
+                {
+                    if (Convert.ToInt32(row["count"]) < 4)
+                    {
+                        for (int i = 1; i < 3; i++)//有两门备选
+                        {
+                            sda.SelectCommand = new MySqlCommand(String.Format(
+                                "select course_id, sec_id, semester, year from takes where id = {0} and status = '备选{1}';",
+                                row["id"].ToString(), i));
+                            sda.Fill(AlternativeTakes);
+                            if (AlternativeTakes.Rows.Count == 1)
+                            {
+                                sda.SelectCommand = new MySqlCommand(String.Format(
+                                    "select count(*) as count from takes where course_id = '{0}' and sec_id = '{1}' and semester = '{2}' and year = {3};",
+                                    AlternativeTakes.Rows[0]["course_id"].ToString(),
+                                    AlternativeTakes.Rows[0]["course_id"].ToString(),
+                                    AlternativeTakes.Rows[0]["course_id"].ToString(),
+                                    AlternativeTakes.Rows[0]["course_id"].ToString()));
+                                DataTable count = new DataTable();
+                                sda.Fill(count);
+                                if (Convert.ToInt32(count.Rows[0][0]) < 10)
+                                {
+
+                                }
+                                else
+                                {
+
+                                }
+                            }
+                            else
+                            {
+                                throw new Exception("备选课程数量异常");
+                            }
+                        }
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+            /*
+            选择候补课程的子过程：
+            
             按id计算选课数量
             select id, count(*) as count from takes where status = '已选' and semester = '秋季' and year = 2020 group by id;
 
@@ -60,6 +189,5 @@ namespace Server
             }
             */
         }
-
     }
 }
