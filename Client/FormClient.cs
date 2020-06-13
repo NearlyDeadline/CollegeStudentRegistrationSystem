@@ -7,6 +7,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -140,5 +141,13 @@ namespace Client
         {
         }
 
+        private void AddProfessor(object sender, EventArgs e)
+        {
+            //新增教授子流程,单击教授管理中的添加按钮，弹出添加窗口
+            ProInfo tempform = new ProInfo();
+            tempform.ShowDialog();
+            string[] pro_info = Regex.Split(tempform.Text, " ", RegexOptions.IgnoreCase); //通过分隔符空格拆开
+
+        }
     }
 }
