@@ -21,6 +21,8 @@ namespace Client
 
         private String UserTypeName = String.Empty;
 
+        public string id;
+
         public Boolean Selecting = true;
 
         public FormClient()
@@ -63,6 +65,7 @@ namespace Client
                         this.tabControl1.TabPages.Add(this.ShowTabPage2);
                         this.tabControl1.TabPages.Add(this.NotificationTabPage);
                         this.tabControl1.TabPages.Add(this.RegisterCoursesTabPage);
+                        this.tabControl1.TabPages.Add(this.ViewReportCardTabPage);
                         InitializeDataTable课程表();
                         break;
                     case 1:
@@ -71,12 +74,16 @@ namespace Client
                         this.ShowTabPage1.Text = "以往教授课程";
                         this.tabControl1.TabPages.Add(this.ShowTabPage1);
                         this.tabControl1.TabPages.Add(this.WatingForGradeTabPage);
-                        InitializeDataTable课程表();
+                        this.tabControl1.TabPages.Add(this.SubmitGradesTabPage);
+                        this.label双击课程提示.Visible = false;
+                        InitializeDataTable课程表();                      
                         break;
                     case 2:
                         this.tabControl1.TabPages.Add(this.ProfessorInformationTabPage);
                         this.tabControl1.TabPages.Add(this.StudentInformationTabPage);
                         this.tabControl1.TabPages.Add(this.SystemManageTabPage);
+                        Show_pro_info();
+                        Show_stu_info();
                         break;
                 }
             }
@@ -90,6 +97,7 @@ namespace Client
 
         private bool log()
         {
+            this.id = textBoxLoginName.Text;
             string message = String.Format("login@{0},{1},{2}", UserTypeName, textBoxLoginName.Text, textBoxLoginPassword.Text);
             GetServerMessage(message);
             string receivedMessage = ReceiveMessage;
@@ -140,5 +148,6 @@ namespace Client
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
         }
+
     }
 }

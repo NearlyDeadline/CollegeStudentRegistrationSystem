@@ -18,7 +18,11 @@ namespace Client
         {
             InitializeComponent();
         }
-
+        public ProInfo(string name,string date,string ssn,int status,int dept_name)
+        {
+            this.Text = "no";
+            InitializeComponent(name,date,ssn,status,dept_name);
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             //重置按钮，会弹出确认选框
@@ -68,39 +72,31 @@ namespace Client
                 comboBox2.Focus();
                 return;
             }
-            //检查身份证号是否为18位纯数字（最后一位可以是X）
-            if (textBox3.Text.Length != 18)
+            //检查身份证号是否为9位纯数字
+            if (textBox3.Text.Length != 9)
             {
-                MessageBox.Show("身份证号应为18位数字");
-                comboBox2.Focus();
+                MessageBox.Show("身份证号应为9位纯数字");
+                textBox3.Focus();
                 return;
             }
             else
             {
                 byte tempbyte;
-                for (int i = 0; i < 17; i++) 
+                for (int i = 0; i < 9; i++) 
                 {
                     tempbyte = Convert.ToByte(textBox3.Text[i]);
                     if (tempbyte < 48 || tempbyte > 57)
                     {
-                        MessageBox.Show("身份证号应为18位数字");
-                        comboBox2.Focus();
+                        MessageBox.Show("身份证号应为9位纯数字");
+                        textBox3.Focus();
                         return;
                     }
-                }
-                tempbyte = Convert.ToByte(textBox3.Text[17]);
-                if(tempbyte!=88 && (tempbyte < 47 || tempbyte > 57))
-                {
-                    MessageBox.Show("身份证号应为18位数字");
-                    comboBox2.Focus();
-                    return;
                 }
 
             }
             //至此，检查完毕，信息无误，将信息以空格做分割，传到外层FormClient中，导入数据库
-            this.Text = textBox1.Text + " " + dateTimePicker1.Value.ToString("yyyy-mm-dd") + " " 
-                        + textBox3.Text + " " + status + " " + dept_name + " ";
-            MessageBox.Show("添加成功！");
+            this.Text = textBox1.Text + " " + dateTimePicker1.Value.ToString("yyyy-MM-dd") + " " 
+                        + textBox3.Text + " " + status + " " + dept_name;
             this.Close();
         }
 
@@ -131,17 +127,23 @@ namespace Client
             switch (this.comboBox2.SelectedIndex)
             {
                 case 0:
-                    this.status = "计算机科学与技术学院";
+                    this.dept_name = "计算机科学与技术学院";
                     break;
                 default:
-                    this.status = null;
+                    this.dept_name = null;
                     break;
             }
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
+            this.Text = "no";
             this.Close();
+        }
+
+        private void ProInfo_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.Text = "no";//用来标记放弃本次更改
         }
     }
 }
