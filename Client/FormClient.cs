@@ -60,8 +60,10 @@ namespace Client
                         this.tabControl1.TabPages.Add(this.PersonalInformationTabPage);
                         this.ShowTabPage1.Text = "查看已选课程";
                         this.tabControl1.TabPages.Add(this.ShowTabPage1);
+                        this.labelShowTabPage1.Text = "已选课程:";
                         this.ShowTabPage2.Text = "查看课程信息";
                         this.tabControl1.TabPages.Add(this.ShowTabPage2);
+                        this.labelShowTabPage2.Text = "课程详细信息:";
                         this.tabControl1.TabPages.Add(this.NotificationTabPage);
                         this.tabControl1.TabPages.Add(this.RegisterCoursesTabPage);
                         this.tabControl1.TabPages.Add(this.ViewReportCardTabPage);
@@ -75,7 +77,7 @@ namespace Client
                         this.tabControl1.TabPages.Add(this.TeachCourseManageTabPage);
                         this.ShowTabPage1.Text = "以往教授课程";
                         this.tabControl1.TabPages.Add(this.ShowTabPage1);
-                        this.tabControl1.TabPages.Add(this.WatingForGradeTabPage);
+                        
                         InitializeDataTable课程表();
                         this.tabControl1.TabPages.Add(this.SubmitGradesTabPage);
                         this.label双击课程提示.Visible = false;
