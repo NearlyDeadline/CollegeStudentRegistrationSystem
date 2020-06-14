@@ -63,7 +63,7 @@ namespace Client
                         this.ShowTabPage2.Text = "查看课程信息";
                         this.tabControl1.TabPages.Add(this.ShowTabPage2);
                         this.tabControl1.TabPages.Add(this.NotificationTabPage);
-                        //this.tabControl1.TabPages.Add(this.RegisterCoursesTabPage);
+                        this.tabControl1.TabPages.Add(this.RegisterCoursesTabPage);
                         this.tabControl1.TabPages.Add(this.ViewReportCardTabPage);
                         InitializeDataTable课程表();
                         InitializeStudentPart();
