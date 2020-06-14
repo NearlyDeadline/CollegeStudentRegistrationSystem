@@ -97,7 +97,7 @@ namespace Client
                 {
                     reader.Read();
 
-                    DialogResult result = MessageBox.Show("姓名：" + reader[1].ToString() + "\n出生日期：" + reader[2].ToString().Substring(0, 1)
+                    DialogResult result = MessageBox.Show("姓名：" + reader[1].ToString() + "\n出生日期：" + reader[2].ToString().Substring(0, 9)
                                             + "\n职称：" + reader[4].ToString() + "\n学院：" + reader[5].ToString() + "\n是否确定删除该名教授？"
                                             , "删除确认", MessageBoxButtons.OKCancel) ;
                     
@@ -160,7 +160,8 @@ namespace Client
                     if (reader[5].ToString().Equals("计算机科学与技术学院"))
                         dept_name = 0;
 
-                    ProInfo proInfo = new ProInfo(reader[1].ToString(), reader[2].ToString(), reader[3].ToString(), status, dept_name);
+                    ProInfo proInfo = new ProInfo();
+                    proInfo.update(reader[1].ToString(), reader[2].ToString(), reader[3].ToString(), status, dept_name);
                     proInfo.ShowDialog();
                     reader.Close();
 

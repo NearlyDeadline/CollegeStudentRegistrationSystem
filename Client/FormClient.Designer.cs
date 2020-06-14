@@ -94,6 +94,7 @@
             this.button查询教课 = new System.Windows.Forms.Button();
             this.dataGridView上学期课程 = new System.Windows.Forms.DataGridView();
             this.label查询课程提示 = new System.Windows.Forms.Label();
+
             this.ViewReportCardTabPage = new System.Windows.Forms.TabPage();
             this.label成绩提示 = new System.Windows.Forms.Label();
             this.dataGridView成绩展示 = new System.Windows.Forms.DataGridView();

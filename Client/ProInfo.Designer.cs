@@ -291,7 +291,7 @@ namespace Client
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(33, 335);
+            this.button1.Location = new System.Drawing.Point(145, 335);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(86, 46);
             this.button1.TabIndex = 10;
@@ -301,7 +301,7 @@ namespace Client
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(148, 335);
+            this.button2.Location = new System.Drawing.Point(37, 335);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(82, 46);
             this.button2.TabIndex = 11;
@@ -376,7 +376,6 @@ namespace Client
             this.Controls.Add(this.label1);
             this.Name = "ProInfo";
             this.Text = "添加教授";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ProInfo_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 
