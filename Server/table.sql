@@ -62,7 +62,7 @@ CREATE TABLE course (
 	FOREIGN KEY (dept_name) REFERENCES department(dept_name) ON DELETE SET NULL
 	);
 	
-#教授：教授id，教授姓名，出生日期，身份证号，职称，教授所属学院名称，教授登录密码
+#教授：教授id，教授姓名，出生日期，SSN，状态，教授所属学院名称，教授月工资，教授登录密码
 #教授应当在程序运行前就在数据库里存在，根据课程要求写几个即可
 #程序要求管理员能够对教授进行增删改查，请准备相关测试用例
 #教授id原则上从1000开始分配
