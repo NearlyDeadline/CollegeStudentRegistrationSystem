@@ -161,7 +161,7 @@ namespace Client
                     #endregion 选择与选中课程
 
                     #region 备选课程
-                    sda = new MySqlDataAdapter(String.Format("SELECT * FROM takes where id = {0} and year = {1} and semester = '{2}'and (`status` = '备选1' or `status` = '备选2' ) ;",
+                    sda = new MySqlDataAdapter(String.Format("SELECT * FROM takes where id = {0} and year = {1} and semester = '{2}'and (`status` = '备选1' or `status` = '备选2' ) ORDER BY `status` ;",
                                 textBoxLoginName.Text, CurrentYear, CurrentSemester), conn);
                     sda.Fill(dataTable备选);
                     dataGridView学生备选课程.DataSource = dataTable备选;
@@ -397,17 +397,20 @@ namespace Client
                             cmd.ExecuteNonQuery();
                         }
                     }
+                    int Rowcount = 0;
                     foreach (DataRow row in dataTable备选.Rows)
                     {
+                        Rowcount++;
                         if (row[6].ToString().Equals("未保存"))
                         {
-                            row[6] = "选中";
-                            InsertSql = String.Format("INSERT INTO takes(`id`, `course_id`, `sec_id`, `semester`, `year`, `status`) VALUES ({0}, '{1}', '{2}', '{3}', {4}, '选中');",
+                            row[6] = "备选" + Rowcount.ToString();
+                            InsertSql = String.Format("INSERT INTO takes(`id`, `course_id`, `sec_id`, `semester`, `year`, `status`) VALUES ({0}, '{1}', '{2}', '{3}', {4}, '{5}');",
                             row[0].ToString(),
                             row[1].ToString(),
                             row[2].ToString(),
                             row[3].ToString(),
-                            row[4].ToString());
+                            row[4].ToString(),
+                            row[6].ToString());
                             cmd.CommandText = InsertSql;
                             cmd.ExecuteNonQuery();
                         }
