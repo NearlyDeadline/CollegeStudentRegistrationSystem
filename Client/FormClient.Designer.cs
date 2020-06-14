@@ -63,21 +63,11 @@
             this.label以前教授课程 = new System.Windows.Forms.Label();
             this.button提交选择讲授课程 = new System.Windows.Forms.Button();
             this.SystemManageTabPage = new System.Windows.Forms.TabPage();
-            this.buttonEnd = new System.Windows.Forms.Button();
-            this.buttonStart = new System.Windows.Forms.Button();
             this.buttonCloseRegistration = new System.Windows.Forms.Button();
+            this.buttonStart = new System.Windows.Forms.Button();
+            this.buttonEnd = new System.Windows.Forms.Button();
             this.StudentInformationTabPage = new System.Windows.Forms.TabPage();
-            this.dataGridView学生信息 = new System.Windows.Forms.DataGridView();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button删除 = new System.Windows.Forms.Button();
-            this.button更新 = new System.Windows.Forms.Button();
-            this.button添加 = new System.Windows.Forms.Button();
             this.ProfessorInformationTabPage = new System.Windows.Forms.TabPage();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.PersonalInformationTabPage = new System.Windows.Forms.TabPage();
             this.ShowTabPage2 = new System.Windows.Forms.TabPage();
             this.ShowTabPage1 = new System.Windows.Forms.TabPage();
@@ -89,18 +79,6 @@
             this.labelLoginName = new System.Windows.Forms.Label();
             this.labelLoginPassword = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.SubmitGradesTabPage = new System.Windows.Forms.TabPage();
-            this.label双击课程提示 = new System.Windows.Forms.Label();
-            this.button查询教课 = new System.Windows.Forms.Button();
-            this.dataGridView上学期课程 = new System.Windows.Forms.DataGridView();
-            this.label查询课程提示 = new System.Windows.Forms.Label();
-            this.NotificationTabPage = new System.Windows.Forms.TabPage();
-            this.RegisterCoursesTabPage = new System.Windows.Forms.TabPage();
-            this.AddRegistCoursesTabPage = new System.Windows.Forms.TabPage();
-            this.ViewReportCardTabPage = new System.Windows.Forms.TabPage();
-            this.label成绩提示 = new System.Windows.Forms.Label();
-            this.dataGridView成绩展示 = new System.Windows.Forms.DataGridView();
-            this.button查询成绩 = new System.Windows.Forms.Button();
             this.AddRegistCoursesTabPage = new System.Windows.Forms.TabPage();
             this.ScheduleTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewStudentSchedule)).BeginInit();
@@ -113,18 +91,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView本学期已教课程)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView以前教授课程)).BeginInit();
             this.SystemManageTabPage.SuspendLayout();
-            this.StudentInformationTabPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView学生信息)).BeginInit();
-            this.groupBox2.SuspendLayout();
-            this.ProfessorInformationTabPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.groupBox1.SuspendLayout();
             this.LoginTabpage.SuspendLayout();
             this.tabControl1.SuspendLayout();
-            this.SubmitGradesTabPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView上学期课程)).BeginInit();
-            this.ViewReportCardTabPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView成绩展示)).BeginInit();
             this.SuspendLayout();
             // 
             // ScheduleTabPage
@@ -546,6 +514,16 @@
             this.SystemManageTabPage.Text = "系统管理";
             this.SystemManageTabPage.UseVisualStyleBackColor = true;
             // 
+            // buttonCloseRegistration
+            // 
+            this.buttonCloseRegistration.Location = new System.Drawing.Point(526, 135);
+            this.buttonCloseRegistration.Name = "buttonCloseRegistration";
+            this.buttonCloseRegistration.Size = new System.Drawing.Size(251, 74);
+            this.buttonCloseRegistration.TabIndex = 0;
+            this.buttonCloseRegistration.Text = "关闭注册";
+            this.buttonCloseRegistration.UseVisualStyleBackColor = true;
+            this.buttonCloseRegistration.Click += new System.EventHandler(this.buttonCloseRegistration_Click);
+            // 
             // buttonStart
             // 
             this.buttonStart.Location = new System.Drawing.Point(320, 215);
@@ -556,16 +534,6 @@
             this.buttonStart.UseVisualStyleBackColor = true;
             this.buttonStart.Click += new System.EventHandler(this.buttonStart_Click);
             // 
-            // buttonCloseRegistration
-            // 
-            this.buttonCloseRegistration.Location = new System.Drawing.Point(526, 135);
-            this.buttonCloseRegistration.Name = "buttonCloseRegistration";
-            this.buttonCloseRegistration.Size = new System.Drawing.Size(251, 74);
-            this.buttonCloseRegistration.TabIndex = 0;
-            this.buttonCloseRegistration.Text = "关闭注册";
-            this.buttonCloseRegistration.UseVisualStyleBackColor = true;
-            this.buttonCloseRegistration.Click += new System.EventHandler(this.buttonCloseRegistration_Click);
-            //
             // buttonEnd
             // 
             this.buttonEnd.Location = new System.Drawing.Point(775, 215);
@@ -578,8 +546,6 @@
             // 
             // StudentInformationTabPage
             // 
-            this.StudentInformationTabPage.Controls.Add(this.dataGridView学生信息);
-            this.StudentInformationTabPage.Controls.Add(this.groupBox2);
             this.StudentInformationTabPage.Location = new System.Drawing.Point(4, 25);
             this.StudentInformationTabPage.Name = "StudentInformationTabPage";
             this.StudentInformationTabPage.Padding = new System.Windows.Forms.Padding(3);
@@ -588,63 +554,8 @@
             this.StudentInformationTabPage.Text = "学生管理";
             this.StudentInformationTabPage.UseVisualStyleBackColor = true;
             // 
-            // dataGridView学生信息
-            // 
-            this.dataGridView学生信息.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView学生信息.Location = new System.Drawing.Point(40, 170);
-            this.dataGridView学生信息.Name = "dataGridView学生信息";
-            this.dataGridView学生信息.RowHeadersWidth = 51;
-            this.dataGridView学生信息.RowTemplate.Height = 27;
-            this.dataGridView学生信息.Size = new System.Drawing.Size(1310, 597);
-            this.dataGridView学生信息.TabIndex = 11;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.button删除);
-            this.groupBox2.Controls.Add(this.button更新);
-            this.groupBox2.Controls.Add(this.button添加);
-            this.groupBox2.Location = new System.Drawing.Point(40, 34);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(644, 104);
-            this.groupBox2.TabIndex = 10;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "学生信息管理";
-            // 
-            // button删除
-            // 
-            this.button删除.Location = new System.Drawing.Point(482, 24);
-            this.button删除.Name = "button删除";
-            this.button删除.Size = new System.Drawing.Size(135, 58);
-            this.button删除.TabIndex = 2;
-            this.button删除.Text = "删除";
-            this.button删除.UseVisualStyleBackColor = true;
-            this.button删除.Click += new System.EventHandler(this.DeleteStudent);
-            // 
-            // button更新
-            // 
-            this.button更新.Location = new System.Drawing.Point(259, 24);
-            this.button更新.Name = "button更新";
-            this.button更新.Size = new System.Drawing.Size(135, 58);
-            this.button更新.TabIndex = 1;
-            this.button更新.Text = "更新";
-            this.button更新.UseVisualStyleBackColor = true;
-            this.button更新.Click += new System.EventHandler(this.UpdateStudent);
-            // 
-            // button添加
-            // 
-            this.button添加.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button添加.Location = new System.Drawing.Point(39, 24);
-            this.button添加.Name = "button添加";
-            this.button添加.Size = new System.Drawing.Size(135, 58);
-            this.button添加.TabIndex = 0;
-            this.button添加.Text = "添加";
-            this.button添加.UseVisualStyleBackColor = true;
-            this.button添加.Click += new System.EventHandler(this.AddStudent);
-            // 
             // ProfessorInformationTabPage
             // 
-            this.ProfessorInformationTabPage.Controls.Add(this.dataGridView1);
-            this.ProfessorInformationTabPage.Controls.Add(this.groupBox1);
             this.ProfessorInformationTabPage.Location = new System.Drawing.Point(4, 25);
             this.ProfessorInformationTabPage.Name = "ProfessorInformationTabPage";
             this.ProfessorInformationTabPage.Padding = new System.Windows.Forms.Padding(3);
@@ -652,59 +563,6 @@
             this.ProfessorInformationTabPage.TabIndex = 4;
             this.ProfessorInformationTabPage.Text = "教授管理";
             this.ProfessorInformationTabPage.UseVisualStyleBackColor = true;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(41, 168);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 27;
-            this.dataGridView1.Size = new System.Drawing.Size(1310, 597);
-            this.dataGridView1.TabIndex = 9;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.button3);
-            this.groupBox1.Controls.Add(this.button2);
-            this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Location = new System.Drawing.Point(41, 32);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(644, 104);
-            this.groupBox1.TabIndex = 3;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "教授信息管理";
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(482, 24);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(135, 58);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "删除";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.DeleteProfessor);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(259, 24);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(135, 58);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "更新";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.UpdateProfessor);
-            // 
-            // button1
-            // 
-            this.button1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button1.Location = new System.Drawing.Point(39, 24);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(135, 58);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "添加";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.AddProfessor);
             // 
             // PersonalInformationTabPage
             // 
@@ -824,11 +682,10 @@
             this.tabControl1.Controls.Add(this.TeachCourseManageTabPage);
             this.tabControl1.Controls.Add(this.AddTeachCourseTabPage);
             this.tabControl1.Controls.Add(this.WatingForGradeTabPage);
-            this.tabControl1.Controls.Add(this.SubmitGradesTabPage);
+            this.tabControl1.Controls.Add(this.SummitGradesTabPage);
             this.tabControl1.Controls.Add(this.NotificationTabPage);
             this.tabControl1.Controls.Add(this.RegisterCoursesTabPage);
             this.tabControl1.Controls.Add(this.AddRegistCoursesTabPage);
-            this.tabControl1.Controls.Add(this.ViewReportCardTabPage);
             this.tabControl1.Controls.Add(this.ScheduleTabPage);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
@@ -837,80 +694,6 @@
             this.tabControl1.TabIndex = 0;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             this.tabControl1.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.tabControl1_Selecting);
-            // 
-            // SubmitGradesTabPage
-            // 
-            this.SubmitGradesTabPage.AccessibleRole = System.Windows.Forms.AccessibleRole.Diagram;
-            this.SubmitGradesTabPage.Controls.Add(this.label双击课程提示);
-            this.SubmitGradesTabPage.Controls.Add(this.button查询教课);
-            this.SubmitGradesTabPage.Controls.Add(this.dataGridView上学期课程);
-            this.SubmitGradesTabPage.Controls.Add(this.label查询课程提示);
-            this.SubmitGradesTabPage.Location = new System.Drawing.Point(4, 25);
-            this.SubmitGradesTabPage.Name = "SubmitGradesTabPage";
-            this.SubmitGradesTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.SubmitGradesTabPage.Size = new System.Drawing.Size(1390, 800);
-            this.SubmitGradesTabPage.TabIndex = 10;
-            this.SubmitGradesTabPage.Text = "录入成绩";
-            this.SubmitGradesTabPage.UseVisualStyleBackColor = true;
-            // 
-            // label双击课程提示
-            // 
-            this.label双击课程提示.AutoSize = true;
-            this.label双击课程提示.Location = new System.Drawing.Point(29, 40);
-            this.label双击课程提示.Name = "label双击课程提示";
-            this.label双击课程提示.Size = new System.Drawing.Size(442, 15);
-            this.label双击课程提示.TabIndex = 3;
-            this.label双击课程提示.Text = "以下为您上学期教授的课程，双击一门课程进入详情页录入成绩：";
-            // 
-            // button查询教课
-            // 
-            this.button查询教课.Location = new System.Drawing.Point(334, 32);
-            this.button查询教课.Name = "button查询教课";
-            this.button查询教课.Size = new System.Drawing.Size(88, 33);
-            this.button查询教课.TabIndex = 2;
-            this.button查询教课.Text = "查询";
-            this.button查询教课.UseVisualStyleBackColor = true;
-            this.button查询教课.Click += new System.EventHandler(this.QueryTeaches);
-            // 
-            // dataGridView上学期课程
-            // 
-            this.dataGridView上学期课程.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView上学期课程.Location = new System.Drawing.Point(32, 86);
-            this.dataGridView上学期课程.Name = "dataGridView上学期课程";
-            this.dataGridView上学期课程.RowHeadersWidth = 51;
-            this.dataGridView上学期课程.RowTemplate.Height = 27;
-            this.dataGridView上学期课程.Size = new System.Drawing.Size(1314, 682);
-            this.dataGridView上学期课程.TabIndex = 1;
-            this.dataGridView上学期课程.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SubmitGrades);
-            // 
-            // label查询课程提示
-            // 
-            this.label查询课程提示.AutoSize = true;
-            this.label查询课程提示.Location = new System.Drawing.Point(29, 40);
-            this.label查询课程提示.Name = "label查询课程提示";
-            this.label查询课程提示.Size = new System.Drawing.Size(262, 15);
-            this.label查询课程提示.TabIndex = 0;
-            this.label查询课程提示.Text = "单击查询按钮查看您上学期教授的课程";
-            // 
-            // NotificationTabPage
-            // 
-            this.NotificationTabPage.Location = new System.Drawing.Point(4, 25);
-            this.NotificationTabPage.Name = "NotificationTabPage";
-            this.NotificationTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.NotificationTabPage.Size = new System.Drawing.Size(1390, 800);
-            this.NotificationTabPage.TabIndex = 11;
-            this.NotificationTabPage.Text = "系统通知";
-            this.NotificationTabPage.UseVisualStyleBackColor = true;
-            // 
-            // RegisterCoursesTabPage
-            // 
-            this.RegisterCoursesTabPage.Location = new System.Drawing.Point(4, 25);
-            this.RegisterCoursesTabPage.Name = "RegisterCoursesTabPage";
-            this.RegisterCoursesTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.RegisterCoursesTabPage.Size = new System.Drawing.Size(1390, 800);
-            this.RegisterCoursesTabPage.TabIndex = 12;
-            this.RegisterCoursesTabPage.Text = "选课";
-            this.RegisterCoursesTabPage.UseVisualStyleBackColor = true;
             // 
             // AddRegistCoursesTabPage
             // 
@@ -921,49 +704,6 @@
             this.AddRegistCoursesTabPage.TabIndex = 13;
             this.AddRegistCoursesTabPage.Text = "添加课程";
             this.AddRegistCoursesTabPage.UseVisualStyleBackColor = true;
-            //
-            // ViewReportCardTabPage
-            // 
-            this.ViewReportCardTabPage.Controls.Add(this.label成绩提示);
-            this.ViewReportCardTabPage.Controls.Add(this.dataGridView成绩展示);
-            this.ViewReportCardTabPage.Controls.Add(this.button查询成绩);
-            this.ViewReportCardTabPage.Location = new System.Drawing.Point(4, 25);
-            this.ViewReportCardTabPage.Name = "ViewReportCardTabPage";
-            this.ViewReportCardTabPage.Size = new System.Drawing.Size(1390, 800);
-            this.ViewReportCardTabPage.TabIndex = 14;
-            this.ViewReportCardTabPage.Text = "查询成绩";
-            this.ViewReportCardTabPage.UseVisualStyleBackColor = true;
-            // 
-            // label成绩提示
-            // 
-            this.label成绩提示.AutoSize = true;
-            this.label成绩提示.Location = new System.Drawing.Point(24, 24);
-            this.label成绩提示.Name = "label成绩提示";
-            this.label成绩提示.Size = new System.Drawing.Size(187, 15);
-            this.label成绩提示.TabIndex = 2;
-            this.label成绩提示.Text = "您上学期的课程成绩如下：";
-            this.label成绩提示.Visible = false;
-            // 
-            // dataGridView成绩展示
-            // 
-            this.dataGridView成绩展示.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView成绩展示.Location = new System.Drawing.Point(27, 64);
-            this.dataGridView成绩展示.Name = "dataGridView成绩展示";
-            this.dataGridView成绩展示.RowHeadersWidth = 51;
-            this.dataGridView成绩展示.RowTemplate.Height = 27;
-            this.dataGridView成绩展示.Size = new System.Drawing.Size(1331, 711);
-            this.dataGridView成绩展示.TabIndex = 1;
-            this.dataGridView成绩展示.Visible = false;
-            // 
-            // button查询成绩
-            // 
-            this.button查询成绩.Location = new System.Drawing.Point(560, 270);
-            this.button查询成绩.Name = "button查询成绩";
-            this.button查询成绩.Size = new System.Drawing.Size(216, 80);
-            this.button查询成绩.TabIndex = 0;
-            this.button查询成绩.Text = "查询上学期成绩";
-            this.button查询成绩.UseVisualStyleBackColor = true;
-            this.button查询成绩.Click += new System.EventHandler(this.ViewReportCard);
             // 
             // FormClient
             // 
@@ -988,21 +728,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView本学期已教课程)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView以前教授课程)).EndInit();
             this.SystemManageTabPage.ResumeLayout(false);
-            this.StudentInformationTabPage.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView学生信息)).EndInit();
-            this.groupBox2.ResumeLayout(false);
-            this.ProfessorInformationTabPage.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.groupBox1.ResumeLayout(false);
             this.LoginTabpage.ResumeLayout(false);
             this.LoginTabpage.PerformLayout();
             this.tabControl1.ResumeLayout(false);
-            this.SubmitGradesTabPage.ResumeLayout(false);
-            this.SubmitGradesTabPage.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView上学期课程)).EndInit();
-            this.ViewReportCardTabPage.ResumeLayout(false);
-            this.ViewReportCardTabPage.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView成绩展示)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1053,46 +781,10 @@
         private System.Windows.Forms.TabPage ShowTabPage2;
         private System.Windows.Forms.TabPage ShowTabPage1;
         private System.Windows.Forms.TabPage LoginTabpage;
-        private System.Windows.Forms.TabPage SubmitGradesTabPage;
-        private System.Windows.Forms.TabPage NotificationTabPage;
-        private System.Windows.Forms.TabPage RegisterCoursesTabPage;
-        private System.Windows.Forms.TabPage AddRegistCoursesTabPage;
-        private System.Windows.Forms.Button LoginButton;
-        private System.Windows.Forms.ComboBox UserTypeComboBox;
         private System.Windows.Forms.Label labelLoginPassword;
         private System.Windows.Forms.Label labelLoginName;
         private System.Windows.Forms.TextBox textBoxLoginPassword;
         private System.Windows.Forms.TextBox textBoxLoginName;
-        private System.Windows.Forms.Label label本学期可教课程;
-        private System.Windows.Forms.DataGridView dataGridView本学期可教课程;
-        private System.Windows.Forms.Label label本学期已教课程;
-        private System.Windows.Forms.DataGridView dataGridView本学期已教课程;
-        private System.Windows.Forms.Button button取消选择教授课程;
-        private System.Windows.Forms.Button button选择教授课程;
-        private System.Windows.Forms.Label label以前教授课程;
-        private System.Windows.Forms.DataGridView dataGridView以前教授课程;
-        private System.Windows.Forms.Button button提交选择讲授课程;
-        private System.Windows.Forms.Button buttonEnd;
-        private System.Windows.Forms.Button buttonStart;
-        private System.Windows.Forms.Button buttonCloseRegistration;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.TabPage ViewReportCardTabPage;
-        private System.Windows.Forms.DataGridView dataGridView上学期课程;
-        private System.Windows.Forms.Label label查询课程提示;
-        private System.Windows.Forms.Button button查询教课;
-        private System.Windows.Forms.Label label双击课程提示;
-        private System.Windows.Forms.Button button查询成绩;
-        private System.Windows.Forms.DataGridView dataGridView成绩展示;
-        private System.Windows.Forms.Label label成绩提示;
-        private System.Windows.Forms.DataGridView dataGridView学生信息;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button button删除;
-        private System.Windows.Forms.Button button更新;
-        private System.Windows.Forms.Button button添加;
         private System.Windows.Forms.ComboBox UserTypeComboBox;
         private System.Windows.Forms.Button LoginButton;
         private System.Windows.Forms.TabControl tabControl1;
