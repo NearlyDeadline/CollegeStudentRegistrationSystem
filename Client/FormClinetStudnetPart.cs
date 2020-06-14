@@ -419,6 +419,7 @@ namespace Client
                     conn.Close();
                     MessageBox.Show("保存完毕", "保存课表", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LoadRegisterCoursesTabPage();       //回到流程开始
+                    ChangeScheduleWeek(this.comboBoxWeekChange.SelectedIndex);
                 }
             }
             catch (MySqlException ex)
@@ -556,6 +557,7 @@ namespace Client
                     conn.Close();
                     MessageBox.Show("提交成功", "提交课表", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LoadRegisterCoursesTabPage();       //回到流程开始
+                    ChangeScheduleWeek(this.comboBoxWeekChange.SelectedIndex);
                 }
             }
             catch (MySqlException ex)
