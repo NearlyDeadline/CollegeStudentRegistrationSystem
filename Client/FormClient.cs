@@ -7,7 +7,6 @@ using System.Net;
 using System.Net.Sockets;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -64,9 +63,10 @@ namespace Client
                         this.ShowTabPage2.Text = "查看课程信息";
                         this.tabControl1.TabPages.Add(this.ShowTabPage2);
                         this.tabControl1.TabPages.Add(this.NotificationTabPage);
-                        this.tabControl1.TabPages.Add(this.RegisterCoursesTabPage);
+                        //this.tabControl1.TabPages.Add(this.RegisterCoursesTabPage);
                         this.tabControl1.TabPages.Add(this.ViewReportCardTabPage);
                         InitializeDataTable课程表();
+                        InitializeStudentPart();
                         break;
                     case 1:
                         this.tabControl1.TabPages.Add(this.PersonalInformationTabPage);
@@ -74,9 +74,9 @@ namespace Client
                         this.ShowTabPage1.Text = "以往教授课程";
                         this.tabControl1.TabPages.Add(this.ShowTabPage1);
                         this.tabControl1.TabPages.Add(this.WatingForGradeTabPage);
+                        InitializeDataTable课程表();
                         this.tabControl1.TabPages.Add(this.SubmitGradesTabPage);
                         this.label双击课程提示.Visible = false;
-                        InitializeDataTable课程表();                      
                         break;
                     case 2:
                         this.tabControl1.TabPages.Add(this.ProfessorInformationTabPage);
@@ -149,5 +149,7 @@ namespace Client
         {
         }
 
+    
+    
     }
 }
