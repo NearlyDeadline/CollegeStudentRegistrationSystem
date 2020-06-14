@@ -65,6 +65,8 @@ namespace Client
                         this.tabControl1.TabPages.Add(this.NotificationTabPage);
                         this.tabControl1.TabPages.Add(this.RegisterCoursesTabPage);
                         this.tabControl1.TabPages.Add(this.ViewReportCardTabPage);
+                        //this.tabControl1.TabPages.Add(this.RegisterCoursesTabPage);
+                        this.tabControl1.TabPages.Add(this.ScheduleTabPage);
                         InitializeDataTable课程表();
                         InitializeStudentPart();
                         break;

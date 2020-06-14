@@ -131,6 +131,9 @@
     <Compile Include="InputID.Designer.cs">
       <DependentUpon>InputID.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormClinetStudnetPart.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="ProInfo.cs">
       <SubType>Form</SubType>
