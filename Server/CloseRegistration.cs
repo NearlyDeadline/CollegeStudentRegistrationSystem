@@ -38,16 +38,25 @@ namespace Server
             {
                 try
                 {
-                    DataTable SectionWithoutTeacher = new DataTable();
-                    DataTable CourseInformation = new DataTable();
                     conn.Open();
+                    #region 删除有老师但是没有学生选的课
+                    MySqlCommand cmd = new MySqlCommand(String.Format(
+                        "delete from section as S where S.year = {1} and S.semester = '{0}' and " +
+                        "1 > (select count(T.ID) from takes as T where S.course_id = T.course_id and S.sec_id = T.sec_id and S.semester = T.semester and S.year = T.year);",
+                        CurrentSemester, CurrentYear), conn);
+                    cmd.ExecuteNonQuery();
+                    #endregion 删除有老师但是没有学生选的课
+
+                    #region 删除没有老师的课
+                    DataTable DeleteSections = new DataTable();
+                    DataTable CourseInformation = new DataTable();
                     MySqlDataAdapter sda = new MySqlDataAdapter("select id, course_id, sec_id, semester, year from takes where (course_id, sec_id, semester, year) in (select course_id, sec_id, semester, year from section where isnull(id));"
                         , conn);
-                    sda.Fill(SectionWithoutTeacher);
-                    foreach (DataRow row in SectionWithoutTeacher.Rows)
+                    sda.Fill(DeleteSections);
+                    foreach (DataRow row in DeleteSections.Rows)
                     {
                         sda.SelectCommand.CommandText = String.Format("select title from course where course_id = '{0}';",
-                            row["corse_id"].ToString());
+                            row["course_id"].ToString());
                         if (sda.Fill(CourseInformation) != 1)
                         {
                             throw new Exception("数据库无效数据");
@@ -58,14 +67,106 @@ namespace Server
                         {
                             writer.WriteLine("因没有老师而中止：" + CourseInformation.Rows[0]["title"]);
                         }
+                        CourseInformation.Clear();
                     }
-                    sda.Dispose();
 
-                    MySqlCommand cmd = new MySqlCommand("delete from section where isnull(id));");
+                    cmd.CommandText = "delete from section where isnull(id);";
                     cmd.ExecuteNonQuery();
-                    cmd.Dispose();
+                    #endregion 删除没有老师的课
 
-                    ChooseAlternativeSection(conn);
+                    ChooseAlternativeSection(conn, WorkDir);
+
+                    #region 删除人数太少的课
+                    DeleteSections.Clear();
+                    sda.SelectCommand.CommandText = String.Format(
+                        "select course_id, sec_id, semester, year, count(*) as count from takes where semester = '{0}' and year = {1} group by course_id, sec_id, semester, year;",
+                        CurrentSemester, CurrentYear);
+                    sda.Fill(DeleteSections);
+                    foreach (DataRow row in DeleteSections.Rows)
+                    {
+                        if (Convert.ToInt32(row["count"]) < 3)
+                        {
+                            sda.SelectCommand.CommandText = String.Format("select title from course where course_id = '{0}';",
+                            row["course_id"].ToString());
+                            if (sda.Fill(CourseInformation) != 1)
+                            {
+                                throw new Exception("数据库无效数据");
+                            }
+
+                            DataTable StudentId = new DataTable();
+                            sda.SelectCommand.CommandText = String.Format("select id from takes where course_id = '{0}' and sec_id = '{1}' and semester = '{2}' and year = {3};",
+                                row["course_id"].ToString(),
+                                row["sec_id"].ToString(),
+                                row["semester"].ToString(),
+                                row["year"].ToString());
+                            sda.Fill(StudentId);
+                            foreach (DataRow studentIdrow in StudentId.Rows)
+                            {
+                                using (StreamWriter writer = new StreamWriter(
+                                String.Format(WorkDir + "{0}_{1}{2}.txt", studentIdrow["id"], CurrentYear, CurrentSemester), true))
+                                {
+                                    writer.WriteLine("因人数太少而中止：" + CourseInformation.Rows[0]["title"]);
+                                }
+                            }
+                            CourseInformation.Clear();
+                            cmd.CommandText = String.Format("delete from section where course_id = '{0}' and sec_id = '{1}' and semester = '{2}' and year = {3};",
+                                row["course_id"].ToString(),
+                                row["sec_id"].ToString(),
+                                row["semester"].ToString(),
+                                row["year"].ToString());
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+
+                    #endregion 删除人数太少的课
+
+                    ChooseAlternativeSection(conn, WorkDir);
+
+                    #region 删除所有选课失败的记录
+                    cmd.CommandText = "delete from takes where status <> '已选';";
+                    cmd.ExecuteNonQuery();
+                    #endregion 删除所有选课失败的记录
+
+                    #region 生成账单
+                    DataTable StudentTakes = new DataTable();
+                    sda.SelectCommand.CommandText = String.Format(
+                        "select distinct id from takes where semester = '{0}' and year = {1};",
+                        CurrentSemester, CurrentYear);
+                    sda.Fill(StudentTakes);
+                    DataTable EachStudentTakes = new DataTable();
+                    foreach (DataRow StudentTakesRow in StudentTakes.Rows)
+                    {
+                        int id = Convert.ToInt32(StudentTakesRow[0].ToString());
+                        sda.SelectCommand.CommandText = String.Format(
+                        "select course_id, title, dept_name, fee from course where course_id in (select course_id from takes where id = {0} and semester = '{1}' and year = {2});",
+                        id, CurrentSemester, CurrentYear);
+                        sda.Fill(EachStudentTakes);
+                        foreach (DataRow CourseRow in EachStudentTakes.Rows)
+                        {
+                            using (StreamWriter writer = new StreamWriter(
+                                String.Format(WorkDir + "{0}_{1}{2}.txt", id, CurrentYear, CurrentSemester), true))
+                            {
+                                writer.WriteLine("成功选课：" + CourseRow["course_id"] + CourseRow["title"] + "——" +
+                                    CourseRow["dept_name"] + "。该课程的学费为" + CourseRow["fee"] + "元。");
+                            }
+                        }
+                        EachStudentTakes.Clear();
+                        sda.SelectCommand.CommandText = String.Format(
+                            "select sum(fee) from course where course_id in (select course_id from takes where id = {0} and semester = '{1}' and year = {2});",
+                            id, CurrentSemester, CurrentYear);
+                        sda.Fill(EachStudentTakes);
+                        foreach (DataRow CourseRow in EachStudentTakes.Rows)
+                        {
+                            using (StreamWriter writer = new StreamWriter(
+                                String.Format(WorkDir + "{0}_{1}{2}.txt", id, CurrentYear, CurrentSemester), true))
+                            {
+                                writer.WriteLine("总学费为：" + CourseRow["sum(fee)"] + "元。");
+                            }
+                        }
+                        EachStudentTakes.Clear();
+                    }
+
+                    #endregion 生成账单
                 }
                 catch (Exception e)
                 {
@@ -100,15 +201,13 @@ namespace Server
 
             select distinct id from takes where semester = '秋季' and year = 2020;
             //选择本学期选过课的学生
-            假设上述集合为studentRows,一行为studentRow
-            foreach (DataRow studentRow in studentRows) {
+            假设上述集合为StudentTakes,一行为StudentTakesRow
+            foreach (DataRow StudentTakesRow in StudentTakes) {
                 String.Format("
                 select course_id, title, dept_name, fee from course where course_id in (select course_id from takes where id = {0} and semester = '秋季' and year = 2020);",
-                studentRow[0].ToString());
+                StudentTakesRow[0].ToString());
                 //选择该学生选的所有课程,自动去重
                 //生成账单
-                Dictionary<Int32, String> Bills = new Dictionary<Int32, String>();
-                //字典,key为学号,value为账单,暂时实现为上述表的Json,输入文件中
                 总费用计算sum(fee)即可
                 
                 课表:略
@@ -118,7 +217,7 @@ namespace Server
             */
         }
 
-        private static void ChooseAlternativeSection(MySqlConnection conn)
+        private static void ChooseAlternativeSection(MySqlConnection conn, String WorkDir)
         {
             DataTable TakesTable = new DataTable();
             try
@@ -134,36 +233,67 @@ namespace Server
                     {
                         for (int i = 1; i < 3; i++)//有两门备选
                         {
-                            sda.SelectCommand = new MySqlCommand(String.Format(
+                            sda.SelectCommand.CommandText = String.Format(
                                 "select course_id, sec_id, semester, year from takes where id = {0} and status = '备选{1}';",
-                                row["id"].ToString(), i));
+                                row["id"].ToString(), i);
                             sda.Fill(AlternativeTakes);
                             if (AlternativeTakes.Rows.Count == 1)
                             {
-                                sda.SelectCommand = new MySqlCommand(String.Format(
+                                sda.SelectCommand.CommandText = String.Format(
                                     "select count(*) as count from takes where course_id = '{0}' and sec_id = '{1}' and semester = '{2}' and year = {3};",
                                     AlternativeTakes.Rows[0]["course_id"].ToString(),
-                                    AlternativeTakes.Rows[0]["course_id"].ToString(),
-                                    AlternativeTakes.Rows[0]["course_id"].ToString(),
-                                    AlternativeTakes.Rows[0]["course_id"].ToString()));
+                                    AlternativeTakes.Rows[0]["sec_id"].ToString(),
+                                    AlternativeTakes.Rows[0]["semester"].ToString(),
+                                    AlternativeTakes.Rows[0]["year"].ToString());
                                 DataTable count = new DataTable();
                                 sda.Fill(count);
-                                if (Convert.ToInt32(count.Rows[0][0]) < 10)
+                                MySqlCommand cmd = new MySqlCommand();
+                                cmd.Connection = conn;
+                                if (Convert.ToInt32(count.Rows[0][0]) < 10)//少于10人，可以选课
                                 {
-
+                                    cmd.CommandText = String.Format(
+                                        "update takes set status = '已选' where id = {0} and course_id = '{1}' and sec_id = '{2}' and semester = '{3}' and year = {4};",
+                                        row["id"],
+                                        AlternativeTakes.Rows[0]["course_id"].ToString(),
+                                        AlternativeTakes.Rows[0]["sec_id"].ToString(),
+                                        AlternativeTakes.Rows[0]["semester"].ToString(),
+                                        AlternativeTakes.Rows[0]["year"].ToString());
                                 }
-                                else
+                                else//超出10人，不可选课，删除takes记录
                                 {
-
+                                    DataTable CourseInformation = new DataTable();
+                                    sda.SelectCommand.CommandText = String.Format("select title from course where course_id = '{0}';",
+                                    row["course_id"].ToString());
+                                    if (sda.Fill(CourseInformation) != 1)
+                                    {
+                                        throw new Exception("数据库无效数据");
+                                    }
+                                    using (StreamWriter writer = new StreamWriter(
+                                        String.Format(WorkDir + "{0}_{1}{2}.txt", row["id"], CurrentYear, CurrentSemester), true))
+                                    {
+                                        writer.WriteLine("因选课人数过多而中止：" + CourseInformation.Rows[0]["title"]);
+                                    }
+                                    cmd.CommandText = String.Format(
+                                        "delete from takes where id = {0} and course_id = '{1}' and sec_id = '{2}' and semester = '{3}' and year = {4};",
+                                        row["id"],
+                                        AlternativeTakes.Rows[0]["course_id"].ToString(),
+                                        AlternativeTakes.Rows[0]["sec_id"].ToString(),
+                                        AlternativeTakes.Rows[0]["semester"].ToString(),
+                                        AlternativeTakes.Rows[0]["year"].ToString());
                                 }
+                                cmd.ExecuteNonQuery();
+                                cmd.Dispose();
                             }
-                            else
+                            else if (AlternativeTakes.Rows.Count > 1)
                             {
                                 throw new Exception("备选课程数量异常");
                             }
+                            //else : == 0无备选课程，跳过
+                            AlternativeTakes.Clear();
                         }
                     }
                 }
+                sda.Dispose();
             }
             catch(Exception e)
             {
