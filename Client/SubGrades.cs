@@ -74,15 +74,17 @@ namespace Client
                     conn.Open();
                     string input = dt_subgrades.Rows[e.RowIndex][e.ColumnIndex].ToString();
                     //检查输入是否为A,B,C,D,F,I
-                    if (input.Length!=1)
+                    if (input.Length!=1 && input!=String.Empty)
                     {
                         MessageBox.Show("请输入一位字母！");
+                        dt_subgrades.Rows[e.RowIndex][e.ColumnIndex] = null;
                         return;
                     }
                     byte by = Convert.ToByte(input[0]);
                     if (((by <65)||(by==69)||(by>70))&&(by!=73))
                     {
                         MessageBox.Show("输入必须为A,B,C,D,F,I之一");
+                        dt_subgrades.Rows[e.RowIndex][e.ColumnIndex] = null;
                     }
                     MySqlCommand cmd = new MySqlCommand(String.Format("update takes set grade= '{0}' where id = {1}" +
                                     " and course_id = '{2}' and sec_id = '{3}' and semester = '{4}' and year = {5}"
