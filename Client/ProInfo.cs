@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -17,11 +18,6 @@ namespace Client
         public ProInfo()
         {
             InitializeComponent();
-        }
-        public ProInfo(string name,string date,string ssn,int status,int dept_name)
-        {
-            this.Text = "no";
-            InitializeComponent(name,date,ssn,status,dept_name);
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -140,10 +136,19 @@ namespace Client
             this.Text = "no";
             this.Close();
         }
-
-        private void ProInfo_FormClosing(object sender, FormClosingEventArgs e)
+        public void update(string name, string date, string ssn, int status, int dept_name)
         {
-            this.Text = "no";//用来标记放弃本次更改
+            date = date.Substring(0, 9);
+            string[] dat = Regex.Split(date, "/", RegexOptions.IgnoreCase);
+            this.textBox1.Text = name;
+            this.textBox3.Text = ssn;
+            this.comboBox1.SelectedIndex = status;
+            this.comboBox2.SelectedIndex = dept_name;
+            this.dateTimePicker1.Value = new DateTime(int.Parse(dat[0]), int.Parse(dat[1]), int.Parse(dat[2]));
+            this.button1.Visible = false;
+            this.label5.Text = "请修改教授信息：";
+            this.button2.Text = "更新";
+            this.Text = "更新教授";
         }
     }
 }

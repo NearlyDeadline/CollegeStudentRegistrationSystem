@@ -203,7 +203,6 @@ namespace Client
             this.Controls.Add(this.label提供信息提示);
             this.Name = "StuInfo";
             this.Text = "添加学生";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.StuInfo_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

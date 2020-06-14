@@ -160,10 +160,5 @@ namespace Client
             this.button添加.Text = "更新";
             this.Text = "更新学生";
         }
-
-        private void StuInfo_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            this.Text = "no";//用来标记放弃本次更改
-        }
     }
 }
