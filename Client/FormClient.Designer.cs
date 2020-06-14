@@ -1054,8 +1054,6 @@
         private System.Windows.Forms.TabPage ShowTabPage1;
         private System.Windows.Forms.TabPage LoginTabpage;
         private System.Windows.Forms.TabPage SubmitGradesTabPage;
-        private System.Windows.Forms.TabPage NotificationTabPage;
-        private System.Windows.Forms.TabPage RegisterCoursesTabPage;
         private System.Windows.Forms.TabPage AddRegistCoursesTabPage;
         private System.Windows.Forms.Button LoginButton;
         private System.Windows.Forms.ComboBox UserTypeComboBox;
@@ -1063,18 +1061,6 @@
         private System.Windows.Forms.Label labelLoginName;
         private System.Windows.Forms.TextBox textBoxLoginPassword;
         private System.Windows.Forms.TextBox textBoxLoginName;
-        private System.Windows.Forms.Label label本学期可教课程;
-        private System.Windows.Forms.DataGridView dataGridView本学期可教课程;
-        private System.Windows.Forms.Label label本学期已教课程;
-        private System.Windows.Forms.DataGridView dataGridView本学期已教课程;
-        private System.Windows.Forms.Button button取消选择教授课程;
-        private System.Windows.Forms.Button button选择教授课程;
-        private System.Windows.Forms.Label label以前教授课程;
-        private System.Windows.Forms.DataGridView dataGridView以前教授课程;
-        private System.Windows.Forms.Button button提交选择讲授课程;
-        private System.Windows.Forms.Button buttonEnd;
-        private System.Windows.Forms.Button buttonStart;
-        private System.Windows.Forms.Button buttonCloseRegistration;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
@@ -1093,10 +1079,7 @@
         private System.Windows.Forms.Button button删除;
         private System.Windows.Forms.Button button更新;
         private System.Windows.Forms.Button button添加;
-        private System.Windows.Forms.ComboBox UserTypeComboBox;
-        private System.Windows.Forms.Button LoginButton;
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage AddRegistCoursesTabPage;
     }
 }
 

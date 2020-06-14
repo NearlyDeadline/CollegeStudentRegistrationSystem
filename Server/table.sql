@@ -76,7 +76,6 @@ CREATE TABLE professor (
  	ssn 		decimal(9) NOT NULL UNIQUE,
  	status 		varchar(10),
 	dept_name 	varchar(20),
-	salary 		decimal(8),
 	password 	varchar(25) DEFAULT '000000',
 	PRIMARY KEY (id),
 	FOREIGN KEY (dept_name) REFERENCES department(dept_name) ON DELETE SET NULL
@@ -121,11 +120,8 @@ CREATE TABLE student (
  	ssn 		decimal(9) NOT NULL UNIQUE,
  	status 		varchar(10),
  	graduate_date 	year,
-	dept_name 	varchar(20),
-	tot_cred 	decimal(5,2) UNSIGNED DEFAULT 0,
 	password 	varchar(25) DEFAULT '000000',
-	PRIMARY KEY (id),
-	FOREIGN KEY (dept_name) REFERENCES department(dept_name) ON DELETE SET NULL
+	PRIMARY KEY (id)
 	);
 	
 #学生选课：学生id，课程段主码，成绩，选课状态
@@ -136,7 +132,7 @@ CREATE TABLE takes (
 	sec_id	 	varchar(8),
 	semester 		varchar(6),
 	year	 	year,
-	grade	 	varchar(2),
+	grade	 	varchar(2) DEFAULT NULL,
 	status 		varchar(5),
  	CONSTRAINT `takes_check_status_in_enum` CHECK (status IN ('已选', '选中', '备选1', '备选2')),
 	PRIMARY KEY (id, course_id, sec_id, semester, year),
@@ -163,5 +159,3 @@ CREATE TABLE can_teach (
 	FOREIGN KEY (id) REFERENCES professor(id) ON DELETE CASCADE,
 	FOREIGN KEY (course_id) REFERENCES course(course_id) ON DELETE CASCADE
 	);
-	
-	

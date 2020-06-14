@@ -15,7 +15,6 @@ namespace Client
     {
 
         DataTable dt_course;
-        DataTable dt_subgrades;
         string semester = "秋季";
         string year = "2020";//可根据当前时间修改，或由管理员定期修改
         private void QueryTeaches(object sender, EventArgs e)
@@ -28,8 +27,8 @@ namespace Client
                     try
                     {
                         conn.Open();//建立连接。考虑到可能出现异常,使用try catch语句
-                        string sql = "select course_id,sec_id from teaches where professor_id = '" + id + "'  and semester = '" + semester
-                                    + "'  and year = " + year + "; ";//查询教授上学期教授课程
+                        string sql = "select s.course_id,s.sec_id,c.title from section as s,course as c where s.id = '" + id + "'  and s.semester = '" + semester
+                                    + "'  and s.year = " + year + " and s.course_id = c.course_id; ";//查询教授上学期教授课程
                         MySqlCommand cmd = new MySqlCommand(sql, conn);
                         MySqlDataReader reader = cmd.ExecuteReader();//reader内存储了0或1条记录
 
@@ -40,8 +39,8 @@ namespace Client
                             return;
                         }
                         reader.Close();
-                        string sqlStr = "select course_id,sec_id from teaches where professor_id = '" + id + "' and semester = '" + semester
-                                    + "' and year = " + year + "; ";
+                        string sqlStr = "select s.course_id,s.sec_id,c.title from section as s,course as c where s.id = '" + id + "'  and s.semester = '" + semester
+                                    + "'  and s.year = " + year + " and s.course_id = c.course_id; ";
                         MySqlDataAdapter sda = new MySqlDataAdapter(sqlStr, conn);
                         sda.Fill(dt_course);//把读取的MySQL数据库数据填到离线数据库里
                         dataGridView上学期课程.DataSource = dt_course;//把离线数据库的内容直接绑定到GridView里显示
