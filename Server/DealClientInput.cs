@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Data;
-using System.Linq;
-using System.Linq.Expressions;
+using System.IO;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
-using MySql.Data.MySqlClient;
 
 namespace Server
 {
@@ -32,7 +29,7 @@ namespace Server
              * 为close时，关闭注册。
              * 为end时：选课结束。
              * 为start时：选课开始。
-             * 
+             * 为bill时：取得账单。
              * 
              * 
              */
@@ -56,6 +53,9 @@ namespace Server
                 case "start":
                     result = CaseStart();
                     break;
+                case "bill":
+                    result = CaseBill(ClientMessages[1]);
+                    break;
                 //在这里添加想要处理的命令，将结果赋值给result即可
 
 
@@ -63,12 +63,50 @@ namespace Server
                     result = "Fail@无效命令";
                     break;
             }
-            
+
             //编码为字节  
             byte[] byteData = Encoding.BigEndianUnicode.GetBytes(result);
             //发回客户端
             ClientSocket.BeginSend(byteData, 0, byteData.Length, 0,
                 new AsyncCallback(SendCallback), ClientSocket);
+        }
+
+        private static string CaseBill(String ClientMessage)
+        {
+            string result = "True@";
+            string[] messages = ClientMessage.Split(',');
+            if (messages.Length == 3)
+            {
+                string id = messages[0];
+                string year = messages[1];
+                string semester = messages[2];
+                try
+                {
+                    using (StreamReader reader = new StreamReader(new FileStream(
+                            String.Format(Directory.GetCurrentDirectory() + "\\Bills\\" + "{1}{2}\\" + "{0}_{1}{2}.txt", id, year, semester),
+                            FileMode.Open)))
+                    {
+                        result += reader.ReadToEnd();
+                    }
+                }
+                catch (FileNotFoundException e)
+                {
+                    result = "False@找不到账单文件";
+                }
+                catch (DirectoryNotFoundException e)
+                {
+                    result = "False@找不到账单文件";
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.ToString());
+                }
+            }
+            else
+            {
+                result = "False@网络传输异常";
+            }
+            return result;
         }
 
         private static string CaseStart()
@@ -232,7 +270,7 @@ namespace Server
                         }
                     }
                     else
-                        result = "False"+"@密码错误";
+                        result = "False" + "@密码错误";
                 }
                 else//无该用户
                 {
@@ -243,7 +281,7 @@ namespace Server
             {
                 result = "False" + "@服务器连接数据库异常";
             }
-            
+
             return result;
         }
     }
