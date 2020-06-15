@@ -49,8 +49,9 @@
             this.dataGridView学生已选与选中课程 = new System.Windows.Forms.DataGridView();
             this.label学生已选课程 = new System.Windows.Forms.Label();
             this.NotificationTabPage = new System.Windows.Forms.TabPage();
+            this.buttonGetBill = new System.Windows.Forms.Button();
+            this.richTextBoxBill = new System.Windows.Forms.RichTextBox();
             this.SummitGradesTabPage = new System.Windows.Forms.TabPage();
-            this.AddTeachCourseTabPage = new System.Windows.Forms.TabPage();
             this.TeachCourseManageTabPage = new System.Windows.Forms.TabPage();
             this.button提交选择讲授课程 = new System.Windows.Forms.Button();
             this.label以前教授课程 = new System.Windows.Forms.Label();
@@ -114,17 +115,19 @@
             this.button查询教课 = new System.Windows.Forms.Button();
             this.dataGridView上学期课程 = new System.Windows.Forms.DataGridView();
             this.label查询课程提示 = new System.Windows.Forms.Label();
-            this.AddRegistCoursesTabPage = new System.Windows.Forms.TabPage();
             this.ViewReportCardTabPage = new System.Windows.Forms.TabPage();
             this.label成绩提示 = new System.Windows.Forms.Label();
             this.dataGridView成绩展示 = new System.Windows.Forms.DataGridView();
             this.button查询成绩 = new System.Windows.Forms.Button();
+            this.saveFileDialogBill = new System.Windows.Forms.SaveFileDialog();
+            this.buttonSaveBill = new System.Windows.Forms.Button();
             this.ScheduleTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewStudentSchedule)).BeginInit();
             this.RegisterCoursesTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView学生本学期课程目录)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView学生备选课程)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView学生已选与选中课程)).BeginInit();
+            this.NotificationTabPage.SuspendLayout();
             this.TeachCourseManageTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView以前教授课程)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView本学期已教课程)).BeginInit();
@@ -394,6 +397,9 @@
             // 
             // NotificationTabPage
             // 
+            this.NotificationTabPage.Controls.Add(this.buttonSaveBill);
+            this.NotificationTabPage.Controls.Add(this.buttonGetBill);
+            this.NotificationTabPage.Controls.Add(this.richTextBoxBill);
             this.NotificationTabPage.Location = new System.Drawing.Point(4, 25);
             this.NotificationTabPage.Name = "NotificationTabPage";
             this.NotificationTabPage.Padding = new System.Windows.Forms.Padding(3);
@@ -401,6 +407,25 @@
             this.NotificationTabPage.TabIndex = 11;
             this.NotificationTabPage.Text = "系统通知";
             this.NotificationTabPage.UseVisualStyleBackColor = true;
+            // 
+            // buttonGetBill
+            // 
+            this.buttonGetBill.Location = new System.Drawing.Point(59, 37);
+            this.buttonGetBill.Name = "buttonGetBill";
+            this.buttonGetBill.Size = new System.Drawing.Size(265, 52);
+            this.buttonGetBill.TabIndex = 1;
+            this.buttonGetBill.Text = "获取账单";
+            this.buttonGetBill.UseVisualStyleBackColor = true;
+            this.buttonGetBill.Click += new System.EventHandler(this.buttonGetBill_Click);
+            // 
+            // richTextBoxBill
+            // 
+            this.richTextBoxBill.Location = new System.Drawing.Point(396, 6);
+            this.richTextBoxBill.Name = "richTextBoxBill";
+            this.richTextBoxBill.ReadOnly = true;
+            this.richTextBoxBill.Size = new System.Drawing.Size(988, 788);
+            this.richTextBoxBill.TabIndex = 0;
+            this.richTextBoxBill.Text = "";
             // 
             // SummitGradesTabPage
             // 
@@ -412,16 +437,6 @@
             this.SummitGradesTabPage.TabIndex = 10;
             this.SummitGradesTabPage.Text = "录入成绩";
             this.SummitGradesTabPage.UseVisualStyleBackColor = true;
-            // 
-            // AddTeachCourseTabPage
-            // 
-            this.AddTeachCourseTabPage.Location = new System.Drawing.Point(4, 25);
-            this.AddTeachCourseTabPage.Name = "AddTeachCourseTabPage";
-            this.AddTeachCourseTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.AddTeachCourseTabPage.Size = new System.Drawing.Size(1390, 800);
-            this.AddTeachCourseTabPage.TabIndex = 8;
-            this.AddTeachCourseTabPage.Text = "添加新课程";
-            this.AddTeachCourseTabPage.UseVisualStyleBackColor = true;
             // 
             // TeachCourseManageTabPage
             // 
@@ -1046,11 +1061,9 @@
             this.tabControl1.Controls.Add(this.StudentInformationTabPage);
             this.tabControl1.Controls.Add(this.SystemManageTabPage);
             this.tabControl1.Controls.Add(this.TeachCourseManageTabPage);
-            this.tabControl1.Controls.Add(this.AddTeachCourseTabPage);
             this.tabControl1.Controls.Add(this.SubmitGradesTabPage);
             this.tabControl1.Controls.Add(this.NotificationTabPage);
             this.tabControl1.Controls.Add(this.RegisterCoursesTabPage);
-            this.tabControl1.Controls.Add(this.AddRegistCoursesTabPage);
             this.tabControl1.Controls.Add(this.ViewReportCardTabPage);
             this.tabControl1.Controls.Add(this.ScheduleTabPage);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
@@ -1115,16 +1128,6 @@
             this.label查询课程提示.TabIndex = 0;
             this.label查询课程提示.Text = "单击查询按钮查看您上学期教授的课程";
             // 
-            // AddRegistCoursesTabPage
-            // 
-            this.AddRegistCoursesTabPage.Location = new System.Drawing.Point(4, 25);
-            this.AddRegistCoursesTabPage.Name = "AddRegistCoursesTabPage";
-            this.AddRegistCoursesTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.AddRegistCoursesTabPage.Size = new System.Drawing.Size(1390, 800);
-            this.AddRegistCoursesTabPage.TabIndex = 13;
-            this.AddRegistCoursesTabPage.Text = "添加课程";
-            this.AddRegistCoursesTabPage.UseVisualStyleBackColor = true;
-            // 
             // ViewReportCardTabPage
             // 
             this.ViewReportCardTabPage.Controls.Add(this.label成绩提示);
@@ -1168,6 +1171,16 @@
             this.button查询成绩.UseVisualStyleBackColor = true;
             this.button查询成绩.Click += new System.EventHandler(this.ViewReportCard);
             // 
+            // buttonSaveBill
+            // 
+            this.buttonSaveBill.Location = new System.Drawing.Point(59, 641);
+            this.buttonSaveBill.Name = "buttonSaveBill";
+            this.buttonSaveBill.Size = new System.Drawing.Size(265, 52);
+            this.buttonSaveBill.TabIndex = 2;
+            this.buttonSaveBill.Text = "保存账单文件";
+            this.buttonSaveBill.UseVisualStyleBackColor = true;
+            this.buttonSaveBill.Click += new System.EventHandler(this.buttonSaveBill_Click);
+            // 
             // FormClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -1185,6 +1198,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView学生本学期课程目录)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView学生备选课程)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView学生已选与选中课程)).EndInit();
+            this.NotificationTabPage.ResumeLayout(false);
             this.TeachCourseManageTabPage.ResumeLayout(false);
             this.TeachCourseManageTabPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView以前教授课程)).EndInit();
@@ -1242,7 +1256,6 @@
         private System.Windows.Forms.Label label学生已选课程;
         private System.Windows.Forms.TabPage NotificationTabPage;
         private System.Windows.Forms.TabPage SummitGradesTabPage;
-        private System.Windows.Forms.TabPage AddTeachCourseTabPage;
         private System.Windows.Forms.TabPage TeachCourseManageTabPage;
         private System.Windows.Forms.Button button提交选择讲授课程;
         private System.Windows.Forms.Label label以前教授课程;
@@ -1264,7 +1277,6 @@
         private System.Windows.Forms.TabPage ShowTabPage1;
         private System.Windows.Forms.TabPage LoginTabpage;
         private System.Windows.Forms.TabPage SubmitGradesTabPage;
-        private System.Windows.Forms.TabPage AddRegistCoursesTabPage;
         private System.Windows.Forms.Button LoginButton;
         private System.Windows.Forms.ComboBox UserTypeComboBox;
         private System.Windows.Forms.Label labelLoginPassword;
@@ -1311,6 +1323,10 @@
         private System.Windows.Forms.Label labelName;
         private System.Windows.Forms.TextBox textBoxID;
         private System.Windows.Forms.Label labelID;
+        private System.Windows.Forms.RichTextBox richTextBoxBill;
+        private System.Windows.Forms.Button buttonGetBill;
+        private System.Windows.Forms.SaveFileDialog saveFileDialogBill;
+        private System.Windows.Forms.Button buttonSaveBill;
     }
 }
 
