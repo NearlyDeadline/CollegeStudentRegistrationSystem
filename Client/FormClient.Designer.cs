@@ -78,8 +78,29 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.PersonalInformationTabPage = new System.Windows.Forms.TabPage();
+            this.label个人信息提示签 = new System.Windows.Forms.Label();
+            this.buttonSave = new System.Windows.Forms.Button();
+            this.buttonReset = new System.Windows.Forms.Button();
+            this.comboBoxGra_year = new System.Windows.Forms.ComboBox();
+            this.labelGraduateDate = new System.Windows.Forms.Label();
+            this.comboBoxStatus = new System.Windows.Forms.ComboBox();
+            this.labelStatus = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.labelBirthDate = new System.Windows.Forms.Label();
+            this.textBoxPassword = new System.Windows.Forms.TextBox();
+            this.labelPassword = new System.Windows.Forms.Label();
+            this.textBoxSsn = new System.Windows.Forms.TextBox();
+            this.labelSsn = new System.Windows.Forms.Label();
+            this.textBoxName = new System.Windows.Forms.TextBox();
+            this.labelName = new System.Windows.Forms.Label();
+            this.textBoxID = new System.Windows.Forms.TextBox();
+            this.labelID = new System.Windows.Forms.Label();
             this.ShowTabPage2 = new System.Windows.Forms.TabPage();
+            this.labelShowTabPage2 = new System.Windows.Forms.Label();
+            this.dataGridViewShow2 = new System.Windows.Forms.DataGridView();
             this.ShowTabPage1 = new System.Windows.Forms.TabPage();
+            this.labelShowTabPage1 = new System.Windows.Forms.Label();
+            this.dataGridViewShow1 = new System.Windows.Forms.DataGridView();
             this.LoginTabpage = new System.Windows.Forms.TabPage();
             this.labelLoginPassword = new System.Windows.Forms.Label();
             this.labelLoginName = new System.Windows.Forms.Label();
@@ -98,10 +119,6 @@
             this.label成绩提示 = new System.Windows.Forms.Label();
             this.dataGridView成绩展示 = new System.Windows.Forms.DataGridView();
             this.button查询成绩 = new System.Windows.Forms.Button();
-            this.dataGridViewShow2 = new System.Windows.Forms.DataGridView();
-            this.labelShowTabPage2 = new System.Windows.Forms.Label();
-            this.dataGridViewShow1 = new System.Windows.Forms.DataGridView();
-            this.labelShowTabPage1 = new System.Windows.Forms.Label();
             this.ScheduleTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewStudentSchedule)).BeginInit();
             this.RegisterCoursesTabPage.SuspendLayout();
@@ -119,16 +136,17 @@
             this.ProfessorInformationTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.PersonalInformationTabPage.SuspendLayout();
             this.ShowTabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewShow2)).BeginInit();
             this.ShowTabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewShow1)).BeginInit();
             this.LoginTabpage.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.SubmitGradesTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView上学期课程)).BeginInit();
             this.ViewReportCardTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView成绩展示)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewShow2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewShow1)).BeginInit();
             this.SuspendLayout();
             // 
             // ScheduleTabPage
@@ -702,6 +720,23 @@
             // 
             // PersonalInformationTabPage
             // 
+            this.PersonalInformationTabPage.Controls.Add(this.label个人信息提示签);
+            this.PersonalInformationTabPage.Controls.Add(this.buttonSave);
+            this.PersonalInformationTabPage.Controls.Add(this.buttonReset);
+            this.PersonalInformationTabPage.Controls.Add(this.comboBoxGra_year);
+            this.PersonalInformationTabPage.Controls.Add(this.labelGraduateDate);
+            this.PersonalInformationTabPage.Controls.Add(this.comboBoxStatus);
+            this.PersonalInformationTabPage.Controls.Add(this.labelStatus);
+            this.PersonalInformationTabPage.Controls.Add(this.dateTimePicker1);
+            this.PersonalInformationTabPage.Controls.Add(this.labelBirthDate);
+            this.PersonalInformationTabPage.Controls.Add(this.textBoxPassword);
+            this.PersonalInformationTabPage.Controls.Add(this.labelPassword);
+            this.PersonalInformationTabPage.Controls.Add(this.textBoxSsn);
+            this.PersonalInformationTabPage.Controls.Add(this.labelSsn);
+            this.PersonalInformationTabPage.Controls.Add(this.textBoxName);
+            this.PersonalInformationTabPage.Controls.Add(this.labelName);
+            this.PersonalInformationTabPage.Controls.Add(this.textBoxID);
+            this.PersonalInformationTabPage.Controls.Add(this.labelID);
             this.PersonalInformationTabPage.Location = new System.Drawing.Point(4, 25);
             this.PersonalInformationTabPage.Name = "PersonalInformationTabPage";
             this.PersonalInformationTabPage.Padding = new System.Windows.Forms.Padding(3);
@@ -709,6 +744,159 @@
             this.PersonalInformationTabPage.TabIndex = 3;
             this.PersonalInformationTabPage.Text = "个人信息";
             this.PersonalInformationTabPage.UseVisualStyleBackColor = true;
+            // 
+            // label个人信息提示签
+            // 
+            this.label个人信息提示签.AutoSize = true;
+            this.label个人信息提示签.Location = new System.Drawing.Point(290, 45);
+            this.label个人信息提示签.Name = "label个人信息提示签";
+            this.label个人信息提示签.Size = new System.Drawing.Size(382, 15);
+            this.label个人信息提示签.TabIndex = 16;
+            this.label个人信息提示签.Text = "以下为您的个人信息，请修改可修改项后单击保存提交：";
+            // 
+            // buttonSave
+            // 
+            this.buttonSave.Location = new System.Drawing.Point(577, 482);
+            this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new System.Drawing.Size(95, 60);
+            this.buttonSave.TabIndex = 15;
+            this.buttonSave.Text = "保存";
+            this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_click);
+            // 
+            // buttonReset
+            // 
+            this.buttonReset.Location = new System.Drawing.Point(717, 482);
+            this.buttonReset.Name = "buttonReset";
+            this.buttonReset.Size = new System.Drawing.Size(95, 60);
+            this.buttonReset.TabIndex = 14;
+            this.buttonReset.Text = "重置";
+            this.buttonReset.UseVisualStyleBackColor = true;
+            this.buttonReset.Click += new System.EventHandler(this.buttonReset_click);
+            // 
+            // comboBoxGra_year
+            // 
+            this.comboBoxGra_year.FormattingEnabled = true;
+            this.comboBoxGra_year.Items.AddRange(new object[] {
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024"});
+            this.comboBoxGra_year.Location = new System.Drawing.Point(618, 425);
+            this.comboBoxGra_year.Name = "comboBoxGra_year";
+            this.comboBoxGra_year.Size = new System.Drawing.Size(171, 23);
+            this.comboBoxGra_year.TabIndex = 13;
+            // 
+            // labelGraduateDate
+            // 
+            this.labelGraduateDate.AutoSize = true;
+            this.labelGraduateDate.Location = new System.Drawing.Point(545, 429);
+            this.labelGraduateDate.Name = "labelGraduateDate";
+            this.labelGraduateDate.Size = new System.Drawing.Size(67, 15);
+            this.labelGraduateDate.TabIndex = 12;
+            this.labelGraduateDate.Text = "毕业年份";
+            // 
+            // comboBoxStatus
+            // 
+            this.comboBoxStatus.FormattingEnabled = true;
+            this.comboBoxStatus.Items.AddRange(new object[] {
+            "本科生",
+            "硕士研究生",
+            "博士研究生"});
+            this.comboBoxStatus.Location = new System.Drawing.Point(618, 370);
+            this.comboBoxStatus.Name = "comboBoxStatus";
+            this.comboBoxStatus.Size = new System.Drawing.Size(171, 23);
+            this.comboBoxStatus.TabIndex = 11;
+            // 
+            // labelStatus
+            // 
+            this.labelStatus.AutoSize = true;
+            this.labelStatus.Location = new System.Drawing.Point(558, 373);
+            this.labelStatus.Name = "labelStatus";
+            this.labelStatus.Size = new System.Drawing.Size(37, 15);
+            this.labelStatus.TabIndex = 10;
+            this.labelStatus.Text = "学历";
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(619, 313);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(171, 25);
+            this.dateTimePicker1.TabIndex = 9;
+            // 
+            // labelBirthDate
+            // 
+            this.labelBirthDate.AutoSize = true;
+            this.labelBirthDate.Location = new System.Drawing.Point(545, 318);
+            this.labelBirthDate.Name = "labelBirthDate";
+            this.labelBirthDate.Size = new System.Drawing.Size(67, 15);
+            this.labelBirthDate.TabIndex = 8;
+            this.labelBirthDate.Text = "出生日期";
+            // 
+            // textBoxPassword
+            // 
+            this.textBoxPassword.Location = new System.Drawing.Point(618, 260);
+            this.textBoxPassword.Name = "textBoxPassword";
+            this.textBoxPassword.Size = new System.Drawing.Size(172, 25);
+            this.textBoxPassword.TabIndex = 7;
+            // 
+            // labelPassword
+            // 
+            this.labelPassword.AutoSize = true;
+            this.labelPassword.Location = new System.Drawing.Point(558, 263);
+            this.labelPassword.Name = "labelPassword";
+            this.labelPassword.Size = new System.Drawing.Size(37, 15);
+            this.labelPassword.TabIndex = 6;
+            this.labelPassword.Text = "密码";
+            // 
+            // textBoxSsn
+            // 
+            this.textBoxSsn.Location = new System.Drawing.Point(618, 204);
+            this.textBoxSsn.Name = "textBoxSsn";
+            this.textBoxSsn.Size = new System.Drawing.Size(172, 25);
+            this.textBoxSsn.TabIndex = 5;
+            // 
+            // labelSsn
+            // 
+            this.labelSsn.AutoSize = true;
+            this.labelSsn.Location = new System.Drawing.Point(545, 207);
+            this.labelSsn.Name = "labelSsn";
+            this.labelSsn.Size = new System.Drawing.Size(67, 15);
+            this.labelSsn.TabIndex = 4;
+            this.labelSsn.Text = "身份证号";
+            // 
+            // textBoxName
+            // 
+            this.textBoxName.Location = new System.Drawing.Point(618, 148);
+            this.textBoxName.Name = "textBoxName";
+            this.textBoxName.Size = new System.Drawing.Size(172, 25);
+            this.textBoxName.TabIndex = 3;
+            // 
+            // labelName
+            // 
+            this.labelName.AutoSize = true;
+            this.labelName.Location = new System.Drawing.Point(558, 151);
+            this.labelName.Name = "labelName";
+            this.labelName.Size = new System.Drawing.Size(37, 15);
+            this.labelName.TabIndex = 2;
+            this.labelName.Text = "姓名";
+            // 
+            // textBoxID
+            // 
+            this.textBoxID.Location = new System.Drawing.Point(618, 95);
+            this.textBoxID.Name = "textBoxID";
+            this.textBoxID.Size = new System.Drawing.Size(172, 25);
+            this.textBoxID.TabIndex = 1;
+            // 
+            // labelID
+            // 
+            this.labelID.AutoSize = true;
+            this.labelID.Location = new System.Drawing.Point(566, 95);
+            this.labelID.Name = "labelID";
+            this.labelID.Size = new System.Drawing.Size(23, 15);
+            this.labelID.TabIndex = 0;
+            this.labelID.Text = "ID";
             // 
             // ShowTabPage2
             // 
@@ -722,6 +910,25 @@
             this.ShowTabPage2.Text = "展示页2";
             this.ShowTabPage2.UseVisualStyleBackColor = true;
             // 
+            // labelShowTabPage2
+            // 
+            this.labelShowTabPage2.AutoSize = true;
+            this.labelShowTabPage2.Location = new System.Drawing.Point(20, 21);
+            this.labelShowTabPage2.Name = "labelShowTabPage2";
+            this.labelShowTabPage2.Size = new System.Drawing.Size(55, 15);
+            this.labelShowTabPage2.TabIndex = 1;
+            this.labelShowTabPage2.Text = "label1";
+            // 
+            // dataGridViewShow2
+            // 
+            this.dataGridViewShow2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewShow2.Location = new System.Drawing.Point(6, 61);
+            this.dataGridViewShow2.Name = "dataGridViewShow2";
+            this.dataGridViewShow2.RowHeadersWidth = 51;
+            this.dataGridViewShow2.RowTemplate.Height = 27;
+            this.dataGridViewShow2.Size = new System.Drawing.Size(1378, 733);
+            this.dataGridViewShow2.TabIndex = 0;
+            // 
             // ShowTabPage1
             // 
             this.ShowTabPage1.Controls.Add(this.labelShowTabPage1);
@@ -733,6 +940,25 @@
             this.ShowTabPage1.TabIndex = 1;
             this.ShowTabPage1.Text = "展示页1";
             this.ShowTabPage1.UseVisualStyleBackColor = true;
+            // 
+            // labelShowTabPage1
+            // 
+            this.labelShowTabPage1.AutoSize = true;
+            this.labelShowTabPage1.Location = new System.Drawing.Point(67, 26);
+            this.labelShowTabPage1.Name = "labelShowTabPage1";
+            this.labelShowTabPage1.Size = new System.Drawing.Size(55, 15);
+            this.labelShowTabPage1.TabIndex = 2;
+            this.labelShowTabPage1.Text = "label1";
+            // 
+            // dataGridViewShow1
+            // 
+            this.dataGridViewShow1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewShow1.Location = new System.Drawing.Point(3, 64);
+            this.dataGridViewShow1.Name = "dataGridViewShow1";
+            this.dataGridViewShow1.RowHeadersWidth = 51;
+            this.dataGridViewShow1.RowTemplate.Height = 27;
+            this.dataGridViewShow1.Size = new System.Drawing.Size(1378, 733);
+            this.dataGridViewShow1.TabIndex = 1;
             // 
             // LoginTabpage
             // 
@@ -942,44 +1168,6 @@
             this.button查询成绩.UseVisualStyleBackColor = true;
             this.button查询成绩.Click += new System.EventHandler(this.ViewReportCard);
             // 
-            // dataGridViewShow2
-            // 
-            this.dataGridViewShow2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewShow2.Location = new System.Drawing.Point(6, 61);
-            this.dataGridViewShow2.Name = "dataGridViewShow2";
-            this.dataGridViewShow2.RowHeadersWidth = 51;
-            this.dataGridViewShow2.RowTemplate.Height = 27;
-            this.dataGridViewShow2.Size = new System.Drawing.Size(1378, 733);
-            this.dataGridViewShow2.TabIndex = 0;
-            // 
-            // labelShowTabPage2
-            // 
-            this.labelShowTabPage2.AutoSize = true;
-            this.labelShowTabPage2.Location = new System.Drawing.Point(20, 21);
-            this.labelShowTabPage2.Name = "labelShowTabPage2";
-            this.labelShowTabPage2.Size = new System.Drawing.Size(55, 15);
-            this.labelShowTabPage2.TabIndex = 1;
-            this.labelShowTabPage2.Text = "label1";
-            // 
-            // dataGridViewShow1
-            // 
-            this.dataGridViewShow1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewShow1.Location = new System.Drawing.Point(3, 64);
-            this.dataGridViewShow1.Name = "dataGridViewShow1";
-            this.dataGridViewShow1.RowHeadersWidth = 51;
-            this.dataGridViewShow1.RowTemplate.Height = 27;
-            this.dataGridViewShow1.Size = new System.Drawing.Size(1378, 733);
-            this.dataGridViewShow1.TabIndex = 1;
-            // 
-            // labelShowTabPage1
-            // 
-            this.labelShowTabPage1.AutoSize = true;
-            this.labelShowTabPage1.Location = new System.Drawing.Point(67, 26);
-            this.labelShowTabPage1.Name = "labelShowTabPage1";
-            this.labelShowTabPage1.Size = new System.Drawing.Size(55, 15);
-            this.labelShowTabPage1.TabIndex = 2;
-            this.labelShowTabPage1.Text = "label1";
-            // 
             // FormClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -1009,10 +1197,14 @@
             this.ProfessorInformationTabPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);
+            this.PersonalInformationTabPage.ResumeLayout(false);
+            this.PersonalInformationTabPage.PerformLayout();
             this.ShowTabPage2.ResumeLayout(false);
             this.ShowTabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewShow2)).EndInit();
             this.ShowTabPage1.ResumeLayout(false);
             this.ShowTabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewShow1)).EndInit();
             this.LoginTabpage.ResumeLayout(false);
             this.LoginTabpage.PerformLayout();
             this.tabControl1.ResumeLayout(false);
@@ -1022,8 +1214,6 @@
             this.ViewReportCardTabPage.ResumeLayout(false);
             this.ViewReportCardTabPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView成绩展示)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewShow2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewShow1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1104,6 +1294,23 @@
         private System.Windows.Forms.DataGridView dataGridViewShow2;
         private System.Windows.Forms.Label labelShowTabPage1;
         private System.Windows.Forms.DataGridView dataGridViewShow1;
+        private System.Windows.Forms.Label label个人信息提示签;
+        private System.Windows.Forms.Button buttonSave;
+        private System.Windows.Forms.Button buttonReset;
+        private System.Windows.Forms.ComboBox comboBoxGra_year;
+        private System.Windows.Forms.Label labelGraduateDate;
+        private System.Windows.Forms.ComboBox comboBoxStatus;
+        private System.Windows.Forms.Label labelStatus;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label labelBirthDate;
+        private System.Windows.Forms.TextBox textBoxPassword;
+        private System.Windows.Forms.Label labelPassword;
+        private System.Windows.Forms.TextBox textBoxSsn;
+        private System.Windows.Forms.Label labelSsn;
+        private System.Windows.Forms.TextBox textBoxName;
+        private System.Windows.Forms.Label labelName;
+        private System.Windows.Forms.TextBox textBoxID;
+        private System.Windows.Forms.Label labelID;
     }
 }
 

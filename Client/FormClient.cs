@@ -71,6 +71,7 @@ namespace Client
                         this.tabControl1.TabPages.Add(this.ScheduleTabPage);
                         InitializeDataTable课程表();
                         InitializeStudentPart();
+                        Show_personal_info();
                         break;
                     case 1:
                         this.tabControl1.TabPages.Add(this.PersonalInformationTabPage);
@@ -79,6 +80,7 @@ namespace Client
                         this.tabControl1.TabPages.Add(this.ShowTabPage1);
                         
                         InitializeDataTable课程表();
+                        Show_personal_info();
                         this.tabControl1.TabPages.Add(this.SubmitGradesTabPage);
                         this.label双击课程提示.Visible = false;
                         break;
@@ -153,7 +155,5 @@ namespace Client
         {
         }
 
-    
-    
     }
 }
