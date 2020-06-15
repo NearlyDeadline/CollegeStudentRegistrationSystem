@@ -221,15 +221,12 @@ namespace Client
                         }
                         reader.Close();
 
-                        sql = "delete from student where id = '" + ID + "';";//从数据库中删除该学生信息
+                        sql = String.Format("update student set name = '{0}',date_of_birth='{1}',ssn={2},password='{3}'" + " where id={4}",
+                                            this.textBoxName.Text.ToString(), this.dateTimePicker1.Value.ToString("yyyy-MM-dd"),
+                                            this.textBoxSsn.Text.ToString(), textBoxPassword.Text.ToString(), id);
                         cmd = new MySqlCommand(sql, conn);
                         cmd.ExecuteNonQuery();
 
-                        sql = "INSERT INTO student VALUES(" + ID + ",'" + this.textBoxName.Text.ToString() + "','"
-                            + this.dateTimePicker1.Value.ToString("yyyy-MM-dd") + "','" + this.textBoxSsn.Text.ToString()
-                            + "','" + status + "','" + gra_year + "','" + textBoxPassword.Text.ToString() + "');";//插入语句，添加新学生
-                        cmd = new MySqlCommand(sql, conn);
-                        cmd.ExecuteNonQuery();
                         MessageBox.Show("信息修改成功！");
                         Show_personal_info();
                     }
@@ -287,13 +284,9 @@ namespace Client
 
                         reader.Close();
 
-                        sql = "delete from professor where id = '" + ID + "';";//从数据库中删除该学生信息
-                        cmd = new MySqlCommand(sql, conn);
-                        cmd.ExecuteNonQuery();
-
-                        sql = "INSERT INTO professor VALUES(" + ID + ",'" + this.textBoxName.Text.ToString() + "','"
-                            + this.dateTimePicker1.Value.ToString("yyyy-MM-dd") + "','" + this.textBoxSsn.Text.ToString()
-                            + "','" + status + "','" + dept_name + "','" + textBoxPassword.Text.ToString() + "');";//插入语句，添加新学生
+                        sql = String.Format("update professor set name = '{0}',date_of_birth='{1}',ssn={2},password='{3}'" +" where id={4}", 
+                                            this.textBoxName.Text.ToString(), this.dateTimePicker1.Value.ToString("yyyy-MM-dd"),
+                                            this.textBoxSsn.Text.ToString(), textBoxPassword.Text.ToString(),id);
                         cmd = new MySqlCommand(sql, conn);
                         cmd.ExecuteNonQuery();
                         MessageBox.Show("信息修改成功！");
