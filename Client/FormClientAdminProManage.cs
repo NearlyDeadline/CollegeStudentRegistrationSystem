@@ -159,6 +159,12 @@ namespace Client
 
                     if (reader[5].ToString().Equals("计算机科学与技术学院"))
                         dept_name = 0;
+                    if (reader[5].ToString().Equals("数学学院"))
+                        dept_name = 1;
+                    if (reader[5].ToString().Equals("外语学院"))
+                        dept_name = 2;
+                    if (reader[5].ToString().Equals("马克思学院"))
+                        dept_name = 3;
 
                     ProInfo proInfo = new ProInfo();
                     proInfo.update(reader[1].ToString(), reader[2].ToString(), reader[3].ToString(), status, dept_name);
@@ -168,13 +174,10 @@ namespace Client
                     if (proInfo.Text.Equals("no"))
                         return;
 
-                    sql = "delete from professor where id = '" + ID + "';";//从数据库中删除该教授信息
-                    cmd = new MySqlCommand(sql, conn);
-                    cmd.ExecuteNonQuery();
-
                     string[] pro_info = Regex.Split(proInfo.Text, " ", RegexOptions.IgnoreCase); //通过分隔符空格拆开修改窗口返回的必要信息
-                    sql = "INSERT INTO professor VALUES(" + ID + ",'" + pro_info[0] + "','" + pro_info[1] + "','" + pro_info[2] +
-                                "','" + pro_info[3] + "','" + pro_info[4] + "','" + password + "');";//插入语句，添加新教授
+                    sql = String.Format("update professor set name='{0}',date_of_birth='{1}',ssn='{2}',status='{3}',dept_name='{4}'" +
+                                      " where id={5};", pro_info[0], pro_info[1], pro_info[2], pro_info[3], pro_info[4], tempform.Text);//更新教授信息
+
                     cmd = new MySqlCommand(sql, conn);
                     int result = cmd.ExecuteNonQuery();
                     if (result == 1)
