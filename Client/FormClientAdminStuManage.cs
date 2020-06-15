@@ -173,14 +173,11 @@ namespace Client
 
                     if (stuInfo.Text.Equals("no"))
                         return;
+                    string[] pro_info = Regex.Split(stuInfo.Text, " ", RegexOptions.IgnoreCase); //通过分隔符空格拆开修改窗口返回的必要信息
+                    sql = String.Format("update student set name='{0}',date_of_birth='{1}',ssn='{2}',status='{3}',graduate_date='{4}'" +
+                                      " where id={5};", pro_info[0], pro_info[1], pro_info[2], pro_info[3], pro_info[4], tempform.Text);//更新教授信息
 
-                    sql = "delete from student where id = '" + ID + "';";//从数据库中删除该学生信息
-                    cmd = new MySqlCommand(sql, conn);
-                    cmd.ExecuteNonQuery();
-
-                    string[] stu_info = Regex.Split(stuInfo.Text, " ", RegexOptions.IgnoreCase); //通过分隔符空格拆开修改窗口返回的必要信息
-                    sql = "INSERT INTO student VALUES(" + ID + ",'" + stu_info[0] + "','" + stu_info[1] + "','" + stu_info[2] +
-                                "','" + stu_info[3] + "','" + stu_info[4] + "','" + password + "');";//插入语句，添加新学生
+                  
                     cmd = new MySqlCommand(sql, conn);
                     int result = cmd.ExecuteNonQuery();
                     if (result == 1)

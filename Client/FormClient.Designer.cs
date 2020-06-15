@@ -49,6 +49,8 @@
             this.dataGridView学生已选与选中课程 = new System.Windows.Forms.DataGridView();
             this.label学生已选课程 = new System.Windows.Forms.Label();
             this.NotificationTabPage = new System.Windows.Forms.TabPage();
+            this.buttonGetBill = new System.Windows.Forms.Button();
+            this.richTextBoxBill = new System.Windows.Forms.RichTextBox();
             this.SummitGradesTabPage = new System.Windows.Forms.TabPage();
             this.TeachCourseManageTabPage = new System.Windows.Forms.TabPage();
             this.button提交选择讲授课程 = new System.Windows.Forms.Button();
@@ -117,12 +119,15 @@
             this.label成绩提示 = new System.Windows.Forms.Label();
             this.dataGridView成绩展示 = new System.Windows.Forms.DataGridView();
             this.button查询成绩 = new System.Windows.Forms.Button();
+            this.saveFileDialogBill = new System.Windows.Forms.SaveFileDialog();
+            this.buttonSaveBill = new System.Windows.Forms.Button();
             this.ScheduleTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewStudentSchedule)).BeginInit();
             this.RegisterCoursesTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView学生本学期课程目录)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView学生备选课程)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView学生已选与选中课程)).BeginInit();
+            this.NotificationTabPage.SuspendLayout();
             this.TeachCourseManageTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView以前教授课程)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView本学期已教课程)).BeginInit();
@@ -392,6 +397,9 @@
             // 
             // NotificationTabPage
             // 
+            this.NotificationTabPage.Controls.Add(this.buttonSaveBill);
+            this.NotificationTabPage.Controls.Add(this.buttonGetBill);
+            this.NotificationTabPage.Controls.Add(this.richTextBoxBill);
             this.NotificationTabPage.Location = new System.Drawing.Point(4, 25);
             this.NotificationTabPage.Name = "NotificationTabPage";
             this.NotificationTabPage.Padding = new System.Windows.Forms.Padding(3);
@@ -399,6 +407,25 @@
             this.NotificationTabPage.TabIndex = 11;
             this.NotificationTabPage.Text = "系统通知";
             this.NotificationTabPage.UseVisualStyleBackColor = true;
+            // 
+            // buttonGetBill
+            // 
+            this.buttonGetBill.Location = new System.Drawing.Point(59, 37);
+            this.buttonGetBill.Name = "buttonGetBill";
+            this.buttonGetBill.Size = new System.Drawing.Size(265, 52);
+            this.buttonGetBill.TabIndex = 1;
+            this.buttonGetBill.Text = "获取账单";
+            this.buttonGetBill.UseVisualStyleBackColor = true;
+            this.buttonGetBill.Click += new System.EventHandler(this.buttonGetBill_Click);
+            // 
+            // richTextBoxBill
+            // 
+            this.richTextBoxBill.Location = new System.Drawing.Point(396, 6);
+            this.richTextBoxBill.Name = "richTextBoxBill";
+            this.richTextBoxBill.ReadOnly = true;
+            this.richTextBoxBill.Size = new System.Drawing.Size(988, 788);
+            this.richTextBoxBill.TabIndex = 0;
+            this.richTextBoxBill.Text = "";
             // 
             // SummitGradesTabPage
             // 
@@ -1144,6 +1171,16 @@
             this.button查询成绩.UseVisualStyleBackColor = true;
             this.button查询成绩.Click += new System.EventHandler(this.ViewReportCard);
             // 
+            // buttonSaveBill
+            // 
+            this.buttonSaveBill.Location = new System.Drawing.Point(59, 641);
+            this.buttonSaveBill.Name = "buttonSaveBill";
+            this.buttonSaveBill.Size = new System.Drawing.Size(265, 52);
+            this.buttonSaveBill.TabIndex = 2;
+            this.buttonSaveBill.Text = "保存账单文件";
+            this.buttonSaveBill.UseVisualStyleBackColor = true;
+            this.buttonSaveBill.Click += new System.EventHandler(this.buttonSaveBill_Click);
+            // 
             // FormClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -1161,6 +1198,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView学生本学期课程目录)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView学生备选课程)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView学生已选与选中课程)).EndInit();
+            this.NotificationTabPage.ResumeLayout(false);
             this.TeachCourseManageTabPage.ResumeLayout(false);
             this.TeachCourseManageTabPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView以前教授课程)).EndInit();
@@ -1285,6 +1323,10 @@
         private System.Windows.Forms.Label labelName;
         private System.Windows.Forms.TextBox textBoxID;
         private System.Windows.Forms.Label labelID;
+        private System.Windows.Forms.RichTextBox richTextBoxBill;
+        private System.Windows.Forms.Button buttonGetBill;
+        private System.Windows.Forms.SaveFileDialog saveFileDialogBill;
+        private System.Windows.Forms.Button buttonSaveBill;
     }
 }
 

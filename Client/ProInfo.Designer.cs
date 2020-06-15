@@ -161,7 +161,10 @@ namespace Client
             // 
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Items.AddRange(new object[] {
-            "计算机科学与技术学院"});
+            "计算机科学与技术学院",
+            "数学学院",
+            "外语学院",
+            "马克思学院"});
             this.comboBox2.Location = new System.Drawing.Point(130, 281);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(176, 23);
@@ -337,7 +340,10 @@ namespace Client
             // 
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Items.AddRange(new object[] {
-            "计算机科学与技术学院"});
+            "计算机科学与技术学院",
+            "数学学院",
+            "外语学院",
+            "马克思学院"});
             this.comboBox2.Location = new System.Drawing.Point(130, 281);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(176, 23);

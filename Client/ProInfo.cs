@@ -125,6 +125,15 @@ namespace Client
                 case 0:
                     this.dept_name = "计算机科学与技术学院";
                     break;
+                case 1:
+                    this.dept_name = "数学学院";
+                    break;
+                case 2:
+                    this.dept_name = "外语学院";
+                    break;
+                case 3:
+                    this.dept_name = "马克思学院";
+                    break;
                 default:
                     this.dept_name = null;
                     break;
