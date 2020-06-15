@@ -11,9 +11,6 @@ namespace Client
 {
     public partial class FormClient
     {
-       //private bool IsTeachInformationChanged = false;//是否有修改
-       //private static readonly int CurrentYear = 2020;//当前年份，用于组合sql语句使用
-       //private static readonly String CurrentSemester = "秋季";//当前学期，用于组合sql语句使用
 
         private DataTable dataTable本学期已选择课程 = new DataTable();
         private DataTable data本学期已选择课程的详细信息 = new DataTable();
@@ -24,13 +21,9 @@ namespace Client
         private DataTable dataTable选中与已选详细信息 = new DataTable();
         private DataTable dataTable备选 = new DataTable();
         private DataTable dataTableScheduleForWeek = new DataTable();   //用于加载显示某周的课程
-        private DataTable dataTableBackgroundForStu = new DataTable();//后台表，存储可教与已教课程的并集，负责偷偷地与数据库联络，更新数据库
+        private DataTable dataTableBackgroundForStu = new DataTable();  //后台表，存储可教与已教课程的并集，负责偷偷地与数据库联络，更新数据库
 
         private bool IsThereASchedule = true;
-        //private DataTable dataTable本学期可教课程 = new DataTable();
-        //private DataTable dataTable以前教授课程 = new DataTable();
-        //得亏MySQL支持个union啊，真好
-
 
         private void InitializeStudentPart()
         {
@@ -99,6 +92,10 @@ namespace Client
                     dataTableScheduleForWeek.Columns.Add("周五", typeof(string));
                     dataTableScheduleForWeek.Columns.Add("周六", typeof(string));
                     dataTableScheduleForWeek.Columns.Add("周日", typeof(string));
+                    if (!IsCourseRegistrationOpen)
+                    {
+                        this.buttonStudentCreate.Visible = false;
+                    }
                     if (dataTable本学期已选择课程.Rows.Count == 0)
                     {
                         IsThereASchedule = false;

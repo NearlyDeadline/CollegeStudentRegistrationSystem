@@ -220,7 +220,17 @@ namespace Server
                 {
                     string password = (string)dt.Rows[0][0];
                     if (password.Equals(userPassword))
-                        result = "True@"+ MySQLConnectionString;
+                    {
+                        result = "True@" + MySQLConnectionString;
+                        if (IsCourseRegistrationOpen)
+                        {
+                            result += "@CourseRegistrationOpen";
+                        }
+                        else
+                        {
+                            result += "@CourseRegistrationClose";
+                        }
+                    }
                     else
                         result = "False"+"@密码错误";
                 }

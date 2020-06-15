@@ -50,7 +50,6 @@
             this.label学生已选课程 = new System.Windows.Forms.Label();
             this.NotificationTabPage = new System.Windows.Forms.TabPage();
             this.SummitGradesTabPage = new System.Windows.Forms.TabPage();
-            this.AddTeachCourseTabPage = new System.Windows.Forms.TabPage();
             this.TeachCourseManageTabPage = new System.Windows.Forms.TabPage();
             this.button提交选择讲授课程 = new System.Windows.Forms.Button();
             this.label以前教授课程 = new System.Windows.Forms.Label();
@@ -114,7 +113,6 @@
             this.button查询教课 = new System.Windows.Forms.Button();
             this.dataGridView上学期课程 = new System.Windows.Forms.DataGridView();
             this.label查询课程提示 = new System.Windows.Forms.Label();
-            this.AddRegistCoursesTabPage = new System.Windows.Forms.TabPage();
             this.ViewReportCardTabPage = new System.Windows.Forms.TabPage();
             this.label成绩提示 = new System.Windows.Forms.Label();
             this.dataGridView成绩展示 = new System.Windows.Forms.DataGridView();
@@ -412,16 +410,6 @@
             this.SummitGradesTabPage.TabIndex = 10;
             this.SummitGradesTabPage.Text = "录入成绩";
             this.SummitGradesTabPage.UseVisualStyleBackColor = true;
-            // 
-            // AddTeachCourseTabPage
-            // 
-            this.AddTeachCourseTabPage.Location = new System.Drawing.Point(4, 25);
-            this.AddTeachCourseTabPage.Name = "AddTeachCourseTabPage";
-            this.AddTeachCourseTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.AddTeachCourseTabPage.Size = new System.Drawing.Size(1390, 800);
-            this.AddTeachCourseTabPage.TabIndex = 8;
-            this.AddTeachCourseTabPage.Text = "添加新课程";
-            this.AddTeachCourseTabPage.UseVisualStyleBackColor = true;
             // 
             // TeachCourseManageTabPage
             // 
@@ -1046,11 +1034,9 @@
             this.tabControl1.Controls.Add(this.StudentInformationTabPage);
             this.tabControl1.Controls.Add(this.SystemManageTabPage);
             this.tabControl1.Controls.Add(this.TeachCourseManageTabPage);
-            this.tabControl1.Controls.Add(this.AddTeachCourseTabPage);
             this.tabControl1.Controls.Add(this.SubmitGradesTabPage);
             this.tabControl1.Controls.Add(this.NotificationTabPage);
             this.tabControl1.Controls.Add(this.RegisterCoursesTabPage);
-            this.tabControl1.Controls.Add(this.AddRegistCoursesTabPage);
             this.tabControl1.Controls.Add(this.ViewReportCardTabPage);
             this.tabControl1.Controls.Add(this.ScheduleTabPage);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
@@ -1114,16 +1100,6 @@
             this.label查询课程提示.Size = new System.Drawing.Size(262, 15);
             this.label查询课程提示.TabIndex = 0;
             this.label查询课程提示.Text = "单击查询按钮查看您上学期教授的课程";
-            // 
-            // AddRegistCoursesTabPage
-            // 
-            this.AddRegistCoursesTabPage.Location = new System.Drawing.Point(4, 25);
-            this.AddRegistCoursesTabPage.Name = "AddRegistCoursesTabPage";
-            this.AddRegistCoursesTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.AddRegistCoursesTabPage.Size = new System.Drawing.Size(1390, 800);
-            this.AddRegistCoursesTabPage.TabIndex = 13;
-            this.AddRegistCoursesTabPage.Text = "添加课程";
-            this.AddRegistCoursesTabPage.UseVisualStyleBackColor = true;
             // 
             // ViewReportCardTabPage
             // 
@@ -1242,7 +1218,6 @@
         private System.Windows.Forms.Label label学生已选课程;
         private System.Windows.Forms.TabPage NotificationTabPage;
         private System.Windows.Forms.TabPage SummitGradesTabPage;
-        private System.Windows.Forms.TabPage AddTeachCourseTabPage;
         private System.Windows.Forms.TabPage TeachCourseManageTabPage;
         private System.Windows.Forms.Button button提交选择讲授课程;
         private System.Windows.Forms.Label label以前教授课程;
@@ -1264,7 +1239,6 @@
         private System.Windows.Forms.TabPage ShowTabPage1;
         private System.Windows.Forms.TabPage LoginTabpage;
         private System.Windows.Forms.TabPage SubmitGradesTabPage;
-        private System.Windows.Forms.TabPage AddRegistCoursesTabPage;
         private System.Windows.Forms.Button LoginButton;
         private System.Windows.Forms.ComboBox UserTypeComboBox;
         private System.Windows.Forms.Label labelLoginPassword;

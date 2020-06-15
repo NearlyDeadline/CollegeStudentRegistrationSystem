@@ -24,6 +24,7 @@ namespace Client
 
         public Boolean Selecting = true;
 
+        public bool IsCourseRegistrationOpen = true;
         public FormClient()
         {
             InitializeComponent();
@@ -65,23 +66,23 @@ namespace Client
                         this.tabControl1.TabPages.Add(this.ShowTabPage2);
                         this.labelShowTabPage2.Text = "课程详细信息:";
                         this.tabControl1.TabPages.Add(this.NotificationTabPage);
-                        this.tabControl1.TabPages.Add(this.RegisterCoursesTabPage);
-                        this.tabControl1.TabPages.Add(this.ViewReportCardTabPage);
                         //this.tabControl1.TabPages.Add(this.RegisterCoursesTabPage);
+                        this.tabControl1.TabPages.Add(this.ViewReportCardTabPage);
                         this.tabControl1.TabPages.Add(this.ScheduleTabPage);
                         InitializeDataTable课程表();
                         InitializeStudentPart();
                         Show_personal_info();
                         break;
                     case 1:
-                        this.tabControl1.TabPages.Add(this.PersonalInformationTabPage);
-                        this.tabControl1.TabPages.Add(this.TeachCourseManageTabPage);
-                        this.ShowTabPage1.Text = "以往教授课程";
+                        if (IsCourseRegistrationOpen)
+                            this.tabControl1.TabPages.Add(this.TeachCourseManageTabPage);
+                        this.tabControl1.TabPages.Add(this.PersonalInformationTabPage);  
+                        this.ShowTabPage1.Text = "本学期所教授课程";
                         this.tabControl1.TabPages.Add(this.ShowTabPage1);
-                        
+                        this.tabControl1.TabPages.Add(this.SubmitGradesTabPage);
+                        InitializeProfessorPart();
                         InitializeDataTable课程表();
                         Show_personal_info();
-                        this.tabControl1.TabPages.Add(this.SubmitGradesTabPage);
                         this.label双击课程提示.Visible = false;
                         break;
                     case 2:
@@ -116,8 +117,19 @@ namespace Client
                     MySqlConnection conn = new MySqlConnection(this.mysqlConnectionString);
                     try
                     {
+                        string mes = "服务器数据连接建立成功\n";
+                        if (receivedMessages[2].Equals("CourseRegistrationOpen"))
+                        {
+                            this.IsCourseRegistrationOpen = true;
+                            mes += "课程注册开放";
+                        }
+                        else if (receivedMessages[2].Equals("CourseRegistrationClose"))
+                        {
+                            this.IsCourseRegistrationOpen = false;
+                            mes += "课程注册关闭";
+                        }
                         conn.Open();
-                        MessageBox.Show("服务器数据连接建立成功", "数据连接测试", MessageBoxButtons.OK);
+                        MessageBox.Show(mes, "数据连接测试", MessageBoxButtons.OK);
                     }
                     catch (Exception ex)
                     {

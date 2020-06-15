@@ -20,6 +20,40 @@ namespace Client
         private DataTable dataTableBackground = new DataTable();//后台表，存储可教与已教课程的并集，负责偷偷地与数据库联络，更新数据库
         //得亏MySQL支持个union啊，真好
 
+        //加载表目
+        private void InitializeProfessorPart()
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(mysqlConnectionString))
+                {
+                    #region 已教课程
+                    conn.Open();//已教课程，直接选择section中id符合条件的即可
+                    MySqlDataAdapter sda = new MySqlDataAdapter(String.Format("SELECT * FROM section where id = {0} and year = {1} and semester = '{2}';",
+                                textBoxLoginName.Text, CurrentYear, CurrentSemester), conn);
+                    sda.Fill(dataTable本学期已教课程);
+                    dataGridViewShow1.DataSource = dataTable本学期已教课程;
+                    dataGridViewShow1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                    foreach (DataGridViewColumn col in dataGridViewShow1.Columns)
+                    {
+                        col.ReadOnly = true;
+                        col.SortMode = DataGridViewColumnSortMode.NotSortable;
+                    }
+                    #endregion 已教课程
+
+                    sda.Dispose();
+                    conn.Close();
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("无法进入课程目录系统", "严重错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "严重错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         private void TeachCourseManageTabPage_Enter(object sender, EventArgs e)
         {
             dataTable本学期可教课程.Clear();
