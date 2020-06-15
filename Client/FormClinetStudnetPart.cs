@@ -11,25 +11,19 @@ namespace Client
 {
     public partial class FormClient
     {
-       //private bool IsTeachInformationChanged = false;//是否有修改
-       //private static readonly int CurrentYear = 2020;//当前年份，用于组合sql语句使用
-       //private static readonly String CurrentSemester = "秋季";//当前学期，用于组合sql语句使用
 
         private DataTable dataTable本学期已选择课程 = new DataTable();
         private DataTable data本学期已选择课程的详细信息 = new DataTable();
+        private DataTable dataTableCoursesInfo = new DataTable();
         private DataTable dataTableSectionInfoExpect = new DataTable();
         //由于奇怪的选中要求 需要这两个表来在完成选课功能
         private DataTable dataTable选中与已选 = new DataTable();
         private DataTable dataTable选中与已选详细信息 = new DataTable();
         private DataTable dataTable备选 = new DataTable();
         private DataTable dataTableScheduleForWeek = new DataTable();   //用于加载显示某周的课程
-        private DataTable dataTableBackgroundForStu = new DataTable();//后台表，存储可教与已教课程的并集，负责偷偷地与数据库联络，更新数据库
+        private DataTable dataTableBackgroundForStu = new DataTable();  //后台表，存储可教与已教课程的并集，负责偷偷地与数据库联络，更新数据库
 
         private bool IsThereASchedule = true;
-        //private DataTable dataTable本学期可教课程 = new DataTable();
-        //private DataTable dataTable以前教授课程 = new DataTable();
-        //得亏MySQL支持个union啊，真好
-
 
         private void InitializeStudentPart()
         {
@@ -45,21 +39,22 @@ namespace Client
                 {
                     #region 已选择课程
                     conn.Open();//已选择课程，直接选择section中id符合条件的即可
-                    MySqlDataAdapter sda = new MySqlDataAdapter(String.Format("SELECT * FROM takes where id = {0} and year = {1} and semester = '{2}';",
+                    MySqlDataAdapter sda = new MySqlDataAdapter(String.Format("SELECT * FROM takes where id = {0} and year = {1} and semester = '{2}' ORDER BY `status` ;",
                                 textBoxLoginName.Text, CurrentYear, CurrentSemester), conn);
                     sda.Fill(dataTable本学期已选择课程);
-                    //dataGridView学生已选与选中课程.DataSource = dataTable本学期已选择课程;
-                    //dataGridView学生已选与选中课程.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-                    //foreach (DataGridViewColumn col in dataGridView学生已选与选中课程.Columns)
-                    //{
-                    //    col.ReadOnly = true;
-                    //    col.SortMode = DataGridViewColumnSortMode.NotSortable;
-                    //}
+                    dataGridViewShow1.DataSource = dataTable本学期已选择课程;
+                    dataGridViewShow1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                    foreach (DataGridViewColumn col in dataGridViewShow1.Columns)
+                    {
+                        col.ReadOnly = true;
+                        col.SortMode = DataGridViewColumnSortMode.NotSortable;
+                    }
                     #endregion 已选择课程
                     #region 已选课程详细信息
                     sda = new MySqlDataAdapter(String.Format("select * from section where (course_id,sec_id, semester, `year`) in (select course_id,sec_id, semester, `year` from takes where id = {0} and year = {1} and semester = '{2}' );",
                           textBoxLoginName.Text,CurrentYear, CurrentSemester), conn);
                     sda.Fill(data本学期已选择课程的详细信息);
+
                     # endregion 已选课程详细信息
                     #region 填充TimeTable
                     foreach (DataRow sectionRow in data本学期已选择课程的详细信息.Rows)
@@ -97,6 +92,10 @@ namespace Client
                     dataTableScheduleForWeek.Columns.Add("周五", typeof(string));
                     dataTableScheduleForWeek.Columns.Add("周六", typeof(string));
                     dataTableScheduleForWeek.Columns.Add("周日", typeof(string));
+                    if (!IsCourseRegistrationOpen)
+                    {
+                        this.buttonStudentCreate.Visible = false;
+                    }
                     if (dataTable本学期已选择课程.Rows.Count == 0)
                     {
                         IsThereASchedule = false;
@@ -116,6 +115,24 @@ namespace Client
                         }
                     }
                     #endregion 显示课程表
+
+                    #region 课程详细信息
+                    sda = new MySqlDataAdapter(String.Format("SELECT s.course_id, c.title, pr.prereq_id, s.sec_id as '教学班', s.semester, s.time_slot_id, s.`year`, s.building, s.room_number, p.`name` AS 'professor name', c.dept_name, c.credits, c.fee  " +
+                        " FROM section s" +
+                        " LEFT JOIN professor p ON s.id = p.id" +
+                        " LEFT JOIN course c ON s.course_id = c.course_id" +
+                        " LEFT JOIN prereq pr ON s.course_id = pr.course_id" +
+                        " WHERE  s.`year` = {0} and s.semester = '{1}';", CurrentYear, CurrentSemester), conn);
+                    sda.Fill(dataTableCoursesInfo);
+                    dataGridViewShow2.DataSource = dataTableCoursesInfo;
+                    dataGridViewShow2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                    foreach (DataGridViewColumn col in dataGridViewShow2.Columns)
+                    {
+                        col.ReadOnly = true;
+                        col.SortMode = DataGridViewColumnSortMode.NotSortable;
+                    }
+                    #endregion 课程详细信息
+
                     sda.Dispose();
                     conn.Close();
                 }
@@ -419,6 +436,7 @@ namespace Client
                     conn.Close();
                     MessageBox.Show("保存完毕", "保存课表", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LoadRegisterCoursesTabPage();       //回到流程开始
+                    ChangeScheduleWeek(this.comboBoxWeekChange.SelectedIndex);
                 }
             }
             catch (MySqlException ex)
@@ -556,6 +574,7 @@ namespace Client
                     conn.Close();
                     MessageBox.Show("提交成功", "提交课表", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LoadRegisterCoursesTabPage();       //回到流程开始
+                    ChangeScheduleWeek(this.comboBoxWeekChange.SelectedIndex);
                 }
             }
             catch (MySqlException ex)

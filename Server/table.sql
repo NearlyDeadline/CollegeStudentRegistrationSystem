@@ -62,7 +62,7 @@ CREATE TABLE course (
 	FOREIGN KEY (dept_name) REFERENCES department(dept_name) ON DELETE SET NULL
 	);
 	
-#教授：教授id，教授姓名，出生日期，SSN，状态，教授所属学院名称，教授月工资，教授登录密码
+#教授：教授id，教授姓名，出生日期，身份证号，职称，教授所属学院名称，教授登录密码
 #教授应当在程序运行前就在数据库里存在，根据课程要求写几个即可
 #程序要求管理员能够对教授进行增删改查，请准备相关测试用例
 #教授id原则上从1000开始分配
@@ -76,7 +76,6 @@ CREATE TABLE professor (
  	ssn 		decimal(9) NOT NULL UNIQUE,
  	status 		varchar(10),
 	dept_name 	varchar(20),
-	salary 		decimal(8),
 	password 	varchar(25) DEFAULT '000000',
 	PRIMARY KEY (id),
 	FOREIGN KEY (dept_name) REFERENCES department(dept_name) ON DELETE SET NULL
@@ -121,11 +120,8 @@ CREATE TABLE student (
  	ssn 		decimal(9) NOT NULL UNIQUE,
  	status 		varchar(10),
  	graduate_date 	year,
-	dept_name 	varchar(20),
-	tot_cred 	decimal(5,2) UNSIGNED DEFAULT 0,
 	password 	varchar(25) DEFAULT '000000',
-	PRIMARY KEY (id),
-	FOREIGN KEY (dept_name) REFERENCES department(dept_name) ON DELETE SET NULL
+	PRIMARY KEY (id)
 	);
 	
 #学生选课：学生id，课程段主码，成绩，选课状态
@@ -136,7 +132,7 @@ CREATE TABLE takes (
 	sec_id	 	varchar(8),
 	semester 		varchar(6),
 	year	 	year,
-	grade	 	varchar(2),
+	grade	 	varchar(2) DEFAULT NULL,
 	status 		varchar(5),
  	CONSTRAINT `takes_check_status_in_enum` CHECK (status IN ('已选', '选中', '备选1', '备选2')),
 	PRIMARY KEY (id, course_id, sec_id, semester, year),
@@ -163,5 +159,3 @@ CREATE TABLE can_teach (
 	FOREIGN KEY (id) REFERENCES professor(id) ON DELETE CASCADE,
 	FOREIGN KEY (course_id) REFERENCES course(course_id) ON DELETE CASCADE
 	);
-	
-	

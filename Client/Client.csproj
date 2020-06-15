@@ -101,7 +101,16 @@
     <Compile Include="FormClient.Designer.cs">
       <DependentUpon>FormClient.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormClientAdminProManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormClientAdminStuManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormClientClosePart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormClientPersonalInformation.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormClientProfessorPart.cs">
@@ -110,17 +119,53 @@
     <Compile Include="FormClientSocketPart.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormClientSubmitGrades.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormClientTimeTablePart.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormClientViewReportCard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputID.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputID.Designer.cs">
+      <DependentUpon>InputID.cs</DependentUpon>
     </Compile>
     <Compile Include="FormClinetStudnetPart.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Program.cs" />
+    <Compile Include="ProInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProInfo.Designer.cs">
+      <DependentUpon>ProInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StateObject.cs" />
+    <Compile Include="StuInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StuInfo.Designer.cs">
+      <DependentUpon>StuInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SubGrades.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SubGrades.Designer.cs">
+      <DependentUpon>SubGrades.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="FormClient.resx">
       <DependentUpon>FormClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputID.resx">
+      <DependentUpon>InputID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProInfo.resx">
+      <DependentUpon>ProInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -131,6 +176,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="StuInfo.resx">
+      <DependentUpon>StuInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SubGrades.resx">
+      <DependentUpon>SubGrades.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
