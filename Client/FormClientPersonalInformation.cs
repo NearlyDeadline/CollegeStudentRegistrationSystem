@@ -91,6 +91,12 @@ namespace Client
 
                     if (reader[5].ToString().Equals("计算机科学与技术学院"))
                         dept_name = 0;
+                    if (reader[5].ToString().Equals("数学学院"))
+                        dept_name = 1;
+                    if (reader[5].ToString().Equals("外语学院"))
+                        dept_name = 2;
+                    if (reader[5].ToString().Equals("马克思学院"))
+                        dept_name = 3;
 
                     this.labelStatus.Text = "职称";
                     this.labelGraduateDate.Text = "所属学院";
@@ -102,7 +108,10 @@ namespace Client
                     "教授"});
                     this.comboBoxGra_year.Items.Clear();
                     this.comboBoxGra_year.Items.AddRange(new object[] {
-                    "计算机科学与技术学院"});
+                    "计算机科学与技术学院",
+                    "数学学院",
+                    "外语学院",
+                    "马克思学院"});
 
                     this.textBoxID.Text = reader[0].ToString();
                     this.textBoxID.ReadOnly = true;

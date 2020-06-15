@@ -159,6 +159,12 @@ namespace Client
 
                     if (reader[5].ToString().Equals("计算机科学与技术学院"))
                         dept_name = 0;
+                    if (reader[5].ToString().Equals("数学学院"))
+                        dept_name = 1;
+                    if (reader[5].ToString().Equals("外语学院"))
+                        dept_name = 2;
+                    if (reader[5].ToString().Equals("马克思学院"))
+                        dept_name = 3;
 
                     ProInfo proInfo = new ProInfo();
                     proInfo.update(reader[1].ToString(), reader[2].ToString(), reader[3].ToString(), status, dept_name);
