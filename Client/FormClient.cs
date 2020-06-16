@@ -111,9 +111,9 @@ namespace Client
             if (receivedMessage.Length > 0)
             {
                 string[] receivedMessages = receivedMessage.Split('@');
+                this.mysqlConnectionString = receivedMessages[1];
                 if (receivedMessages[0].Equals("True"))
                 {
-                    this.mysqlConnectionString = receivedMessages[1];
                     MySqlConnection conn = new MySqlConnection(this.mysqlConnectionString);
                     try
                     {
