@@ -95,6 +95,8 @@ namespace Client
                     if (!IsCourseRegistrationOpen)
                     {
                         this.buttonStudentCreate.Visible = false;
+                        this.buttonStudentUpdate.Visible = false;
+                        this.buttonStudentDelete.Visible = false;
                     }
                     if (dataTable本学期已选择课程.Rows.Count == 0)
                     {
