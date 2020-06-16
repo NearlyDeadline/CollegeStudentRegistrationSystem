@@ -11,6 +11,7 @@ namespace Server
         static int Main(string[] args)
         {
             MySQLConnectionString = InitializeMySQLConnection("MySQLSettings.xml");
+            Console.WriteLine("数据库连接加载完毕");
             StartListening();
             return 0;
         }
@@ -26,13 +27,12 @@ namespace Server
             try
             {
                 ServerSocket.Bind(ServerEndPoint);
+                Console.WriteLine("服务器开始运行，等待客户端建立连接");
                 ServerSocket.Listen(100);
                 while (true)
                 {
                     //阻断线程 
                     allDone.Reset();
-                    //等待客户端建立连接
-                    Console.WriteLine("等待一个客户端建立连接");
                     ServerSocket.BeginAccept(new AsyncCallback(AcceptCallback), ServerSocket);
                     //建立连接后主线程继续  
                     allDone.WaitOne();
