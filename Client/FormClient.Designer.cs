@@ -628,7 +628,7 @@
             // dataGridView学生信息
             // 
             this.dataGridView学生信息.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView学生信息.Location = new System.Drawing.Point(40, 170);
+            this.dataGridView学生信息.Location = new System.Drawing.Point(41, 168);
             this.dataGridView学生信息.Name = "dataGridView学生信息";
             this.dataGridView学生信息.RowHeadersWidth = 51;
             this.dataGridView学生信息.RowTemplate.Height = 27;
@@ -640,7 +640,7 @@
             this.groupBox2.Controls.Add(this.button删除);
             this.groupBox2.Controls.Add(this.button更新);
             this.groupBox2.Controls.Add(this.button添加);
-            this.groupBox2.Location = new System.Drawing.Point(40, 34);
+            this.groupBox2.Location = new System.Drawing.Point(41, 32);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(644, 104);
             this.groupBox2.TabIndex = 10;
@@ -938,7 +938,7 @@
             // labelShowTabPage2
             // 
             this.labelShowTabPage2.AutoSize = true;
-            this.labelShowTabPage2.Location = new System.Drawing.Point(20, 21);
+            this.labelShowTabPage2.Location = new System.Drawing.Point(35, 27);
             this.labelShowTabPage2.Name = "labelShowTabPage2";
             this.labelShowTabPage2.Size = new System.Drawing.Size(55, 15);
             this.labelShowTabPage2.TabIndex = 1;
@@ -969,7 +969,7 @@
             // labelShowTabPage1
             // 
             this.labelShowTabPage1.AutoSize = true;
-            this.labelShowTabPage1.Location = new System.Drawing.Point(67, 26);
+            this.labelShowTabPage1.Location = new System.Drawing.Point(35, 29);
             this.labelShowTabPage1.Name = "labelShowTabPage1";
             this.labelShowTabPage1.Size = new System.Drawing.Size(55, 15);
             this.labelShowTabPage1.TabIndex = 2;

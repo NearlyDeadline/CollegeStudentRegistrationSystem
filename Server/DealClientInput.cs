@@ -257,6 +257,16 @@ namespace Server
             string cmd = String.Format("SELECT password FROM {0} where id = '{1}';", tableName, userId);
             try
             {
+                if (loginInfos[1] == String.Empty)
+                {
+                    result = "False" + "@请输入用户名";
+                    return result;
+                }
+                else if (loginInfos[2] == String.Empty)
+                {
+                    result = "False" + "@请输入密码";
+                    return result;
+                }
                 DataTable dt = ExecuteSelectCommand(cmd);
                 if (dt.Rows.Count == 1)//比较密码
                 {
