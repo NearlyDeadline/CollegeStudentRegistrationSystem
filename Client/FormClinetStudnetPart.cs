@@ -95,6 +95,8 @@ namespace Client
                     if (!IsCourseRegistrationOpen)
                     {
                         this.buttonStudentCreate.Visible = false;
+                        this.buttonStudentUpdate.Visible = false;
+                        this.buttonStudentDelete.Visible = false;
                     }
                     if (dataTable本学期已选择课程.Rows.Count == 0)
                     {
@@ -432,6 +434,19 @@ namespace Client
                             cmd.ExecuteNonQuery();
                         }
                     }
+                    #region 刷新已选
+                    dataTable本学期已选择课程.Clear();
+                    MySqlDataAdapter sda = new MySqlDataAdapter(String.Format("SELECT * FROM takes where id = {0} and year = {1} and semester = '{2}' ORDER BY `status` ;",
+                               textBoxLoginName.Text, CurrentYear, CurrentSemester), conn);
+                    sda.Fill(dataTable本学期已选择课程);
+                    dataGridViewShow1.DataSource = dataTable本学期已选择课程;
+                    dataGridViewShow1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                    foreach (DataGridViewColumn col in dataGridViewShow1.Columns)
+                    {
+                        col.ReadOnly = true;
+                        col.SortMode = DataGridViewColumnSortMode.NotSortable;
+                    }
+                    #endregion 刷新已选
                     cmd.Dispose();
                     conn.Close();
                     MessageBox.Show("保存完毕", "保存课表", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -570,6 +585,21 @@ namespace Client
                         }
                     }
                     #endregion 更新备选
+
+                    #region 刷新已选
+                    dataTable本学期已选择课程.Clear();
+                    MySqlDataAdapter sda = new MySqlDataAdapter(String.Format("SELECT * FROM takes where id = {0} and year = {1} and semester = '{2}' ORDER BY `status` ;",
+                               textBoxLoginName.Text, CurrentYear, CurrentSemester), conn);
+                    sda.Fill(dataTable本学期已选择课程);
+                    dataGridViewShow1.DataSource = dataTable本学期已选择课程;
+                    dataGridViewShow1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                    foreach (DataGridViewColumn col in dataGridViewShow1.Columns)
+                    {
+                        col.ReadOnly = true;
+                        col.SortMode = DataGridViewColumnSortMode.NotSortable;
+                    }
+                    #endregion 刷新已选
+
                     cmd.Dispose();
                     conn.Close();
                     MessageBox.Show("提交成功", "提交课表", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -815,6 +845,23 @@ namespace Client
                     dataTable.Rows[dataGridView.CurrentRow.Index].Delete();
                     dataTable.AcceptChanges();
                     #endregion 把课程中选中的行删除掉
+
+                    #region 刷新已选
+                    dataTable本学期已选择课程.Clear();
+                    sda = new MySqlDataAdapter(String.Format("SELECT * FROM takes where id = {0} and year = {1} and semester = '{2}' ORDER BY `status` ;",
+                               textBoxLoginName.Text, CurrentYear, CurrentSemester), conn);
+                    sda.Fill(dataTable本学期已选择课程);
+                    dataGridViewShow1.DataSource = dataTable本学期已选择课程;
+                    dataGridViewShow1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                    foreach (DataGridViewColumn col in dataGridViewShow1.Columns)
+                    {
+                        col.ReadOnly = true;
+                        col.SortMode = DataGridViewColumnSortMode.NotSortable;
+                    }
+                    #endregion 刷新已选
+                    LoadRegisterCoursesTabPage();       //回到流程开始
+                    ChangeScheduleWeek(this.comboBoxWeekChange.SelectedIndex);
+
                     sda.Dispose();
                     conn.Close();
                 }

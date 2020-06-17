@@ -49,6 +49,7 @@
             this.dataGridView学生已选与选中课程 = new System.Windows.Forms.DataGridView();
             this.label学生已选课程 = new System.Windows.Forms.Label();
             this.NotificationTabPage = new System.Windows.Forms.TabPage();
+            this.buttonSaveBill = new System.Windows.Forms.Button();
             this.buttonGetBill = new System.Windows.Forms.Button();
             this.richTextBoxBill = new System.Windows.Forms.RichTextBox();
             this.SummitGradesTabPage = new System.Windows.Forms.TabPage();
@@ -120,7 +121,6 @@
             this.dataGridView成绩展示 = new System.Windows.Forms.DataGridView();
             this.button查询成绩 = new System.Windows.Forms.Button();
             this.saveFileDialogBill = new System.Windows.Forms.SaveFileDialog();
-            this.buttonSaveBill = new System.Windows.Forms.Button();
             this.ScheduleTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewStudentSchedule)).BeginInit();
             this.RegisterCoursesTabPage.SuspendLayout();
@@ -351,7 +351,7 @@
             // label学生本学期课程目录
             // 
             this.label学生本学期课程目录.AutoSize = true;
-            this.label学生本学期课程目录.Location = new System.Drawing.Point(788, 37);
+            this.label学生本学期课程目录.Location = new System.Drawing.Point(835, 37);
             this.label学生本学期课程目录.Name = "label学生本学期课程目录";
             this.label学生本学期课程目录.Size = new System.Drawing.Size(127, 15);
             this.label学生本学期课程目录.TabIndex = 4;
@@ -393,7 +393,7 @@
             this.label学生已选课程.Name = "label学生已选课程";
             this.label学生已选课程.Size = new System.Drawing.Size(75, 15);
             this.label学生已选课程.TabIndex = 0;
-            this.label学生已选课程.Text = "已选课程:";
+            this.label学生已选课程.Text = "基础课程:";
             // 
             // NotificationTabPage
             // 
@@ -407,6 +407,16 @@
             this.NotificationTabPage.TabIndex = 11;
             this.NotificationTabPage.Text = "系统通知";
             this.NotificationTabPage.UseVisualStyleBackColor = true;
+            // 
+            // buttonSaveBill
+            // 
+            this.buttonSaveBill.Location = new System.Drawing.Point(59, 641);
+            this.buttonSaveBill.Name = "buttonSaveBill";
+            this.buttonSaveBill.Size = new System.Drawing.Size(265, 52);
+            this.buttonSaveBill.TabIndex = 2;
+            this.buttonSaveBill.Text = "保存账单文件";
+            this.buttonSaveBill.UseVisualStyleBackColor = true;
+            this.buttonSaveBill.Click += new System.EventHandler(this.buttonSaveBill_Click);
             // 
             // buttonGetBill
             // 
@@ -579,7 +589,7 @@
             this.buttonEnd.Name = "buttonEnd";
             this.buttonEnd.Size = new System.Drawing.Size(200, 96);
             this.buttonEnd.TabIndex = 2;
-            this.buttonEnd.Text = "结束选课";
+            this.buttonEnd.Text = "暂停选课";
             this.buttonEnd.UseVisualStyleBackColor = true;
             this.buttonEnd.Click += new System.EventHandler(this.buttonEnd_Click);
             // 
@@ -599,7 +609,7 @@
             this.buttonCloseRegistration.Name = "buttonCloseRegistration";
             this.buttonCloseRegistration.Size = new System.Drawing.Size(251, 74);
             this.buttonCloseRegistration.TabIndex = 0;
-            this.buttonCloseRegistration.Text = "关闭注册";
+            this.buttonCloseRegistration.Text = "关闭选课";
             this.buttonCloseRegistration.UseVisualStyleBackColor = true;
             this.buttonCloseRegistration.Click += new System.EventHandler(this.buttonCloseRegistration_Click);
             // 
@@ -618,7 +628,7 @@
             // dataGridView学生信息
             // 
             this.dataGridView学生信息.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView学生信息.Location = new System.Drawing.Point(40, 170);
+            this.dataGridView学生信息.Location = new System.Drawing.Point(41, 168);
             this.dataGridView学生信息.Name = "dataGridView学生信息";
             this.dataGridView学生信息.RowHeadersWidth = 51;
             this.dataGridView学生信息.RowTemplate.Height = 27;
@@ -630,7 +640,7 @@
             this.groupBox2.Controls.Add(this.button删除);
             this.groupBox2.Controls.Add(this.button更新);
             this.groupBox2.Controls.Add(this.button添加);
-            this.groupBox2.Location = new System.Drawing.Point(40, 34);
+            this.groupBox2.Location = new System.Drawing.Point(41, 32);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(644, 104);
             this.groupBox2.TabIndex = 10;
@@ -928,7 +938,7 @@
             // labelShowTabPage2
             // 
             this.labelShowTabPage2.AutoSize = true;
-            this.labelShowTabPage2.Location = new System.Drawing.Point(20, 21);
+            this.labelShowTabPage2.Location = new System.Drawing.Point(35, 27);
             this.labelShowTabPage2.Name = "labelShowTabPage2";
             this.labelShowTabPage2.Size = new System.Drawing.Size(55, 15);
             this.labelShowTabPage2.TabIndex = 1;
@@ -959,7 +969,7 @@
             // labelShowTabPage1
             // 
             this.labelShowTabPage1.AutoSize = true;
-            this.labelShowTabPage1.Location = new System.Drawing.Point(67, 26);
+            this.labelShowTabPage1.Location = new System.Drawing.Point(35, 29);
             this.labelShowTabPage1.Name = "labelShowTabPage1";
             this.labelShowTabPage1.Size = new System.Drawing.Size(55, 15);
             this.labelShowTabPage1.TabIndex = 2;
@@ -1170,16 +1180,6 @@
             this.button查询成绩.Text = "查询上学期成绩";
             this.button查询成绩.UseVisualStyleBackColor = true;
             this.button查询成绩.Click += new System.EventHandler(this.ViewReportCard);
-            // 
-            // buttonSaveBill
-            // 
-            this.buttonSaveBill.Location = new System.Drawing.Point(59, 641);
-            this.buttonSaveBill.Name = "buttonSaveBill";
-            this.buttonSaveBill.Size = new System.Drawing.Size(265, 52);
-            this.buttonSaveBill.TabIndex = 2;
-            this.buttonSaveBill.Text = "保存账单文件";
-            this.buttonSaveBill.UseVisualStyleBackColor = true;
-            this.buttonSaveBill.Click += new System.EventHandler(this.buttonSaveBill_Click);
             // 
             // FormClient
             // 

@@ -74,10 +74,11 @@ namespace Client
                         Show_personal_info();
                         break;
                     case 1:
+                        this.tabControl1.TabPages.Add(this.PersonalInformationTabPage);
                         if (IsCourseRegistrationOpen)
                             this.tabControl1.TabPages.Add(this.TeachCourseManageTabPage);
-                        this.tabControl1.TabPages.Add(this.PersonalInformationTabPage);  
                         this.ShowTabPage1.Text = "本学期所教授课程";
+                        this.labelShowTabPage1.Text = "以下为您本学期所教授的课程：";
                         this.tabControl1.TabPages.Add(this.ShowTabPage1);
                         this.tabControl1.TabPages.Add(this.SubmitGradesTabPage);
                         InitializeProfessorPart();
@@ -111,9 +112,9 @@ namespace Client
             if (receivedMessage.Length > 0)
             {
                 string[] receivedMessages = receivedMessage.Split('@');
+                this.mysqlConnectionString = receivedMessages[1];
                 if (receivedMessages[0].Equals("True"))
                 {
-                    this.mysqlConnectionString = receivedMessages[1];
                     MySqlConnection conn = new MySqlConnection(this.mysqlConnectionString);
                     try
                     {
