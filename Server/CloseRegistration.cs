@@ -229,9 +229,10 @@ namespace Server
                 DataTable AlternativeTakes = new DataTable();
                 foreach (DataRow row in TakesTable.Rows)
                 {
-                    if (Convert.ToInt32(row["count"]) < 4)
+                    int takesCount = Convert.ToInt32(row["count"]);//已选课数量
+                    if (takesCount < 4)
                     {
-                        for (int i = 1; i < 3; i++)//有两门备选
+                        for (int i = 1; i < 3 && takesCount < 4; i++)//有两门备选
                         {
                             sda.SelectCommand.CommandText = String.Format(
                                 "select course_id, sec_id, semester, year from takes where id = {0} and status = '备选{1}';",
@@ -258,6 +259,7 @@ namespace Server
                                         AlternativeTakes.Rows[0]["sec_id"].ToString(),
                                         AlternativeTakes.Rows[0]["semester"].ToString(),
                                         AlternativeTakes.Rows[0]["year"].ToString());
+                                    takesCount++;
                                 }
                                 else//超出10人，不可选课，删除takes记录
                                 {

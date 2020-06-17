@@ -106,6 +106,7 @@ namespace Server
             {
                 result = "False@网络传输异常";
             }
+            Console.WriteLine("生成账单文件");
             return result;
         }
 
@@ -114,6 +115,7 @@ namespace Server
             if (!IsCourseRegistrationOpen)
             {
                 IsCourseRegistrationOpen = true;
+                Console.WriteLine("管理员选择开始选课");
                 return "Success@选课开始";
             }
             else
@@ -127,6 +129,7 @@ namespace Server
             if (IsCourseRegistrationOpen)
             {
                 IsCourseRegistrationOpen = false;
+                Console.WriteLine("管理员选择暂停选课");
                 return "Success@选课结束";
             }
             else
@@ -142,6 +145,7 @@ namespace Server
             else
             {
                 new Thread(CloseRegistration).Start();
+                Console.WriteLine("管理员选择结束选课，正在安排课程");
                 return "Success@开始安排课程";
             }
         }
@@ -253,6 +257,16 @@ namespace Server
             string cmd = String.Format("SELECT password FROM {0} where id = '{1}';", tableName, userId);
             try
             {
+                if (loginInfos[1] == String.Empty)
+                {
+                    result = "False" + "@请输入用户名";
+                    return result;
+                }
+                else if (loginInfos[2] == String.Empty)
+                {
+                    result = "False" + "@请输入密码";
+                    return result;
+                }
                 DataTable dt = ExecuteSelectCommand(cmd);
                 if (dt.Rows.Count == 1)//比较密码
                 {
@@ -260,6 +274,18 @@ namespace Server
                     if (password.Equals(userPassword))
                     {
                         result = "True@" + MySQLConnectionString;
+                        if (loginInfos[0].Equals("professor"))
+                        {
+                            Console.WriteLine("一名教授登录了客户端");
+                        }
+                        if (loginInfos[0].Equals("registrar"))
+                        {
+                            Console.WriteLine("一名管理员登录了客户端");
+                        }
+                        if (loginInfos[0].Equals("student"))
+                        {
+                            Console.WriteLine("一名学生登录了客户端");
+                        }
                         if (IsCourseRegistrationOpen)
                         {
                             result += "@CourseRegistrationOpen";
